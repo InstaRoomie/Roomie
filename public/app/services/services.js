@@ -4,7 +4,7 @@ angular.module('roomie.services', [])
     var signup = function(user) {
       return $http({
         method: 'POST',
-        url:'api/url',
+        url:'api/users/signup',
         data: user
       })
       .then(function(response) {
@@ -15,7 +15,7 @@ angular.module('roomie.services', [])
     var signin = function(user) {
       return $http({
         method: 'POST',
-        url:'api/url',
+        url:'api/users/signin',
         data: user
       })
       .then(function(response) {
@@ -31,7 +31,7 @@ angular.module('roomie.services', [])
       $window.localStorage.remoteItem('com.roomie');
       $location.path('/login');
     }
-    
+
     return {
       signup: signup,
       signin: signin,
