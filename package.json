@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower clean cache && bower install",
+    "postinstall": "npm install bower -g && bower cache clean && bower install",
     "lint": "eslint **/**.js"
   },
   "repository": {
