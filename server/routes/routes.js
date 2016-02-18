@@ -4,10 +4,6 @@ var app = require('../server.js');
 var morgan = require('morgan');
 var bodyParser  = require('body-parser');
 
-var routes = {
-  home: '../../public/index.html',
-};
-
 module.exports = function (app, express) {
   var userRouter = express.Router();
   var profileRouter = express.Router();
@@ -22,7 +18,10 @@ module.exports = function (app, express) {
   app.use('/api/profile', profileRouter);
   app.use('/api/contact', contactRouter);
 
-  app.get("/", function(request, response) {
+  app.use(helpers.errorLogger);
+  app.use(helpers.errorHandler);
+
+  /*app.get("/", function(request, response) {
     var status = status || 200;
     console.log('This is a get request ', request);
 
@@ -30,7 +29,7 @@ module.exports = function (app, express) {
       response.writeHead(status, {'Content-Type': 'text/html'});
       response.end(data, 'utf-8');
     });
-  });
+  });*/
 
   // inject our routers into their respective route files
   require('./userRoute.js')(userRouter);
