@@ -1,8 +1,10 @@
 <div>
   <h1 class="authheader">Sign In</h1>
   <form name="signinForm" ng-submit="signin()">
-    <input type="text" placeholder="Email" ng-model="user.email">
-    <input type="password" ng-model="user.password">
+    <table>
+      <tr><td>Email:</td><td><input type="text" placeholder="Email" ng-model="user.email"></td></tr>
+      <tr><td>Password:</td><td><input type="password" ng-model="user.password"></td></tr>
+    </table>
     <button class="authbutton">Sign In</button>
   </form>
   <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
