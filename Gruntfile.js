@@ -9,10 +9,14 @@ module.exports = function(grunt) {
         dest: 'dist/built.js',
       }
     },
-    jshint: {
-      beforeconcat: [''],
-      afterconcat: ['dist/built.js']
-    },
+    src: 'path/to/files/*.js',
+    options: {
+      config: '.jscsrc',
+      esnext: true,
+      verbose: true,
+      fix: true,
+      requireCurlyBraces: ['if']
+    }
     uglify: {
       my_target: {
         files: {
@@ -25,9 +29,9 @@ module.exports = function(grunt) {
   // Load the plugins
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-jscs');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'jshint', 'uglify']);
+  grunt.registerTask('default', ['concat', 'jscs', 'uglify']);
 
 };
