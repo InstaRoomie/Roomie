@@ -18,7 +18,7 @@ angular.module('roomie.auth', [])
   $scope.signin = function(){
     Auth.signin($scope.user)
     .then(function (token){
-      $window.localStorage.setItem('come.roomie', token);
+      $window.localStorage.setItem('com.roomie', token);
       $location.path('/main');
     })
     .catch(function (error){
