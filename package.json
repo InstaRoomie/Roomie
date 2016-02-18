@@ -1,0 +1,35 @@
+{
+  "name": "roomie",
+  "version": "0.0.0",
+  "description": "Find roomies that you actually like.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "bower clean cache && bower install",
+    "lint": "eslint **/**.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InstaRoomie/Roomie.git"
+  },
+  "author": "Ethaniel Rubio, Daniel Rizko, Daniel Kim, Robert Chong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/InstaRoomie/Roomie/issues"
+  },
+  "homepage": "https://github.com/InstaRoomie/Roomie#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.1.0",
+    "eslint-config-airbnb": "^5.0.1",
+    "eslint-plugin-react": "^3.16.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

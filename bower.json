@@ -1,0 +1,27 @@
+{
+  "name": "roomie",
+  "description": "Find roomies that you actually like.",
+  "main": "index.js",
+  "authors": [
+    "Ethaniel Rubio",
+    "Daniel Rizko",
+    "Daniel Kim",
+    "Robert Chong"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/InstaRoomie/Roomie",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "angular-material": "^1.0.5"
+  }
+}
