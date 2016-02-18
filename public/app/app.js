@@ -1,16 +1,16 @@
-var myApp = angular.module('roomie', ['roomie.services', 'ui.router'])
+var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'ui.router'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
       .state('login', {
-        templateUrl: 'auth/login.html',
+        templateUrl: 'app/auth/login.html',
         url: '/login',
         controller: 'AuthController'
       })
       .state('signup', {
-        templateUrl: 'auth/signup.html',
+        templateUrl: 'app/auth/signup.html',
         url: '/signup',
         controller: 'AuthController'
       })
