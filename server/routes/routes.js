@@ -9,10 +9,18 @@ var routes = {
 };
 
 module.exports = function (app, express) {
+  var userRouter = express.Router();
+  var profileRouter = express.Router();
+  var contactRouter = express.Router();
+
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
   app.use(express.static('./public'));
+
+  app.use('/api/user', userRouter);
+  app.use('/api/profile', profileRouter);
+  app.use('/api/contact', contactRouter);
 
   app.get("/", function(request, response) {
     var status = status || 200;
@@ -25,6 +33,7 @@ module.exports = function (app, express) {
   });
 
   // inject our routers into their respective route files
-  /*require('....')(...Router);
-  require('...'')(..Router);*/
+  require('./userRoute.js')(userRouter);
+  require('./profileRoute.js')(profileRouter);
+  require('./contactRoute.js')(contactRouter);
 };
