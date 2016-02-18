@@ -1,4 +1,4 @@
-var contactController = require('../models/contact/contactController.js');
+var contactController = require('../controllers/contactController.js');
 
 module.exports = function (app) {
   // app === contactRouter injected from request-helper.js
