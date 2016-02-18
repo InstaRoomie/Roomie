@@ -5,7 +5,7 @@ module.exports = function (app) {
   console.log(app);
 
   // fix function later (need to call the DB in controller)
-  /*app.post('/signin', userController); // userController.signin
-  app.post('/signup', userController); // userController.signup
-  app.get('/signedin', userController); // userController.checkAuth*/
+  app.post('/signin', userController.signin); // userController.signin
+  app.post('/signup', userController.signup); // userController.signup
+  app.get('/signedin', userController.checkAuth); // userController.checkAuth
 };
