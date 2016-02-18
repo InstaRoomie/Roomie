@@ -1,0 +1,15 @@
+<div id='signup'>
+  <h1 class="authheader">Signup</h1>
+  <form name="signupform" ng-submit='signup()'>
+    <input type="text" placeholder="Email(username)" ng-model='user.email'>
+    <input type="password" ng-model='user.password'>
+    <input type="text" placeholder="FirstName" = ng-model="user.firstname">
+    <input type="text" placeholder="LastName" ng-model="user.lastname">
+    <input type="text" placeholder="DateOfBirth(mm/dd/yyyy)" ng-model="user.dob">
+    <input type="text" placeholder="Gender(M or F)" ng-model="user.gender">
+    <input type="text" placeholder="About Me (140 char. Max)" ng-model="user.aboutme">
+    <button class="authbutton">Sign Up!</button>
+
+  </form>
+  <a href="#/signin">Already have an account? <strong>Signin</strong></a>
+</div>
