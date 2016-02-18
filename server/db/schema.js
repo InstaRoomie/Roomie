@@ -22,6 +22,7 @@ knex.schema.hasTable('Users').then(function(exists) {
       table.string('username', 100).unique();
       table.string('password', 100);
       table.date('dob');
+      table.string('image_url', 500);
       table.string('gender', 10);
       table.string('about_me', 140);
       table.timestamps();
