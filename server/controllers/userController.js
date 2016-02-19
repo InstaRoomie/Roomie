@@ -89,6 +89,7 @@ module.exports = {
         .fetch()
         .then(function (foundUser) {
           if (foundUser) {
+            next();
             res.status(200).send();
           } else {
             res.status(401).send();

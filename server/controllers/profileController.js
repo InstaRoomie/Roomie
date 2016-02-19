@@ -4,7 +4,7 @@ var User = require('../models/user.js'),
     jwt  = require('jwt-simple');
 
 module.exports = {
-  getUser: funciton(req, res, next){
+  getUser: function(req, res, next){
     console.log(req.token);
   }
 }
