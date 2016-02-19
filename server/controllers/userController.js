@@ -9,8 +9,8 @@ module.exports = {
 
     console.log("I'm in userController this is the req ", req.body);
 
-    var email = req.body.email,
-        password = req.body.password;
+    var email = req.body.email;
+    var password = req.body.password;
 
         console.log("I'm in userController this is the email ", email);
         new User({ email: email })
@@ -38,11 +38,15 @@ module.exports = {
   signup: function (req, res, next) {
     console.log("I'm in userController this is the req ", req.body);
 
-    var email = req.body.email,
-        password = req.body.password;
+    var email = req.body.email;
+    var password = req.body.password;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var dob = new Date(req.body.dob);
+    var gender = req.body.gender;
+    var aboutme = req.body.aboutme;
 
-        console.log("I'm in userController this is the email ", email);
-
+    console.log("I'm in userController this is the email ", email);
 
     // check to see if user already exists
     new User({email: email})
@@ -58,7 +62,12 @@ module.exports = {
           // make a new user if not one
           var newUser = new User({
               email: email,
-              password: password
+              firstname: firstname,
+              lastname: lastname,
+              password: password,
+              dob: dob,
+              gender: gender,
+              about_me: aboutme
             });
           newUser.save()
             .then(function(newUser) {

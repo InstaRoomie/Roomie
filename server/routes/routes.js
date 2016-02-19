@@ -21,16 +21,6 @@ module.exports = function (app, express) {
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
-  /*app.get("/", function(request, response) {
-    var status = status || 200;
-    console.log('This is a get request ', request);
-
-    helpers.serveAssets(response, routes.home, function(data){
-      response.writeHead(status, {'Content-Type': 'text/html'});
-      response.end(data, 'utf-8');
-    });
-  });*/
-
   // inject our routers into their respective route files
   require('./userRoute.js')(userRouter);
   require('./profileRoute.js')(profileRouter);
