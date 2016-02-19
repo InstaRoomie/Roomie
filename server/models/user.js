@@ -1,9 +1,9 @@
-/*var db = require('../db/schema.js');*/
-var bcrypt = require('bcrypt');
+var db = require('../db/schema.js');
+var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
-/*var User = db.Model.extend({
-  tableName: 'users',
+var User = db.Model.extend({
+  tableName: 'Users',
   hasTimestamps: true,
   initialize: function(){
     this.on('creating', this.hashPassword);
@@ -26,4 +26,4 @@ var Promise = require('bluebird');
   }
 });
 
-module.exports = User;*/
+module.exports = User;
