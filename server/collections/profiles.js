@@ -1,4 +1,4 @@
-var db = require('../db/schema.js');
+var db = require('../db/schema.js').db;
 var Profile = require('../models/profile.js');
 
 var Profiles = new db.Collection();

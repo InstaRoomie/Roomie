@@ -39,6 +39,7 @@ knex.schema.hasTable('Maybe').then(function(exists) {
       table.integer('potential').unsigned();
       table.foreign('user_id').references('id').inTable('Users');
       table.foreign('potential').references('id').inTable('Users');
+      table.timestamps();
     }).then(function(table) {
       console.log('Created Table', table);
     });
@@ -52,6 +53,7 @@ knex.schema.hasTable('Yes').then(function(exists) {
       table.integer('friend').unsigned();
       table.foreign('user_id').references('id').inTable('Users');
       table.foreign('friend').references('id').inTable('Users');
+      table.timestamps();
     }).then(function(table) {
       console.log('Created Table', table);
     });
@@ -65,10 +67,14 @@ knex.schema.hasTable('No').then(function(exists) {
       table.integer('enemy').unsigned();
       table.foreign('user_id').references('id').inTable('Users');
       table.foreign('enemy').references('id').inTable('Users');
+      table.timestamps();
     }).then(function(table) {
       console.log('Created Table', table);
     });
   }
 });
 
-module.exports = db;
+module.exports = {
+  db: db,
+  knex:knex
+};
