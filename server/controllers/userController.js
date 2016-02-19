@@ -1,7 +1,15 @@
+<<<<<<< 78547a268bba6ecdcb3334cfb3f1b9c3499e848e
 var User = require('../models/user.js');
 var Users = require('../collections/users.js');
 var Promise = require('bluebird');
 var jwt = require('jwt-simple');
+=======
+
+var User = require('../models/user.js'),
+    Users = require('../collections/users.js'),
+    Promise    = require('bluebird'),
+    jwt  = require('jwt-simple');
+>>>>>>> fetches user model correctly in checkAuth function
 
 module.exports = {
 
