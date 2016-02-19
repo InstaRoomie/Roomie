@@ -1,0 +1,45 @@
+<div class="container" style="width:50%;margin-left:auto;margin-right:auto;">
+  <h1>Contact List</h1>
+  <div class="contactList">
+    <table>
+      <tbody>
+        <tr class="contactRow" ng-repeat="user in data">
+          <td class="contactImg">
+            <img width="200" src="{{user.url}}" />
+          </td>
+          <td class="contactInfo">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <span>Name:</span>
+                  </td>
+                  <td>
+                    <span>{{user.firstname}} {{user.lastname}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span>Age:</span>
+                  </td>
+                  <td>
+                    <span>{{user.age}}</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span>Email:</span>
+                  </td>
+                  <td>
+                    <span>{{user.email}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
