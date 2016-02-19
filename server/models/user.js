@@ -1,4 +1,4 @@
-var db = require('../db/schema.js');
+var db = require('../db/schema.js').db;
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 

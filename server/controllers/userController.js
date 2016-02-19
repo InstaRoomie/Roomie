@@ -72,7 +72,7 @@ module.exports = {
           newUser.save()
             .then(function(newUser) {
                 Users.add(newUser);
-                var token = jwt.encode(user, 'secret');
+                var token = jwt.encode(newUser, 'secret');
                 console.log('this is the token! ', token);
                 res.json({token: token});
               });
