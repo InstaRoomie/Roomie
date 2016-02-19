@@ -4,16 +4,6 @@ var jwt  = require('jwt-simple');
 
 module.exports = {
 
-  /*serveAssets: function(response, asset, callback) {
-      console.log('asset being served! ', asset);
-      fs.readFile(asset, function(err, data){
-        if (err) {
-          throw err;
-        }
-        callback(data.toString());
-      }
-    },*/
-
     errorLogger: function (error, req, res, next) {
       // log the error then send it to the next middleware in
       // middleware.js

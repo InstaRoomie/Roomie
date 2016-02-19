@@ -7,33 +7,31 @@ module.exports = {
 
   signin: function (req, res, next) {
 
-    console.log("I'm in userController this is the req ", req);
+    console.log("I'm in userController this is the req ", req.body);
 
     var email = req.body.email,
         password = req.body.password;
 
         console.log("I'm in userController this is the email ", email);
-
-
-    new User({email: email})
-      .fetch()
-      .then(function (user) {
-        if (!user) {
-          next(new Error('User does not exist'));
-        } else {
-          return user.comparePasswords(password)
-            .then(function(foundUser) {
-              if (foundUser) {
-                var token = jwt.encode(user, 'secret');
-                res.json({token: token});
-              } else {
-                return next(new Error('No user'));
-              }
-            });
-        }
-      })
-      .fail(function (error) {
-        next(error);
+        new User({ email: email })
+          .fetch()
+          .then(function(user) {
+            if (!user) {
+              next(new Error('User does not exist'));
+            } else {
+              user.comparePassword(password, function(match) {
+                if (match) {
+                  var token = jwt.encode(user, 'secret');
+                  console.log("this is the token! ", token);
+                  res.json({token: token});
+                } else {
+                  return next(new Error('No user'));
+                }
+              })
+            }
+        })
+      .catch(function (error) {
+        console.log(error);
       });
   },
 
@@ -87,7 +85,7 @@ module.exports = {
     } else {
       var user = jwt.decode(token, 'secret');
 
-      new User({username: username})
+      new User({email: email})
         .fetch()
         .then(function (foundUser) {
           if (foundUser) {
