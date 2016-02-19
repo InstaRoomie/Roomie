@@ -48,6 +48,7 @@ angular.module('roomie.services', [])
         method: 'GET',
         url: 'api/users/main',
       }).then(function(res) {
+        console.log('inside getData',res.data);
         return res.data;
       });
     };
@@ -58,7 +59,7 @@ angular.module('roomie.services', [])
         url: 'api/profile/yes',
         data: user
       }).then(function(res) {
-        return;
+        return res.data;
       });
     };
 
@@ -68,14 +69,24 @@ angular.module('roomie.services', [])
         url: 'api/profile/no',
         data: user
       }).then(function(res) {
-        return response.data;
+        return res.data;
+      });
+    };
+
+    var getContact = function() {
+      return $http({
+        method: 'GET',
+        url: 'api/contact/yes'
+      }).then(function(res) {
+        return res.data;
       });
     };
 
     return {
       getData: getData,
       approve: approve,
-      decline: decline
+      decline: decline,
+      getContact: getContact
     };
 
   });
