@@ -12,17 +12,10 @@ module.exports = {
   getUser: function(req, res, next) {
     var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
 
-    exports.checkMaybe(req, loggedUser.id, function(potentials){
-      if(potentials){
+    knex('Users').whereNot('id', loggedUser.id)
+      .then(function(user){
         res.status(200).send(user[0]);
-      } else {
-        knex('Users').whereNot('id', loggedUser.id)
-          .then(function(user){
-            res.status(200).send(user[0]);
-          });
-      }
-    })
-
+      });
   },
   respondedNo: function(req, res, next){
     var rejUser = req.body.user.id;
