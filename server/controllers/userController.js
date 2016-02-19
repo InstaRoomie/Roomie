@@ -1,14 +1,21 @@
 var User = require('../models/user.js'),
+    Users = require('../collections/users.js'),
     Promise    = require('bluebird'),
     jwt  = require('jwt-simple');
 
 module.exports = {
 
   signin: function (req, res, next) {
-    var username = req.body.username,
+
+    console.log("I'm in userController this is the req ", req);
+
+    var email = req.body.email,
         password = req.body.password;
 
-    new User({username: username})
+        console.log("I'm in userController this is the email ", email);
+
+
+    new User({email: email})
       .fetch()
       .then(function (user) {
         if (!user) {
@@ -31,35 +38,42 @@ module.exports = {
   },
 
   signup: function (req, res, next) {
-    var username  = req.body.username,
-        password  = req.body.password;
+    console.log("I'm in userController this is the req ", req.body);
+
+    var email = req.body.email,
+        password = req.body.password;
+
+        console.log("I'm in userController this is the email ", email);
+
 
     // check to see if user already exists
-    new User({username: username})
+    new User({email: email})
       .fetch()
       .then(function(user) {
+        console.log('this is when i create a new user in usercontroller ', user);
         if (user) {
           next(new Error('User already exist!'));
+          console.log('user controller - user exists', user);
         } else {
+          console.log('user controller - user doesn\'t exist', user);
+
           // make a new user if not one
           var newUser = new User({
-              username: username,
+              email: email,
               password: password
             });
           newUser.save()
             .then(function(newUser) {
                 Users.add(newUser);
+                var token = jwt.encode(user, 'secret');
+                console.log("this is the token! ", token);
+                res.json({token: token});
               })
         }
       })
-      .then(function (user) {
-        // create token to send back for auth
-        var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+      .catch(function(err) {
+        console.log(err)
       })
-      .fail(function (error) {
-        next(error);
-      });
   },
 
   checkAuth: function (req, res, next) {

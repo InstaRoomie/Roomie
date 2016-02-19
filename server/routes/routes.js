@@ -14,7 +14,7 @@ module.exports = function (app, express) {
   app.use(bodyParser.json());
   app.use(express.static('./public'));
 
-  app.use('/api/user', userRouter);
+  app.use('/api/users', userRouter);
   app.use('/api/profile', profileRouter);
   app.use('/api/contact', contactRouter);
 
