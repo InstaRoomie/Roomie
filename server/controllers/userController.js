@@ -94,18 +94,17 @@ module.exports = {
     } else {
       var user = jwt.decode(token, 'secret');
 
-      new User({email: email})
+      new User({email: user.email})
         .fetch()
         .then(function (foundUser) {
           if (foundUser) {
             next();
-            res.status(200).send();
           } else {
             res.status(401).send();
           }
         })
-        .fail(function (error) {
-          next(error);
+        .catch(function (error) {
+          console.log(error);
         });
     }
   }
