@@ -4,7 +4,7 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      .state('login', {
+      .state('signin', {
         templateUrl: 'app/auth/login.html',
         url: '/login',
         controller: 'AuthController'
@@ -17,12 +17,14 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
       .state('contact', {
         templateUrl: 'contact/contact.html',
         url: '/contact',
-        controller: 'ContactController'
+        controller: 'ContactController',
+        authenticate: true
       })
       .state('main', {
         templateUrl: 'app/main/main.html',
         url: '/main',
-        controller: 'MainController'
+        controller: 'MainController',
+        authenticate: true
       })
 
       $httpProvider.interceptors.push('AttachTokens');
@@ -41,10 +43,11 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
     };
     return attach;
   })
-  .run(function($rootScope, $location, Auth) {
-    $rootScope.$on('$routeChangeStart', function(evt, next, current) {
-      if(next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-        $location.path('/signin');
+  .run(function($rootScope, $state, Auth) {
+    $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromState, fromParams, error) {
+      if(toState && toState.authenticate && !Auth.isAuth()) {
+        evt.preventDefault();
+        $state.go('signup');
       }
     });
   });

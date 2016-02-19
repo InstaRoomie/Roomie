@@ -1,5 +1,5 @@
 angular.module('roomie.services', [])
-  .factory('Auth', function($http, $location, $window) {
+  .factory('Auth', function($http, $state, $window) {
 
     var signup = function(user) {
       return $http({
@@ -28,8 +28,8 @@ angular.module('roomie.services', [])
     };
 
     var signout = function() {
-      $window.localStorage.remoteItem('com.roomie');
-      $location.path('/login');
+      $window.localStorage.removeItem('com.roomie');
+      $state.go('signin');
     }
 
     return {

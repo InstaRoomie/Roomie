@@ -1,6 +1,6 @@
 angular.module('roomie.auth', [])
 
-.controller('AuthController', function ($scope, $window, $location, Auth){
+.controller('AuthController', function ($scope, $window, $state, Auth){
   $scope.user = {};
 
   $scope.signup = function(){
@@ -9,7 +9,7 @@ angular.module('roomie.auth', [])
     Auth.signup($scope.user)
     .then(function (token){
       $window.localStorage.setItem('com.roomie', token);
-      $location.path('/main');
+      $state.go('main');
     })
     .catch(function (error){
       console.error(error);
@@ -21,7 +21,7 @@ angular.module('roomie.auth', [])
     Auth.signin($scope.user)
     .then(function (token){
       $window.localStorage.setItem('com.roomie', token);
-      $location.path('/main');
+      $state.go('main');
     })
     .catch(function (error){
       console.error(error);
