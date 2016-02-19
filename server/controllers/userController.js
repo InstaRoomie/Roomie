@@ -1,42 +1,42 @@
-var User = require('../models/user.js'),
-    Users = require('../collections/users.js'),
-    Promise    = require('bluebird'),
-    jwt  = require('jwt-simple');
+var User = require('../models/user.js');
+var Users = require('../collections/users.js');
+var Promise = require('bluebird');
+var jwt = require('jwt-simple');
 
 module.exports = {
 
-  signin: function (req, res, next) {
+  signin: function(req, res, next) {
 
-    console.log("I'm in userController this is the req ", req.body);
+    console.log('I\'m in userController this is the req ', req.body);
 
     var email = req.body.email;
     var password = req.body.password;
 
-        console.log("I'm in userController this is the email ", email);
-        new User({ email: email })
-          .fetch()
-          .then(function(user) {
-            if (!user) {
-              next(new Error('User does not exist'));
+    console.log('I\'m in userController this is the email ', email);
+    new User({email: email})
+      .fetch()
+      .then(function(user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+        } else {
+          user.comparePassword(password, function(match) {
+            if (match) {
+              var token = jwt.encode(user, 'secret');
+              console.log('this is the token! ', token);
+              res.json({token: token});
             } else {
-              user.comparePassword(password, function(match) {
-                if (match) {
-                  var token = jwt.encode(user, 'secret');
-                  console.log("this is the token! ", token);
-                  res.json({token: token});
-                } else {
-                  return next(new Error('No user'));
-                }
-              })
+              return next(new Error('No user'));
             }
-        })
-      .catch(function (error) {
+          });
+        }
+      })
+      .catch(function(error) {
         console.log(error);
       });
   },
 
-  signup: function (req, res, next) {
-    console.log("I'm in userController this is the req ", req.body);
+  signup: function(req, res, next) {
+    console.log('I\'m in userController this is the req ', req.body);
 
     var email = req.body.email;
     var password = req.body.password;
@@ -46,7 +46,7 @@ module.exports = {
     var gender = req.body.gender;
     var aboutme = req.body.aboutme;
 
-    console.log("I'm in userController this is the email ", email);
+    console.log('I\'m in userController this is the email ', email);
 
     // check to see if user already exists
     new User({email: email})
@@ -73,17 +73,17 @@ module.exports = {
             .then(function(newUser) {
                 Users.add(newUser);
                 var token = jwt.encode(user, 'secret');
-                console.log("this is the token! ", token);
+                console.log('this is the token! ', token);
                 res.json({token: token});
-              })
+              });
         }
       })
       .catch(function(err) {
-        console.log(err)
-      })
+        console.log(err);
+      });
   },
 
-  checkAuth: function (req, res, next) {
+  checkAuth: function(req, res, next) {
     // checking to see if the user is authenticated
     // grab the token in the header is any
     // then decode the token, which we end up being the user object
@@ -96,14 +96,14 @@ module.exports = {
 
       new User({email: user.email})
         .fetch()
-        .then(function (foundUser) {
+        .then(function(foundUser) {
           if (foundUser) {
             next();
           } else {
             res.status(401).send();
           }
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
         });
     }

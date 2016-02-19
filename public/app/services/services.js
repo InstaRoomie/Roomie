@@ -4,7 +4,7 @@ angular.module('roomie.services', [])
     var signup = function(user) {
       return $http({
         method: 'POST',
-        url:'api/users/signup',
+        url: 'api/users/signup',
         data: user
       })
       .then(function(response) {
@@ -15,7 +15,7 @@ angular.module('roomie.services', [])
     var signin = function(user) {
       return $http({
         method: 'POST',
-        url:'api/users/signin',
+        url: 'api/users/signin',
         data: user
       })
       .then(function(response) {
@@ -30,14 +30,14 @@ angular.module('roomie.services', [])
     var signout = function() {
       $window.localStorage.removeItem('com.roomie');
       $state.go('signin');
-    }
+    };
 
     return {
       signup: signup,
       signin: signin,
       isAuth: isAuth,
       signout: signout
-    }
+    };
 
   })
   .factory('State', function($http, $location, $window, Auth) {
@@ -51,11 +51,10 @@ angular.module('roomie.services', [])
         return response.data;
       });
 
-
     };
 
     return {
       getData: getData
-    }
+    };
 
-  })
+  });

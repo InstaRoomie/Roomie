@@ -1,11 +1,11 @@
-angular.module("roomie.main", [])
+angular.module('roomie.main', [])
 
-.controller('MainController', function ($scope, State, $window){
+.controller('MainController', function($scope, State, $window) {
   $scope.data = {};
 
-  console.log("inside main controller scope token " + $scope.token);
+  console.log('inside main controller scope token ' + $scope.token);
   State.getData().then(function(data) {
     $scope.data = data;
+  });
 
-  })
-})
+});

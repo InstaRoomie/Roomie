@@ -1,7 +1,7 @@
 var userController = require('../controllers/userController.js');
 var profileController = require('../controllers/profileController.js');
 
-module.exports = function (app) {
+module.exports = function(app) {
   // app === userRouter injected from request-helper.js
   console.log(app);
 

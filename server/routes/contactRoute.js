@@ -1,6 +1,6 @@
 var contactController = require('../controllers/contactController.js');
 
-module.exports = function (app) {
+module.exports = function(app) {
   // app === contactRouter injected from request-helper.js
   console.log(app);
 
