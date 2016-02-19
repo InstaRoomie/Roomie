@@ -40,11 +40,22 @@ angular.module('roomie.services', [])
     }
 
   })
-  .factory('State', function($http, $location, $window) {
+  .factory('State', function($http, $location, $window, Auth) {
     var getPromise;
 
+    var getData = function() {
+      return $http({
+        method: 'GET',
+        url: 'api/users/main',
+      }).then(function(response) {
+        return response.data;
+      });
 
 
+    };
 
+    return {
+      getData: getData
+    }
 
   })
