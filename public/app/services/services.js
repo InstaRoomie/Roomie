@@ -7,8 +7,8 @@ angular.module('roomie.services', [])
         url: 'api/users/signup',
         data: user
       })
-      .then(function(response) {
-        return response.data.token;
+      .then(function(res) {
+        return res.data.token;
       });
     };
 
@@ -18,8 +18,8 @@ angular.module('roomie.services', [])
         url: 'api/users/signin',
         data: user
       })
-      .then(function(response) {
-        return response.data.token;
+      .then(function(res) {
+        return res.data.token;
       });
     };
 
@@ -47,14 +47,35 @@ angular.module('roomie.services', [])
       return $http({
         method: 'GET',
         url: 'api/users/main',
-      }).then(function(response) {
+      }).then(function(res) {
+        return res.data;
+      });
+    };
+
+    var approve = function(user) {
+      return $http({
+        method: 'POST',
+        url: 'api/profile/yes',
+        data: user
+      }).then(function(res) {
+        return;
+      });
+    };
+
+    var decline = function(user) {
+      return $http({
+        method: 'POST',
+        url: 'api/profile/no',
+        data: user
+      }).then(function(res) {
         return response.data;
       });
-
     };
 
     return {
-      getData: getData
+      getData: getData,
+      approve: approve,
+      decline: decline
     };
 
   });
