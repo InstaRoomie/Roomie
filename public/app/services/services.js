@@ -79,7 +79,6 @@ angular.module('roomie.services', [])
         url: 'api/contact/yes'
       }).then(function(res) {
         return res.data;
-
       });
     };
 
