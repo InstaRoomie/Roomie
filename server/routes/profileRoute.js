@@ -1,6 +1,6 @@
 var profileController = require('../controllers/profileController.js');
 
-module.exports = function (app) {
+module.exports = function(app) {
   // app === profileRouter injected from request-helper.js
   console.log(app);
 

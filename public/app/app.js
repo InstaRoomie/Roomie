@@ -25,16 +25,16 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/main',
         controller: 'MainController',
         authenticate: true
-      })
+      });
 
-      $httpProvider.interceptors.push('AttachTokens');
+    $httpProvider.interceptors.push('AttachTokens');
   })
   .factory('AttachTokens', function($window) {
 
     var attach = {
       request: function(object) {
         var jwt = $window.localStorage.getItem('com.roomie');
-        if(jwt) {
+        if (jwt) {
           object.headers['x-access-token'] = jwt;
         }
         object.headers['Allow-Control-Allow-Origin'] = '*';
@@ -45,7 +45,7 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
   })
   .run(function($rootScope, $state, Auth) {
     $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromState, fromParams, error) {
-      if(toState && toState.authenticate && !Auth.isAuth()) {
+      if (toState && toState.authenticate && !Auth.isAuth()) {
         evt.preventDefault();
         $state.go('signup');
       }

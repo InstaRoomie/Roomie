@@ -4,7 +4,7 @@ var app = require('../server.js');
 var morgan = require('morgan');
 var bodyParser  = require('body-parser');
 
-module.exports = function (app, express) {
+module.exports = function(app, express) {
   var userRouter = express.Router();
   var profileRouter = express.Router();
   var contactRouter = express.Router();
