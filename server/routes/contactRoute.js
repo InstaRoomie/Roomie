@@ -5,5 +5,5 @@ module.exports = function(app) {
   console.log(app);
 
   // fix function later (need to call the DB in controller)
-  /*app.post('/user', contactController);*/
+  app.post('/yes'); //contactController.addYes
 };

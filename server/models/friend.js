@@ -6,6 +6,9 @@ var Friend = db.Model.extend({
   hasTimestamps: true,
   initialize: function() {
     console.log('Friend is created!')
+  },
+  user: function() {
+    return this.belongsTo(User, 'id');
   }
 });
 
