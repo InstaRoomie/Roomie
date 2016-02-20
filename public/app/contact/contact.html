@@ -1,45 +1,29 @@
-<div class="container" style="width:50%;margin-left:auto;margin-right:auto;">
+<div class="container" style="width: 40%; margin-left: auto; margin-right: auto;">
   <h1>Contact List</h1>
-  <div class="contactList">
-    <table>
-      <tbody>
-        <tr class="contactRow" ng-repeat="user in data">
-          <td class="contactImg">
-            <img width="200" src="{{user.url}}" />
-          </td>
-          <td class="contactInfo">
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <span>Name:</span>
-                  </td>
-                  <td>
-                    <span>{{user.firstname}} {{user.lastname}}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span>Age:</span>
-                  </td>
-                  <td>
-                    <span>{{user.age}}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span>Email:</span>
-                  </td>
-                  <td>
-                    <span>{{user.email}}</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <div class="contactList" ng-repeat="user in data" >
+    <div class="contactRow" layout="column" layout-sm="column" layout-xs="column" style="background-color: #f2f2f2; margin: 10px;">
+      <div class="contactImg" style="text-align:center; padding: 10px;" flex>
+        <img width="500" src="{{user.url}}" />
+      </div>
+      <div class="contactInfo" flex>
+        <table style="width: 100%; height: 100px; margin: auto;">
+          <tbody>
+            <tr>
+              <td><span>Name:</span></td>
+              <td><span>{{user.firstname}} {{user.lastname}}</span></td>
+            </tr>
+            <tr>
+              <td><span>Age:</span></td>
+              <td><span>{{user.age}}</span></td>
+            </tr>
+            <tr>
+              <td><span>Email:</span></td>
+              <td><span>{{user.email}}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
+    </div>
+  </div>
 </div>
