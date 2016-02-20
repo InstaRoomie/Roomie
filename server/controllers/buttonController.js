@@ -11,41 +11,53 @@ var Potentials = require('../collections/potentials.js');
 module.exports = {
 
   // abstract getUser to decode the json object
-  getUser: function(req, res, callback) {
-    // grab req
-    /*var userThatGotSwiped = req.body.id*/
-    var userThatGotSwiped = 62; // bobby
+  getUser: function(req, res, next) {
+
+    var userThatGotSwiped = req.body.id
 
     helpers.decode(req, res, function(userThatSwiped) {
-      console.log('From getUser() using decoded: ', userThatSwiped);
-      callback(userThatSwiped, userThatGotSwiped);
+      console.log('From getUser() using decoded: ', userThatSwiped.id);
+      console.log("This is inside helpers.decode userThatGotSwiped ", userThatGotSwiped);
+      console.log(next);
+      req.userThatSwiped = userThatSwiped.id;
+      req.userThatGotSwiped = userThatGotSwiped;
+      next();
     });
 
   },
 
-  addNo: function(userThatSaidNo, userThatGotSwiped) {
-    var enemyId = userThatGotSwiped;
-    var user = userThatSaidNo.id;
+  addNo: function(req, res) {
 
-    /*var userId = 2; // kyle
-    var enemyId = 10; // bobby*/
+    var user = req.userThatSwiped;
+    var enemyId = req.userThatGotSwiped;
 
-    var newEnemy = new Enemy({ user_id: userId, enemy: enemyId });
+    console.log("I'm in addNo - userThatSaidNo ", user);
+    console.log("I'm in addNo - userThatGotSwiped ", enemyId);
+
+    var newEnemy = new Enemy({ user_id: user, enemy: enemyId });
+
+    // check to see if the enemy was already added to the enemy table;
 
     newEnemy
       .save()
       .then(function(enemy){
           Enemies.add(enemy);
+          res.status(200).send('Potential created');
+
         })
         .catch(function(err) {
             console.log('Enemy creation failed ', err);
+            res.status(500).send('Potential creation failed');
+
           });
 
   },
 
-  addMaybe: function(userThatSaidYes, userThatGotSwiped) {
-    var potentialId = userThatGotSwiped;
-    var user = userThatSaidYes.id;
+  addMaybe: function(req, res) {
+    var user = req.userThatSwiped;
+    var potentialId = req.userThatGotSwiped;
+
+    // check to see if the potential was already added to the potential table;
 
     var newPotential = new Potential({ user_id: user, potential: potentialId });
 
@@ -53,11 +65,11 @@ module.exports = {
       .save()
       .then(function(potential){
           Potentials.add(potential);
-          /*res.status(200).send('Potential created');*/
+          res.status(200).send('Potential created');
         })
         .catch(function(err) {
             console.log('Potential creation failed ', err);
-            /*res.status(500).send('Potential creation failed');*/
+            res.status(500).send('Potential creation failed');
           });
 
   }

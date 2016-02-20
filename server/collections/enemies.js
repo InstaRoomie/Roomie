@@ -1,4 +1,4 @@
-var db = require('../db/schema.js');
+var db = require('../db/schema.js').db;
 var Enemy = require('../models/enemy.js');
 
 var Enemies = new db.Collection();

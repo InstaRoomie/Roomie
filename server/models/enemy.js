@@ -1,4 +1,4 @@
-var db = require('../db/schema.js');
+var db = require('../db/schema.js').db;
 var Promise = require('bluebird');
 var User = require('../models/user.js')
 
