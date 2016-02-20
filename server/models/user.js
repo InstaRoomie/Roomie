@@ -23,6 +23,15 @@ var User = db.Model.extend({
       .then(function(hash) {
         this.set('password', hash);
       });
+  },
+  enemies: function() {
+    return this.hasMany(Enemy);
+  },
+  potentials: function() {
+    return this.hasMany(Potiental);
+  },
+  friends: function() {
+    return this.hasMany(Friend);
   }
 });
 

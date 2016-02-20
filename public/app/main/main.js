@@ -9,7 +9,7 @@ angular.module('roomie.main', [])
   });
 
   $scope.approve = function() {
-    State.approve($scope.data).then(function() {
+    State.approve($scope.data).then(function(data) {
       $scope.data = data;
     });
   };
