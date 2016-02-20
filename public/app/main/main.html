@@ -1,11 +1,20 @@
 <div class="homepage">
-  <img class="userimage" width="400" src="{{data.url}}"/>
+  <div class="picture">
+  <img class="userimage" src="{{data.url}}"/>
+</div>
   <div class="infobox">
-    <h3>{{data.firstname}} {{data.lastname}}</h3>
-    <h5>{{data.age}}</h5>
-    <h5>{{data.gender}}</h5>
+    <table>
+    <tr><td class="name">{{data.firstname}} {{data.lastname}}</td></tr>
+    <tr><td class="age">{{data.dob}}</td></tr>
+    <tr><td class="gender">{{data.gender}}</td></tr>
+    </table>
   </div>
   <div class="aboutme">
-
+    {{data.aboutme}}
   </div>
+  <div>
+    <md-button class="Nobutton" ng-click="decline()">Nah</md-button>
+    <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
+  </div>
+
 </div>
