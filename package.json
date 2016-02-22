@@ -26,7 +26,8 @@
     "jwt-simple": "^0.4.1",
     "knex": "^0.10.0",
     "morgan": "^1.6.1",
-    "mysql": "^2.10.2"
+    "mysql": "^2.10.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
