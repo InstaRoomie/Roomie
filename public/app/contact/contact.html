@@ -1,45 +1,36 @@
-<div class="container" style="width:50%;margin-left:auto;margin-right:auto;">
-  <h1>Contact List</h1>
-  <div class="contactList">
-    <table>
-      <tbody>
-        <tr class="contactRow" ng-repeat="user in data">
-          <td class="contactImg">
-            <img width="200" src="{{user.url}}" />
-          </td>
-          <td class="contactInfo">
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    <span>Name:</span>
-                  </td>
-                  <td>
-                    <span>{{user.firstname}} {{user.lastname}}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span>Age:</span>
-                  </td>
-                  <td>
-                    <span>{{user.age}}</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span>Email:</span>
-                  </td>
-                  <td>
-                    <span>{{user.email}}</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<md-toolbar class="md-medium">
+  <div class="md-toolbar-tools">
+    <span>toolbar</span>
   </div>
+</md-toolbar>
+<div class="container" ng-controller="ContactController" layout="row">
+  <div hide-sm hide-xs hide-md flex="15"></div>
+  <div hide-sm hide-xs flex="15"></div>
+  <div class="contactListView" layout="column" flex>
+    <h1>Roomie List</h1>
 
+    <md-content class="md-padding" layout="column" ng-repeat="contact in data" flex>
+      <md-card>
+        <md-card-title>
+          <md-card-title-media>
+            <div class="md-media-md card-media">
+              <img src="{{contact.url}}" >
+            </div>
+          </md-card-title-media>
+          <md-card-title-text>
+            <span class="md-headline">{{contact.firstname}} {{contact.lastname}}</span>
+            <span class="md-subhead">Gender:  {{contact.gender}}</span>
+            <span class="md-subhead">Age:  {{contact.age}}</span>
+          </md-card-title-text>
+
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button>Email</md-button>
+          <md-button>Chat</md-button>
+        </md-card-actions>
+      </md-card>
+    </md-content>
+  </div>
+  <div hide-sm hide-xs flex="15"></div>
+  <div hide-sm hide-xs hide-md flex="15"></div>
 </div>
