@@ -76,8 +76,9 @@ angular.module('roomie.services', [])
     var getContact = function() {
       return $http({
         method: 'GET',
-        url: 'api/contact/yes'
+        url: 'api/users/main'
       }).then(function(res) {
+        console.log(res);
         return res.data;
       });
     };

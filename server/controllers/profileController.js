@@ -7,14 +7,40 @@ var knex = require('../db/schema.js').knex;
 
 // var knex = require('knex')(config);
 
-module.exports = {
+var helpers = {
 
   getUser: function(req, res, next) {
     var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
 
+    console.log(loggedUser.id);
+
+    // knex('Users').whereNot('id', loggedUser.id)
+    //   .then(function(users){
+    //     res.send(users[0])
+    //   });
+
     knex('Users').whereNot('id', loggedUser.id)
-      .then(function(user){
-        res.status(200).send(user[0]);
+      .then(function(users){
+        helpers.checkMaybe(req, loggedUser, function(potentials){
+          potentials.forEach(function(potentialUser){
+            helpers.checkNo(req, potentialUser.user_id, function(answer){
+              if(answer.length === 0){
+                console.log("They're not enemies");
+              } else {
+                console.log("They're enemies");
+              }
+            })
+            helpers.checkYes(req, potentialUser.user_id, function(answer){
+              if(answer.length === 0){
+                console.log("They're not friends");
+              } else {
+                console.log("They're friends");
+              }
+            })
+          })
+        })
+
+        res.send(users);
       });
   },
   respondedNo: function(req, res, next){
@@ -31,13 +57,26 @@ module.exports = {
     knex('Yes').insert({user_id: loggedUser.id, friend: acceptedUser});
 
   },
-  checkMaybe: function(req, userId, callback){
-    var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
-
+  checkMaybe: function(req, loggedUser, callback){
     knex('Maybe').where('potential', loggedUser.id)
       .then(function(potentials){
         callback(potentials);
       })
+
+    //   .then(function(potentials){
+    //     console.log("Potentials", potentials);
+    //     potentials.forEach(function(item){
+    //       helpers.checkNo(req, item.user_id, function(item){
+    //         if(item.length === 1){
+    //           console.log("Said No", item);
+    //         }
+    //       })
+    //       helpers.checkYes(req, item.user_id, function(item){
+    //         console.log("Said yes", item);
+    //       })
+    //     })
+    //     return potentials;
+    //   })
   },
   checkNo: function(req, userId, callback){
     var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
@@ -46,9 +85,9 @@ module.exports = {
       .where('user_id', loggedUser.id)
       .andWhere('enemy', userId)
       .orWhere('user_id', userId)
-      .andWhere('enemy', loggedUser)
+      .andWhere('enemy', loggedUser.id)
       .then(function(enemies){
-        callback(enemies);
+        callback(enemies)
       })
   },
   checkYes: function(req, userId, callback){
@@ -57,10 +96,12 @@ module.exports = {
     knex('Yes')
       .where('user_id', loggedUser.id)
       .andWhere('friend', userId)
-      .orWhere('user_id', user_id)
-      .andWhere('friend', loggedUser)
+      .orWhere('user_id', userId)
+      .andWhere('friend', loggedUser.id)
       .then(function(friends){
-        return friends
+        callback(friends)
       })
   }
 };
+
+module.exports = helpers;
