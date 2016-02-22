@@ -31,3 +31,8 @@
   transition-property: background-color, box-shadow, -webkit-transform;
   transition-property: background-color, box-shadow, transform;
 }
+
+md-card md-card-title md-card-title-media { margin-right: 50px; }
+.md-headline { font-size: 30px; margin-bottom: 5px; }
+.md-subhead { font-size: 18px !important; }
+.md-toolbar-tools { position: fixed; }
