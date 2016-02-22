@@ -7,6 +7,8 @@ var Enemy = require('../models/enemy.js');
 var Enemies = require('../collections/enemies.js');
 var Potential = require('../models/potential.js');
 var Potentials = require('../collections/potentials.js');
+var Friend = require('../models/friend.js');
+var Friends = require('../collections/friends.js');
 
 module.exports = {
 
@@ -42,12 +44,12 @@ module.exports = {
       .save()
       .then(function(enemy){
           Enemies.add(enemy);
-          res.status(200).send('Potential created');
+          res.status(200).send('Enemy created');
 
         })
         .catch(function(err) {
             console.log('Enemy creation failed ', err);
-            res.status(500).send('Potential creation failed');
+            res.status(500).send('Enemy creation failed');
 
           });
 
@@ -59,7 +61,7 @@ module.exports = {
 
     // check to see if the potential was already added to the potential table;
 
-    var newPotential = new Potential({ user_id: user, potential: potentialId });
+    /*var newPotential = new Potential({ user_id: user, potential: potentialId });
 
     newPotential
       .save()
@@ -70,7 +72,49 @@ module.exports = {
         .catch(function(err) {
             console.log('Potential creation failed ', err);
             res.status(500).send('Potential creation failed');
-          });
+          });*/
+
+    // check to see if this is a response to a Maybe
+
+    new Potential({ user_id: potentialId, potential: user })
+    .fetch()
+      .then(function(potential) {
+
+        if (!potential) {
+
+          var newPotential = new Potential({ user_id: user, potential: potentialId });
+
+          newPotential
+            .save()
+            .then(function(potential){
+                Potentials.add(potential);
+                res.status(200).send('Potential created');
+              })
+              .catch(function(err) {
+                  console.log('Potential creation failed ', err);
+                  res.status(500).send('Potential creation failed');
+                });
+
+        } else {
+
+          console.log('The potential has been answered and a friend is being created...')
+
+          var newFriend = new Friend({ user_id: user, friend: potentialId});
+
+          newFriend
+            .save()
+            .then(function(friend) {
+                Friends.add(friend);
+                res.status(200).send('Friend created');
+              })
+                .catch(function(err) {
+                  console.log('Friend creation failed ', err);
+                  res.status(500).send('Friend creation failed');
+                });
+
+        }
+
+      })
 
   }
 
