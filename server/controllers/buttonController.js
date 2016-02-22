@@ -56,34 +56,17 @@ module.exports = {
   },
 
   addMaybe: function(req, res) {
+
     var user = req.userThatSwiped;
     var potentialId = req.userThatGotSwiped;
 
-    // check to see if the potential was already added to the potential table;
-
-    /*var newPotential = new Potential({ user_id: user, potential: potentialId });
-
-    newPotential
-      .save()
-      .then(function(potential){
-          Potentials.add(potential);
-          res.status(200).send('Potential created');
-        })
-        .catch(function(err) {
-            console.log('Potential creation failed ', err);
-            res.status(500).send('Potential creation failed');
-          });*/
-
     // check to see if this is a response to a Maybe
-
     new Potential({ user_id: potentialId, potential: user })
     .fetch()
       .then(function(potential) {
-
+        // if not a response to a Maybe create a new potential
         if (!potential) {
-
           var newPotential = new Potential({ user_id: user, potential: potentialId });
-
           newPotential
             .save()
             .then(function(potential){
@@ -94,13 +77,10 @@ module.exports = {
                   console.log('Potential creation failed ', err);
                   res.status(500).send('Potential creation failed');
                 });
-
         } else {
-
+          // if a response to a Maybe create a new friend
           console.log('The potential has been answered and a friend is being created...')
-
           var newFriend = new Friend({ user_id: user, friend: potentialId});
-
           newFriend
             .save()
             .then(function(friend) {
@@ -111,11 +91,10 @@ module.exports = {
                   console.log('Friend creation failed ', err);
                   res.status(500).send('Friend creation failed');
                 });
-
         }
 
-      })
-
+      });
+      
   }
 
 };
