@@ -24,5 +24,5 @@ module.exports = function(app, express) {
   // inject our routers into their respective route files
   require('./userRoute.js')(userRouter);
   require('./profileRoute.js')(profileRouter);
-  require('./contactRoute.js')(contactRouter);
+  require('./friendRoute.js')(contactRouter);
 };
