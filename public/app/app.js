@@ -35,6 +35,7 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
             return Users.getProfile(uid).$loaded();
           }
         },
+        authenticate: true
       })
       .state('channels.messages', {
         url: '/{channelId}/messages',
