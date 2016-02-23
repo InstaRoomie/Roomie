@@ -62,20 +62,6 @@ var helpers = {
         })
       });
   },
-  respondedNo: function(req, res, next){
-    var rejUser = req.body.user.id;
-    var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
-
-    knex('No').insert({user_id: loggedUser.id, enemy: rejUser});
-
-  },
-  respondedYes: function(req, res, next){
-    var acceptedUser = req.body.user.id;
-    var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
-
-    knex('Yes').insert({user_id: loggedUser.id, friend: acceptedUser});
-
-  },
   checkMaybe: function(req, callback){
     var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
 
@@ -139,6 +125,16 @@ var helpers = {
       .then(function(user){
         callback(user);
       })
+  },
+  calculateAge: function(dateString){
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
+        age--;
+    }
+    return age;
   }
 };
 
