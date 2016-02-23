@@ -14,7 +14,8 @@
           <div id="emailIcon">
             <img width="30" class="inputImg" src="assets/email.png">
           </div>
-          <input class="inputField" type="text" name="email" ng-model="user.email" placeholder="Email" required autofocus>
+          <input class="inputField" type="email" name="email" ng-model="user.email" placeholder="Email" required autofocus>
+          <span class="error" ng-show="signupform.$error.email">Not a valid email address</span>
         </div>
         <div class="formInput" style="margin-bottom: 20px;">
           <div id="passwordIcon">
