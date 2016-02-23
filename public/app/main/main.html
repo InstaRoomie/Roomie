@@ -1,20 +1,30 @@
-<div class="homepage">
-  <div class="picture">
-  <img class="userimage" src="{{data.url}}"/>
-</div>
-  <div class="infobox">
-    <table>
-    <tr><td class="name">{{data.firstname}} {{data.lastname}}</td></tr>
-    <tr><td class="age">{{data.dob}}</td></tr>
-    <tr><td class="gender">{{data.gender}}</td></tr>
-    </table>
+<md-toolbar class="md-medium">
+  <div class="md-toolbar-tools">
+    <span>toolbar</span>
   </div>
-  <div class="aboutme">
-    {{data.aboutme}}
+</md-toolbar>
+<div class="container" layout="row">
+  <!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
+  <div hide show-gt-sm flex="35"></div>
+  <div class="homepage" layout="column" flex>
+    <div class="picture">
+      <img class="userimage" src="http://ecx.images-amazon.com/images/I/51DmV9wYraL.jpg"/>
+    </div>
+    <div class="infobox">
+      <table>
+        <tr><td class="name">{{data.firstname}} {{data.lastname}}</td></tr>
+        <tr><td class="age">{{data.dob}}</td></tr>
+        <tr><td class="gender">{{data.gender}}</td></tr>
+      </table>
+    </div>
+    <div class="aboutme">
+      {{data.about_me}}
+    </div>
+    <div>
+      <md-button class="Nobutton" ng-click="decline()">Nah</md-button>
+      <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
+    </div>
   </div>
-  <div>
-    <md-button class="Nobutton" ng-click="decline()">Nah</md-button>
-    <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
-  </div>
-
+  <div hide show-gt-sm flex="35"></div>
+  <!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
 </div>

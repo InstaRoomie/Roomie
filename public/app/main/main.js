@@ -1,6 +1,6 @@
 angular.module('roomie.main', [])
 
-.controller('MainController', function($scope, State, $window) {
+.controller('MainController', function($scope, $mdMedia, State, $window) {
   $scope.data = { firstname: 'kyle', lastname: 'kyle', age: 23, gender: 'M', url: 'https://journalism.missouri.edu/wp-content/uploads/2011/10/greeley-kyle-200x300.jpg', aboutme: 'I like food'};
 
   $scope.dataArray = [];
