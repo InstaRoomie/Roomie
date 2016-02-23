@@ -6,7 +6,7 @@
 <!-- <div class="maincontainer" layout="row"> -->
   <!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
   <!-- <div hide show-gt-sm flex="35"></div> -->
-  <div class="homepage" layout="column" layout-align="space-around center" flex>
+  <div ng-show="dataArray.length !== 0" class="homepage" layout="column" layout-align="space-around center" flex>
     <div class="picture">
       <img class="userimage" width="300" src="http://ecx.images-amazon.com/images/I/51DmV9wYraL.jpg"/>
     </div>
@@ -23,6 +23,21 @@
     <div>
       <md-button class="Nobutton" ng-click="decline()">Nah</md-button>
       <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
+    </div>
+  </div>
+  <div ng-show="seenAllTruth() === true">
+    <div class="seenAll">
+      <div layout="row" layout-sm="column" layout-align="space-around">
+        <h4>You've seen all the roomies!</h4>
+      </div>
+    </div>
+  </div>
+  <!-- need to change this so the seenAll is the only thing that pops up if there are no more roomies -->
+  <div ng-show="dataArray.length === 0">
+    <div class="loading">
+      <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular  md-diameter="120" md-mode="indeterminate"></md-progress-circular>
+      </div>
     </div>
   </div>
   <!-- <div hide show-gt-sm flex="35"></div> -->
