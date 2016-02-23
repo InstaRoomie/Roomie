@@ -42,9 +42,11 @@ module.exports = {
     var password = req.body.password;
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
-    var dob = new Date(req.body.dob);
+    var dob = req.body.dob;
     var gender = req.body.gender;
+    var image_url = req.body.image_url;
     var aboutme = req.body.aboutme;
+    var location = req.body.location;
 
     console.log('I\'m in userController this is the email ', email);
 
@@ -66,7 +68,9 @@ module.exports = {
               lastname: lastname,
               password: password,
               dob: dob,
+              image_url: image_url,
               gender: gender,
+              location: location,
               about_me: aboutme
             });
           newUser.save()
