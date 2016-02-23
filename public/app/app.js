@@ -4,6 +4,11 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
+      .state('home', {
+        templateUrl: 'app/auth/login.html',
+        url: '/',
+        controller: 'AuthController'
+      })
       .state('signin', {
         templateUrl: 'app/auth/login.html',
         url: '/login',
