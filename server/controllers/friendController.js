@@ -16,26 +16,21 @@ module.exports = {
       var usersToSend = [];
 
       helpers.checkYes(req, function(item) {
-          item.forEach(function(friend) {
-            if (friend.user_id === userThatSwiped.id) {
-              contactList.push(friend.friend)
-            } else {
-              contactList.push(friend.user_id);
-            }
-          });
-          helpers.getDifferences(contactList, function(item) {
-            item.forEach(function(some) {
-              usersToSend.push(some);
-            })
-              res.status(200).send(usersToSend);
-            });
+        item.forEach(function(friend) {
+          if(friend.user_id === userThatSwiped.id){
+            contactList.push(friend.friend);
+          }
+          if(friend.friend === userThatSwiped.id){
+            contactList.push(friend.user_id);
+          }
+        });
+        helpers.getUsersFromDb(req, contactList, function(user){
+          user.forEach(function(friend){
+            usersToSend.push(friend);
+          })
+          res.status(200).send(usersToSend);
         })
-        // this is breaking the helper
-          /*.catch(function(err) {
-              console.log('This is an error from finding friends ', err);
-            });*/
-      });
-
-    }
-
+      })
+    })
+  }
 };
