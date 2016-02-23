@@ -108,6 +108,7 @@ var helpers = {
   getDifferences: function(resultArray, callback){
     knex('Users')
       .whereIn('id', resultArray)
+      .select('firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
       .then(function(item){
         callback(item)
       })
@@ -118,6 +119,7 @@ var helpers = {
     knex('Users')
       .whereNotIn('id', unionArray)
       .andWhereNot('id', loggedUser.id)
+      .select('firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
       .then(function(item){
         callback(item);
       })
