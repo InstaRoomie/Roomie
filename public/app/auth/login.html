@@ -27,6 +27,9 @@
       </div>
       <div id="signupMsg">
         <p><small>Don't have an account yet?  <a ui-sref="signup">Sign up</a></small></p>
+      <div ng-show="error">
+        <span>{{ error.message }}</span>
+      </div>
       </div>
     </div>
   </div>

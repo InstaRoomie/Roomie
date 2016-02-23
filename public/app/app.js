@@ -1,4 +1,4 @@
-var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.profiles', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
+var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.angularfireProfileController', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -31,11 +31,25 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         controller: 'ProfileCtrl as profileCtrl',
         templateURL: 'app/profile/profile.html',
         resolve: {
-          profile: function (Users) {
-            return Users.getProfile(uid).$loaded();
+          auth: function($state, Users, Auth) {
+            debugger;
+            console.log('PROFILE: checking if the user is authenticated...');
+            return Auth.auth.$requireAuth().catch(function(){
+              console.log('PROFILE: checking if the user is authenticated...');
+
+              $state.go('login');
+            });
+          },
+          profile: function (Users, Auth) {
+            console.log('getting the users profile...');
+            debugger;
+            return Auth.auth.$requireAuth().then(function(auth){
+              console.log('getting the users profile...');
+              return Users.getProfile(auth.uid).$loaded();
+            });
           }
-        },
-        authenticate: true
+        }
+        /*authenticate: true*/
       })
       .state('channels.messages', {
         url: '/{channelId}/messages',
