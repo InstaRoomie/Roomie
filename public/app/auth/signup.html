@@ -1,16 +1,30 @@
-<div id='signup'>
-  <h1 class="authheader">Signup</h1>
-  <form name="signupform" ng-submit='signup()'>
-    <table>
-      <tr><td>Email:</td><td><input type="text" placeholder="Email" ng-model='user.email'></td></tr>
-      <tr><td>Password:</td><td><input type="password" ng-model='user.password'></td></tr>
-      <tr><td>First Name:</td><td><input type="text" placeholder="First Name" = ng-model="user.firstname"></td></tr>
-      <tr><td>Last Name:</td><td><input type="text" placeholder="Last Name" ng-model="user.lastname"></td></tr>
-      <tr><td>Date of Birth:</td><td><input type="text" placeholder="(mm/dd/yyyy)" ng-model="user.dob"></td></tr>
-      <tr><td>Gender:</td><td><input type="text" placeholder="(M or F)" ng-model="user.gender"></td></tr>
-      <tr><td>About Me:</td><td><textarea type="text" placeholder="140 character max" ng-model="user.aboutme"></textarea></td></tr>
-    </table>
-    <button class="authbutton">Sign Up!</button>
-  </form>
-  <a href="#/login">Already have an account? <strong>Signin</strong></a>
+<div class="container">
+  <div id="loginLogo-lg" hide-xs hide-sm flex>
+    <img width="275" src="assets/roomie.png">
+  </div>
+  <div id="loginLogo-sm" hide-gt-md flex>
+    <img width="200" src="assets/roomie.png">
+  </div>
+  <div class="row" flex>
+    <div class="formPanel">
+      <div class="formBody">
+        <h2>Signup</h2>
+        <form name="signupform" ng-submit='signup()'>
+          <table>
+            <tr><td>Email:</td><td><input type="text" placeholder="Email" ng-model='user.email'></td></tr>
+            <tr><td>Password:</td><td><input type="password" ng-model='user.password'></td></tr>
+            <tr><td>First Name:</td><td><input type="text" placeholder="First Name" = ng-model="user.firstname"></td></tr>
+            <tr><td>Last Name:</td><td><input type="text" placeholder="Last Name" ng-model="user.lastname"></td></tr>
+            <tr><td>Date of Birth:</td><td><input type="text" placeholder="(mm/dd/yyyy)" ng-model="user.dob"></td></tr>
+            <tr><td>Gender:</td><td><input type="text" placeholder="(M or F)" ng-model="user.gender"></td></tr>
+            <tr><td>About Me:</td><td><textarea type="text" placeholder="200 character max" maxlength= "200" ng-model="user.aboutme"></textarea></td></tr>
+          </table>
+          <button class="authbutton">Sign Up!</button>
+        </form>
+        <div id="signupMsg">
+          <p><small>Already have an account?  <a ui-sref="signin">Log in</a></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
