@@ -1,30 +1,33 @@
-<md-toolbar class="md-small">
+<md-toolbar class="md-medium">
   <div class="md-toolbar-tools">
-    <span>toolbar</span>
+    <img width="75" src="assets/roomie-white-sm.png">
   </div>
 </md-toolbar>
-<!-- <div class="maincontainer" layout="row"> -->
-  <!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
-  <!-- <div hide show-gt-sm flex="35"></div> -->
-  <div ng-show="dataArray.length !== 0" class="homepage" layout="column" layout-align="space-around center" flex>
-    <div class="picture">
-      <img class="userimage" width="300" src="http://ecx.images-amazon.com/images/I/51DmV9wYraL.jpg"/>
-    </div>
-    <div class="infobox">
-      <table>
-        <tr><td class="name">{{data.firstname}} {{data.lastname}}</td></tr>
-        <tr><td class="age">{{data.dob}}</td></tr>
-        <tr><td class="gender">{{data.gender}}</td></tr>
-      </table>
-    </div>
-    <div class="aboutme">
-      {{data.about_me}}
-    </div>
-    <div>
-      <md-button class="Nobutton" ng-click="decline()">Nah</md-button>
-      <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
-    </div>
-  </div>
+<!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
+<!-- <div hide show-gt-sm flex="35"></div> -->
+<!-- <div class="container" layout="row" layout-align="center center" flex> -->
+  <md-content ng-show="dataArray.length !== 0" class="md-padding" layout="column" layout-align="center center" flex>
+    <md-card>
+      <md-card-title layout="column" layout-align="space-around center">
+        <!-- <md-card-title-media> -->
+        <div class="md-media-lg card-media">
+          <img style="max-width: 700px" width="800px" src="{{data.image_url}}">
+        </div>
+        <!-- </md-card-title-media> -->
+        <md-card-title-text>
+          <span class="name">{{data.firstname}} {{data.lastname}}</span>
+          <span class="age">{{data.dob}}</span>
+          <span class="gender">{{data.gender}}</span>
+          <span class="aboutme">{{data.about_me}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="space-around end">
+        <md-button class="Nobutton" ng-click="decline()">Nah</md-button>
+        <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
+      </md-card-actions>
+    </md-card>
+  </md-content>
+
   <div ng-show="seenAllTruth() === true">
     <div class="seenAll">
       <div layout="row" layout-sm="column" layout-align="space-around">
@@ -40,6 +43,3 @@
       </div>
     </div>
   </div>
-  <!-- <div hide show-gt-sm flex="35"></div> -->
-  <!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
-<!-- </div> -->
