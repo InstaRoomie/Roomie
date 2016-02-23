@@ -1,29 +1,32 @@
-<div class="container" style="width: 750px; margin-right: auto; margin-left: auto;"layout="column" layout-align="space-around center">
-  <div style="text-align:center;margin-top: 125px; margin-bottom: 75px;" flex>
-    <img width="325" src="assets/roomie.png">
+<div class="container" ng-controller="AuthController" layout="column" layout-align="space-around center">
+  <div id="loginLogo-lg" hide-xs hide-sm flex>
+    <img width="275" src="assets/roomie.png">
+  </div>
+  <div id="loginLogo-sm" hide-gt-md flex>
+    <img width="200" src="assets/roomie.png">
   </div>
   <div class="row" flex>
-    <div class="formPanel" style="width:330px; height:auto; background-color: #fff; margin: auto; border-color: #cfd9D7; border-radius: 2px; box-shadow: 0 8px 17px rgba(0, 0, 0, .2); border: 1px solid transparent;">
-      <div class="formBody" style="padding-right: 26px; padding-left: 26px;">
-        <h2 style="text-align:center; font-size: 30px; font-family: 'Montserrat', sans-serif;">Log in</h2>
+    <div class="formPanel">
+      <div class="formBody">
+        <h2>Log in</h2>
         <form method="post" ng-submit="signin()" name="loginForm" class="loginForm">
-        <div class="formInput" style="margin-bottom: 20px; ">
-          <div style="position:relative; left: 9px; top: 11px;">
-            <img width="30" class="inputImg" style="position:absolute;" src="assets/email.png">
+        <div class="formInput">
+          <div id="emailIcon">
+            <img width="30" class="inputImg" src="assets/email.png">
           </div>
-          <input class="inputField" type="text" name="email" ng-model="user.email" placeholder="Email" style="padding-left: 42.5px; padding-right: 42.5px; border-radius: 0px; height: 46px; font-size: 18px; line-height: 1.33; "required autofocus>
+          <input class="inputField" type="text" name="email" ng-model="user.email" placeholder="Email" required autofocus>
         </div>
         <div class="formInput" style="margin-bottom: 20px;">
-          <div class="" style="position:relative; top: 5px; left: 3px;">
-            <img width="40" class="inputImg" style="position:absolute;" src="assets/password-gr.png">
+          <div id="passwordIcon">
+            <img width="40" class="inputImg" src="assets/password-gr.png">
           </div>
-          <input class="in putField" type="password" name="password" ng-model="user.password" placeholder="Password" style="padding-left: 42.5px; padding-right: 42.5px; border-radius: 0px; height: 46px; font-size: 18px; line-height: 1.33; "required autofocus>
+          <input class="inputField" type="password" name="password" ng-model="user.password" placeholder="Password" required autofocus>
         </div>
-        <button type="submit" class="inputButton" style="background-color: #737373; opacity: .65; font-size: 14px; border-radius: 2px; font-weight: bold; width: 100%; padding: 10px 16px; line-leight: 1.33;">Log in</buttom>
+        <button type="submit" class="inputButton">Log in</buttom>
         </form>
       </div>
-      <div class="signupMsg" style="text-align:center; color: #90939a;">
-        <p><small>Don't have an account yet?  <a style="color: #000;" ui-sref="signup">Sign up</a></small></p>
+      <div id="signupMsg">
+        <p><small>Don't have an account yet?  <a ui-sref="signup">Sign up</a></small></p>
       </div>
     </div>
   </div>
