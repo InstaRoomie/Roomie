@@ -32,7 +32,144 @@
   transition-property: background-color, box-shadow, transform;
 }
 
-md-card md-card-title md-card-title-media { margin-right: 50px; }
-.md-headline { font-size: 30px; margin-bottom: 5px; }
-.md-subhead { font-size: 18px !important; }
-.contactTitle h1 { letter-spacing: 5px; font-weight: bold; font-size: 28px; margin-top: 25px; }
+.container {
+  width: 950px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*login page CSS*/
+
+#loginLogo-lg {
+  text-align: center;
+  margin-top: 125px;
+  margin-bottom: 75px;
+}
+
+#loginLogo-sm {
+  text-align: center;
+  margin-top: 95px;
+  margin-bottom: 60px;
+}
+
+.formPanel {
+  width: 330px;
+  background-color: #fff;
+  margin: auto;
+  border-color: #cfd9D7;
+  border-radius: 2px;
+  box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
+  border: 1px solid transparent;
+}
+
+.formBody {
+  padding-right: 26px;
+  padding-left: 26px;
+}
+
+.formBody h2 {
+  text-align: center;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.formInput {
+  margin-bottom: 20px;
+}
+
+#emailIcon {
+  position: relative;
+  left: 9px;
+  top: 11px;
+}
+#passwordIcon {
+  position: relative;
+  top: 5px;
+  left: 3px;
+}
+
+.inputImg {
+  position:absolute;
+}
+
+.inputField {
+  padding-left: 42.5px;
+  padding-right: 42.5px;
+  border-radius: 1px;
+  height: 46px;
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+.inputButton {
+  background-color: #737373;
+  color: #fff;
+  opacity: .65;
+  font-size: 14px;
+  border-radius: 2px;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px 16px;
+  line-leight: 1.33;
+}
+
+#signupMsg {
+  text-align: center;
+  color: #90939a;
+}
+
+#signupMsg a {
+  color: #000;
+}
+
+/*Contact Page CSS*/
+
+md-card md-card-title md-card-title-media {
+  margin-right: 25px;
+}
+
+md-card {
+  box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
+  border: 1px solid transparent;
+}
+
+.md-headline {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.md-subhead {
+  font-size: 18px !important;
+}
+
+.contactTitle {
+  margin-left: 15px;
+}
+.contactTitle h1 {
+  letter-spacing: 6px;
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: 25px;
+}
+
+.contactLogo {
+  height: 55px;
+  width: 172px;
+  margin-top:16px;
+  margin-right: 13px;
+}
+
+.md-headline-sm {
+  font-size: 23px;
+  margin-bottom: 3px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.md-subhead-sm {
+  color: rgba(0,0,0,0.54);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.010em;
+  line-height: 24px;
+}
