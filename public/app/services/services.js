@@ -47,12 +47,21 @@ angular.module('roomie.services', [])
   .factory('State', function($http, $location, $window, Auth) {
     var getPromise;
 
+    var seenAll = false;
+
+    var seenAllTruth = function() {
+      return seenAll;
+    }
+
     var getData = function() {
       return $http({
         method: 'GET',
         url: 'api/users/main',
       }).then(function(res) {
         console.log('inside getData',res.data);
+        if (res.data.length === 0) {
+          seenAll = true;
+        }
         return res.data;
       });
     };
@@ -91,7 +100,8 @@ angular.module('roomie.services', [])
       getData: getData,
       approve: approve,
       decline: decline,
-      getContact: getContact
+      getContact: getContact,
+      seenAllTruth: seenAllTruth
     };
 
   });
