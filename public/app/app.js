@@ -26,30 +26,26 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         controller: 'MainController',
         authenticate: true
       })
-      .state('profile', {
-        url: '/profile',
+      .state('profilepage', {
+        templateUrl: 'app/profile/profilepage.html',
+        url: '/profilepage',
         controller: 'ProfileCtrl as profileCtrl',
-        templateURL: 'app/profile/profile.html',
         resolve: {
-          auth: function($state, Users, Auth) {
-            debugger;
+          auth: function($state, Users, Auth){
             console.log('PROFILE: checking if the user is authenticated...');
             return Auth.auth.$requireAuth().catch(function(){
-              console.log('PROFILE: checking if the user is authenticated...');
-
-              $state.go('login');
+              console.log('user is NOT authenticated so we are going HOME');
+              $state.go('signin');
             });
           },
           profile: function (Users, Auth) {
             console.log('getting the users profile...');
-            debugger;
             return Auth.auth.$requireAuth().then(function(auth){
-              console.log('getting the users profile...');
+              console.log('getting the users profile...', auth);
               return Users.getProfile(auth.uid).$loaded();
             });
           }
         }
-        /*authenticate: true*/
       })
       .state('channels.messages', {
         url: '/{channelId}/messages',
