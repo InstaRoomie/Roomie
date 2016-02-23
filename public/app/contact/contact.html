@@ -1,14 +1,14 @@
 <md-toolbar class="md-medium">
   <div class="md-toolbar-tools">
-    <img style="width: 7%;" src="asset/roomie-white.png">
+    <img width="75" src="assets/roomie-white-sm.png">
   </div>
 </md-toolbar>
-<div class="container" ng-controller="ContactController" layout="row">
+<div class="container" ng-controller="ContactController" layout="row" style="width: 950px; margin-right: auto; margin-left: auto;">
   <div hide-sm hide-xs hide-md flex="15"></div>
   <div hide-sm hide-xs flex="15"></div>
   <div class="contactListView" layout="column" flex>
     <div class="contactTitle" layout="row">
-      <img style="width: 22%; height: 22%; margin-top:18px; margin-right: 13px;" src="asset/roomie.png">
+      <img class="contactLogo" style="height: 55px; width: 172px; margin-top:17px; margin-right: 13px;" src="assets/roomie-sm.png">
       <h1>LIST</h1>
     </div>
     <md-content class="md-padding" layout="column" ng-repeat="contact in data" flex>
