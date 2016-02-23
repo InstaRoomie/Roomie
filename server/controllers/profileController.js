@@ -108,7 +108,7 @@ var helpers = {
   getDifferences: function(resultArray, callback){
     knex('Users')
       .whereIn('id', resultArray)
-      .select('firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
+      .select('id', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
       .then(function(item){
         callback(item)
       })
@@ -116,12 +116,19 @@ var helpers = {
   bringTogether: function(req, unionArray, callback){
     var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
 
-    knex('Users')
-      .whereNotIn('id', unionArray)
-      .andWhereNot('id', loggedUser.id)
-      .select('firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
+    knex('Maybe')
+      .where('user_id', loggedUser.id)
       .then(function(item){
-        callback(item);
+        item.forEach(function(answered){
+          unionArray.push(answered.potential);
+        })
+        knex('Users')
+        .whereNotIn('id', unionArray)
+        .andWhereNot('id', loggedUser.id)
+        .select('id', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
+        .then(function(item){
+          callback(item)
+        })
       })
   }
 };
