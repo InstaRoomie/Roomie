@@ -176,13 +176,58 @@ md-card {
 
 /*Signup Page CSS*/
 
+.loginLogoSU {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.formPanel-lg {
+  width: 500px;
+  background-color: #fff;
+  margin: auto;
+  border-color: #cfd9D7;
+  border-radius: 2px;
+  box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
+  border: 1px solid transparent;
+}
+
 input, option {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .inputFieldSU {
   width: 95%;
   padding-left: 10.5px;
+  border-radius: 1px;
+  height: 46px;
+  font-size: 16px;
+  line-height: 1.33;
+  color: #858585;
+}
+
+.inputFieldSU-lg {
+  width: 97%;
+  padding-left: 10.5px;
+  border-radius: 1px;
+  height: 46px;
+  font-size: 16px;
+  line-height: 1.33;
+  color: #858585;
+}
+
+.inputFieldSU-lg-dob {
+  width: 85%;
+  padding-left: 64.5px;
+  border-radius: 1px;
+  height: 46px;
+  font-size: 16px;
+  line-height: 1.33;
+  color: #858585;
+}
+.inputFieldSU-dob {
+  width: 76%;
+  padding-left: 64.5px;
   border-radius: 1px;
   height: 46px;
   font-size: 16px;
@@ -196,4 +241,25 @@ input, option {
 
 textarea {
   border-color: #858585;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.dropdown {
+  width: 100%;
+}
+
+.dob {
+  position: relative;
+  top: 14px;
+  left: 16px;
+}
+
+.dob span {
+  position: absolute;
+  color: #858585;
 }
