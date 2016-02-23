@@ -35,4 +35,4 @@
 md-card md-card-title md-card-title-media { margin-right: 50px; }
 .md-headline { font-size: 30px; margin-bottom: 5px; }
 .md-subhead { font-size: 18px !important; }
-.md-toolbar-tools { position: fixed; }
+.contactTitle h1 { letter-spacing: 5px; font-weight: bold; font-size: 28px; margin-top: 25px; }
