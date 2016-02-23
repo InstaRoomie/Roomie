@@ -30,9 +30,10 @@ module.exports = {
               res.status(200).send(usersToSend);
             });
         })
-          .catch(function(err) {
+        // this is breaking the helper
+          /*.catch(function(err) {
               console.log('This is an error from finding friends ', err);
-            });
+            });*/
       });
 
     }

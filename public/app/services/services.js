@@ -1,5 +1,8 @@
 angular.module('roomie.services', [])
-  .factory('Auth', function($http, $state, $window) {
+  .factory('Auth', function($http, $state, $window, $firebaseAuth, FirebaseUrl) {
+
+    var ref = new Firebase(FirebaseUrl);
+    var auth = $firebaseAuth(ref);
 
     var signup = function(user) {
       return $http({
@@ -36,7 +39,8 @@ angular.module('roomie.services', [])
       signup: signup,
       signin: signin,
       isAuth: isAuth,
-      signout: signout
+      signout: signout,
+      auth: auth
     };
 
   })
