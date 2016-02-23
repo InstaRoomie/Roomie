@@ -76,7 +76,7 @@ angular.module('roomie.services', [])
     var getContact = function() {
       return $http({
         method: 'GET',
-        url: 'api/users/main'
+        url: 'api/contact/friend'
       }).then(function(res) {
         console.log(res);
         return res.data;

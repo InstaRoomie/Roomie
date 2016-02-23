@@ -1,9 +1,18 @@
 angular.module('roomie.contact', [])
   .controller('ContactController', function($scope, State) {
 
-    State.getContact().then(function(data) {
+
+    $scope.getContact = function() {
+      State.getContact().then(function(data) {
+          $scope.data = data;
+        });
+    }
+
+    /*State.getContact().then(function(data) {
       $scope.data = data;
-    })
+    })*/
+
+    $scope.getContact();
 
     // $scope.data = [{
     //   firstname: 'Daniel',
