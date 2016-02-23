@@ -1,4 +1,4 @@
-var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages'])
+var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.profiles', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -25,6 +25,46 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/main',
         controller: 'MainController',
         authenticate: true
+      })
+      .state('profile', {
+        url: '/profile',
+        controller: 'ProfileCtrl as profileCtrl',
+        templateURL: 'app/profile/profile.html',
+        resolve: {
+          profile: function (Users) {
+            return Users.getProfile(uid).$loaded();
+          }
+        },
+      })
+      .state('channels.messages', {
+        url: '/{channelId}/messages',
+        template: 'app/channels/messages.html',
+        controller: 'MessagesCtrl as messagesCtrl',
+        resolve: {
+          messages: function ($stateParams, Messages) {
+            return Messages.forChannel($stateParams.channelId).$loaded();
+          },
+          channelName: function ($stateParams, channels) {
+            return '#' + channels.$getRecord($stateParams.channelId).name;
+          }
+        },
+        authenticate: true
+      })
+      .state('channels.direct', {
+        url: '/{uid}/messages/direct',
+        templateURL: 'app/channels/messages.html',
+        controller: 'MessagesCtrl as messagesCtrl',
+        resolve: {
+          messages: function ($stateParams, Messages, profile) {
+            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+          },
+          channelName: function ($stateParams, Users) {
+            return Users.all.$loaded().then(function () {
+                return '@' + Users.getDisplayName($stateParams.uid);
+              })
+          }
+        },
+        authenticate: true
       });
 
     $httpProvider.interceptors.push('AttachTokens');
@@ -50,4 +90,5 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         $state.go('signup');
       }
     });
-  });
+  })
+  .constant('FirebaseUrl', 'https://instaroomie.firebaseio.com/');
