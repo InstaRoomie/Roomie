@@ -1,5 +1,5 @@
 angular.module('roomie.angularfireChatController', [])
-  .controller('MessageCtrl', function (profile, channelName, messages) {
+  .controller('MessagesCtrl', function (profile, channelName, messages) {
       var messagesCtrl = this;
 
       messagesCtrl.messages = messages;
@@ -19,5 +19,5 @@ angular.module('roomie.angularfireChatController', [])
               });
         }
       }
-      
+
   })

@@ -36,7 +36,7 @@ angular.module('roomie.angularfireUsersFactory', [])
         });
       }
 		};
-    
+
 		return Users;
 
   });

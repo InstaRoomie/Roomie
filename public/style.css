@@ -269,3 +269,17 @@ textarea {
   font-weight: bold;
   font-size: 1.3em;
 }
+
+sidebar .presence {
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background: #ab9ba9;
+  vertical-align: middle;
+}
+
+.sidebar .presence.online {
+  background: #99d04a;
+}
