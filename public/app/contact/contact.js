@@ -1,7 +1,9 @@
 angular.module('roomie.contact', [])
-  .controller('ContactController', function($state, State, profile, auth, Users, Auth, md5) {
+  .controller('ContactController', function($scope, $state, State, profile, auth, Users, Auth, md5) {
+
 
     var contactController = this;
+    $scope.user;
 
     contactController.filterArray = [];
 
@@ -27,6 +29,16 @@ angular.module('roomie.contact', [])
         });
     };
 
+    $scope.profile = function() {
+      $state.go('profile');
+    }
+
+    $scope.getUser = function() {
+      State.getUser().then(function(data) {
+        $scope.user = data[0];
+      });
+    }
+
     contactController.profile = profile;
 
     Users.setOnline(profile.$id);
@@ -49,6 +61,8 @@ angular.module('roomie.contact', [])
     contactController.contacts = function() {
       $state.go('contact')
     };
+
+    $scope.getUser();
 
     contactController.getContact();
 

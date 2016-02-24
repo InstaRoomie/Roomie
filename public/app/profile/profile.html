@@ -34,40 +34,27 @@
 <!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
 <!-- <div hide show-gt-sm flex="35"></div> -->
 <!-- <div class="container" layout="row" layout-align="center center" flex> -->
+<div class="contactTitle" layout="row">
+  <img class="contactLogo" style="height: 55px; width: 172px; margin-top:17px; margin-right: 13px;" src="assets/roomie-sm.png">
+  <h1>My Profile</h1>
+</div>
   <md-content ng-show="dataArray.length !== 0" class="md-padding" layout="column" layout-align="center center" flex>
     <md-card>
       <md-card-title layout="column" layout-align="space-around center">
         <!-- <md-card-title-media> -->
         <div class="md-media-lg card-media">
-          <img style="max-width: 700px;" src="{{data.image_url}}">
+          <img style="max-width: 700px;" src="{{user.image_url}}">
         </div>
         <!-- </md-card-title-media> -->
         <md-card-title-text>
-          <span class="name">{{data.firstname}} {{data.lastname}}</span>
-          <span class="age">{{data.age}}</span>
-          <span class="gender">{{data.gender}}</span>
-          <span class="aboutme">{{data.about_me}}</span>
+          <span class="name">{{user.firstname}} {{user.lastname}}</span>
+          <span class="age">{{user.age}}</span>
+          <span class="gender">{{user.gender}}</span>
+          <span class="aboutme">{{user.about_me}}</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-actions layout="row" layout-align="space-around end">
-        <md-button class="Nobutton" ng-click="decline()">No</md-button>
-        <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
+          <md-button style="color: blue;" ng-click="updateprofile()">Edit Profile</md-button>
       </md-card-actions>
     </md-card>
   </md-content>
-
-  <div ng-show="dataArray.length === 0">
-    <div class="seenAll">
-      <div layout="row" layout-sm="column" layout-align="space-around">
-        <h4>You've seen all the roomies!</h4>
-      </div>
-    </div>
-  </div>
-  <!-- need to change this so the seenAll is the only thing that pops up if there are no more roomies -->
-  <div ng-show="dataArray.length === 0">
-    <div class="loading">
-      <div layout="row" layout-sm="column" layout-align="space-around">
-        <md-progress-circular  md-diameter="120" md-mode="indeterminate"></md-progress-circular>
-      </div>
-    </div>
-  </div>

@@ -60,6 +60,16 @@ angular.module('roomie.services', [])
       return seenAll;
     }
 
+    var getUser = function() {
+      return $http({
+        method: 'GET',
+        url: 'api/users/user',
+      }).then(function(res) {
+        console.log('this is the signedin profile', res.data);
+        return res.data;
+      });
+    };
+
     var getData = function() {
       return $http({
         method: 'GET',
@@ -108,7 +118,8 @@ angular.module('roomie.services', [])
       approve: approve,
       decline: decline,
       getContact: getContact,
-      seenAllTruth: seenAllTruth
+      seenAllTruth: seenAllTruth,
+      getUser: getUser
     };
 
   });

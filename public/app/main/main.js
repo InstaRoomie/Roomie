@@ -6,7 +6,12 @@ angular.module('roomie.main', [])
   $scope.data;
   $scope.currentuser = Auth.currentuser;
   $scope.dataArray = [];
+  $scope.user;
 
+
+  $scope.profile = function() {
+    $state.go('profile');
+  }
 
 
   $scope.seenAllTruth = function() {
@@ -18,7 +23,11 @@ angular.module('roomie.main', [])
   };
 
 
-
+  $scope.getUser = function() {
+    State.getUser().then(function(data) {
+      $scope.user = data[0];
+    });
+  }
 
   $scope.getData = function() {
     State.getData().then(function(data) {
@@ -68,5 +77,6 @@ angular.module('roomie.main', [])
   };
 
   $scope.getData();
+  $scope.getUser();
 
 });
