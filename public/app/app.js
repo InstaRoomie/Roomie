@@ -1,4 +1,4 @@
-var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.angularfireProfileController', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'roomie.angularfireChannelsController', 'angularfireChannelsFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
+var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.angularfireProfileController', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'roomie.angularfireChannelsController', 'angularfireChannelsFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase', 'filters-inArrayFilter'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -22,17 +22,24 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
       .state('contact', {
         templateUrl: 'app/contact/contact.html',
         url: '/contact',
-        controller: 'ContactController',
+        controller: 'ContactController as contactController',
         resolve: {
+          auth: function($state, Users, Auth){
+            console.log('PROFILE: checking if the user is authenticated...');
+            return Auth.auth.$requireAuth().catch(function(){
+              console.log('user is NOT authenticated so we are going HOME');
+              $state.go('signin');
+            });
+          },
           profile: function($state, Auth, Users){
             return Auth.auth.$requireAuth().then(function(auth){
-              console.log('attempting to resolve channels.profile promise...');
+              console.log('attempting to resolve contact auth promise...', auth);
 
               return Users.getProfile(auth.uid).$loaded().then(function(profile){
-                console.log('channels.profile promise was able to resolve the getProfile...');
+                console.log('contact auth promise was able to resolve the getProfile...');
                 console.log('profile: ', profile);
                 if (profile.displayName){
-                  console.log('returning the profile!')
+                  console.log('returning the profile!', profile)
                   return profile;
                 } else {
                   console.log('user has no displayName so heading to PROFILE');
@@ -40,10 +47,27 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
                 }
               });
             }, function(error){
-              //if one cannot is not authenticated... change state to 'home'
+              //if one cannot is not authenticated... change state to 'signin'
               console.log('User is not Authenticated so we cannot get her profile. Heading to HOME');
               $state.go('signin');
 
+            });
+          }
+        },
+        authenticate: true
+      })
+      .state('contact.direct', {
+        templateUrl: 'app/chat/channels/messages.html',
+        url: '/{uid}/messages/direct',
+        controller: 'MessagesCtrl as messagesCtrl',
+        resolve: {
+          messages: function ($stateParams, Messages, profile) {
+            console.log('looking for the messages in direct! ', Messages);
+            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+          },
+          channelName: function($stateParams, Users) {
+            return Users.all.$loaded().then(function() {
+                return '@' + Users.getDisplayNames($stateParams.uid);
             });
           }
         },

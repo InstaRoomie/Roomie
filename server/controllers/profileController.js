@@ -111,7 +111,7 @@ var helpers = {
         knex('Users')
         .whereNotIn('id', unionArray)
         .andWhereNot('id', loggedUser.id)
-        .select('id', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
+        .select('id', 'email', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
         .then(function(item){
           item.forEach(function(age){
             age.age = helpers.calculateAge(age.dob)
@@ -124,7 +124,7 @@ var helpers = {
 
     knex('Users')
       .whereIn('id', userIdArray)
-      .select('id', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
+      .select('id', 'email', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
       .then(function(user){
         callback(user);
       })

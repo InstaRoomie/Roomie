@@ -8,17 +8,17 @@
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
-          <md-button ng-click="new()">
+          <md-button ng-click="contactController.new()">
             <div>Find Roomies</div>
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ng-click="contacts()">
+          <md-button ng-click="contactController.contacts()">
             <div>Contacts</div>
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ng-click="signout()">
+          <md-button ng-click="contactController.signout()">
             <div>Log Out</div>
           </md-button>
         </md-menu-item>
@@ -26,14 +26,27 @@
     </md-menu>
   </div>
 </md-toolbar>
-<div class="container" ng-controller="ContactController" layout="row" layout-align="space-around center">
+
+<div class="friendsList" ng-repeat="user in contactController.users | inArray:contactController.filterArray:'emailHash'">
+  <a ng-if="user.$id !== contactController.profile.$id" ui-sref="contact.direct({uid: user.$id})" ui-sref-active="selected">
+    <span class="presence" ng-class="{online: user.online}"></span>
+    {{ user.displayName }}
+  </a>
+</div>
+
+<div class="message-pane">
+  <ui-view></ui-view>
+</div>
+
+<div class="container" layout="row" layout-align="space-around center">
+
   <div hide-sm hide-xs flex="15"></div>
   <div class="contactListView" layout="column" flex>
     <div class="contactTitle" layout="row">
       <img class="contactLogo" style="height: 55px; width: 172px; margin-top:17px; margin-right: 13px;" src="assets/roomie-sm.png">
       <h1>LIST</h1>
     </div>
-    <md-content class="md-padding" layout="column" ng-repeat="contact in data" flex>
+    <md-content class="md-padding" layout="column" ng-repeat="contact in contactController.data" flex>
       <md-card>
         <md-card-title>
           <md-card-title-media hide-xs hide-sm>
@@ -56,10 +69,9 @@
             <span class="md-subhead-sm">Gender: {{contact.gender}}</span>
             <span class="md-subhead-sm">Age: {{contact.age}}</span>
           </md-card-title-text>
-
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button>Email</md-button>>
+          <md-button>Email</md-button>
           <md-button>Chat</md-button>
         </md-card-actions>
       </md-card>

@@ -11,6 +11,8 @@ angular.module('roomie.angularfireChannelsController', [])
     channelsCtrl.getGravatar = Users.getGravatar;
     channelsCtrl.users = Users.all;
 
+    console.log("CHANNEL CTRL USERS ", channelsCtrl.users);
+
 
     channelsCtrl.logout = function () {
       Auth.auth.$unauth();

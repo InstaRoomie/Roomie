@@ -1,26 +1,44 @@
 angular.module('roomie.contact', [])
-  .controller('ContactController', function($scope, State, Auth, $state, profile, auth) {
+  .controller('ContactController', function($state, State, profile, auth, Users, Auth, md5) {
 
-    $scope.getContact = function() {
+    var contactController = this;
+
+    contactController.filterArray = [];
+
+    contactController.getContact = function() {
       State.getContact().then(function(data) {
-          $scope.data = data;
+          contactController.data = data;
+          for (var i = 0; i < contactController.data.length; i++) {
+            contactController.filterArray.push(md5.createHash(data[i].email));
+          }
+          console.log("this is the email array! ", contactController.filterArray);
         });
-    }
-    $scope.getContact();
+    };
 
-    $scope.signout = function() {
+    contactController.profile = profile;
+
+    Users.setOnline(profile.$id);
+
+    contactController.getDisplayName = Users.getDisplayNames;
+    contactController.getGravatar = Users.getGravatar;
+    contactController.users = Users.all;
+
+    contactController.signout = function() {
       //firebase signout
       Auth.auth.$unauth();
       //db signout
       Auth.signout();
     };
-    $scope.new = function() {
-      $state.go('main')
-    }
-    $scope.contacts = function() {
-      $state.go('contact')
-    }
 
+    contactController.new = function() {
+      $state.go('main')
+    };
+
+    contactController.contacts = function() {
+      $state.go('contact')
+    };
+
+    contactController.getContact();
     // $scope.data = [{
     //   firstname: 'Daniel',
     //   lastname: 'kim',

@@ -17,7 +17,7 @@ angular.module('roomie.angularfireProfileController', [])
       //send the user to the channels state after a successful save.
       profileCtrl.profile.$save().then(function(){
         console.log('profile successfully saved');
-        $state.go('main');
+        $state.go('contact');
       });
     }
   })

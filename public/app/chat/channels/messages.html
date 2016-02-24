@@ -3,10 +3,10 @@
 </div>
 
 <div class="message-wrap" ng-repeat="message in messagesCtrl.messages">
-	<img class="user-pic" ng-src="{{ channelsCtrl.getGravatar(message.uid) }}" />
+	<img class="user-pic" ng-src="{{ contactController.getGravatar(message.uid) }}" />
 	<div class="message-info">
 		<div class="user-name">
-			{{ channelsCtrl.getDisplayName(message.uid) }}
+			{{ contactController.getDisplayName(message.uid) }}
 		</div>
 		<div class="message">
 			{{ message.body }}
