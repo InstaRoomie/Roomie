@@ -12,7 +12,6 @@ angular.module('roomie.auth', [])
       password: $scope.user.password
     };
 
-
     Auth.auth.$createUser($scope.firebaseUser)
     .then(function (user) {
         console.log(user, ' is created!');

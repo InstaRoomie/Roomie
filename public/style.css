@@ -270,7 +270,7 @@ textarea {
   font-size: 1.3em;
 }
 
-sidebar .presence {
+.presence {
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -280,6 +280,6 @@ sidebar .presence {
   vertical-align: middle;
 }
 
-.sidebar .presence.online {
+.presence.online {
   background: #99d04a;
 }

@@ -53,17 +53,14 @@
           </md-card-title-text>
           <md-card-title-text hide-gt-sm>
             <span class="md-headline-sm">{{contact.firstname}} {{contact.lastname}}</span>
-            <span class="md-subhead-sm">Gender:  {{contact.gender}}</span>
-            <span class="md-subhead-sm">Age:  {{contact.age}}</span>
+            <span class="md-subhead-sm">Gender: {{contact.gender}}</span>
+            <span class="md-subhead-sm">Age: {{contact.age}}</span>
           </md-card-title-text>
 
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button>Email</md-button>
-          <a ng-if="user.$id !== channelsCtrl.profile.$id" ui-sref="channels.direct({uid: user.$id})" ui-sref-active="selected">
-            <span class="presence" ng-class="{online: user.online}"></span>
-            <md-button>Chat</md-button>
-          <a>
+          <md-button>Email</md-button>>
+          <md-button>Chat</md-button>
         </md-card-actions>
       </md-card>
     </md-content>

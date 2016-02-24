@@ -23,6 +23,30 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         templateUrl: 'app/contact/contact.html',
         url: '/contact',
         controller: 'ContactController',
+        resolve: {
+          profile: function($state, Auth, Users){
+            return Auth.auth.$requireAuth().then(function(auth){
+              console.log('attempting to resolve channels.profile promise...');
+
+              return Users.getProfile(auth.uid).$loaded().then(function(profile){
+                console.log('channels.profile promise was able to resolve the getProfile...');
+                console.log('profile: ', profile);
+                if (profile.displayName){
+                  console.log('returning the profile!')
+                  return profile;
+                } else {
+                  console.log('user has no displayName so heading to PROFILE');
+                  $state.go('profilepage');
+                }
+              });
+            }, function(error){
+              //if one cannot is not authenticated... change state to 'home'
+              console.log('User is not Authenticated so we cannot get her profile. Heading to HOME');
+              $state.go('signin');
+
+            });
+          }
+        },
         authenticate: true
       })
       .state('main', {

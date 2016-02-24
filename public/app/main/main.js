@@ -29,6 +29,9 @@ angular.module('roomie.main', [])
   }
 
   $scope.signout = function() {
+    // firebase sign out
+    Auth.auth.$unauth();
+    // db sign out
     Auth.signout();
   }
 

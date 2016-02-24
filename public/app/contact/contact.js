@@ -1,6 +1,5 @@
 angular.module('roomie.contact', [])
-  .controller('ContactController', function($scope, State, Auth, $state) {
-
+  .controller('ContactController', function($scope, State, Auth, $state, profile, auth) {
 
     $scope.getContact = function() {
       State.getContact().then(function(data) {
@@ -10,6 +9,9 @@ angular.module('roomie.contact', [])
     $scope.getContact();
 
     $scope.signout = function() {
+      //firebase signout
+      Auth.auth.$unauth();
+      //db signout
       Auth.signout();
     };
     $scope.new = function() {
