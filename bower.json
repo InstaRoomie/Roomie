@@ -25,6 +25,7 @@
     "angular-material": "^1.0.5",
     "bootstrap": "^3.3.6",
     "angularfire": "^1.1.4",
-    "angular-md5": "^0.1.10"
+    "angular-md5": "^0.1.10",
+    "underscore": "^1.8.3"
   }
 }

@@ -8,10 +8,22 @@ angular.module('roomie.contact', [])
     contactController.getContact = function() {
       State.getContact().then(function(data) {
           contactController.data = data;
-          for (var i = 0; i < contactController.data.length; i++) {
-            contactController.filterArray.push(md5.createHash(data[i].email));
-          }
+          _.each(data, function(friend) {
+              contactController.filterArray.push(md5.createHash(friend.email));
+            });
           console.log("this is the email array! ", contactController.filterArray);
+          console.log('contactController ', contactController);
+          // goes over each friend to check with the firebase users to see
+          // if the hashedEmails match and if they do match
+          // it extends the friend with the firebase user that matches
+          // this is to get the ng-repeat together
+          _.each(data, function(friend) {
+              _.each(contactController.users, function(user) {
+                  if (md5.createHash(friend.email) === user.emailHash) {
+                    _.extend(friend, user);
+                  }
+                });
+            });
         });
     };
 
@@ -39,6 +51,7 @@ angular.module('roomie.contact', [])
     };
 
     contactController.getContact();
+
     // $scope.data = [{
     //   firstname: 'Daniel',
     //   lastname: 'kim',
