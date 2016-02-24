@@ -45,7 +45,7 @@ var helpers = {
             var union = _.union(result, answers);
             // Take differences between maybes array and answers array.
             // This will basically filter out unanswered results.
-            helpers.getDifferences(result, function(item){
+            helpers.getDifferences(loggedUser, result, function(item){
               item.forEach(function(some){
                 usersToSend.push(some);
               })
@@ -91,10 +91,11 @@ var helpers = {
         callback(friends)
       })
   },
-  getDifferences: function(resultArray, callback){
+  getDifferences: function(loggedUser, resultArray, callback){
     knex('Users')
       .whereIn('id', resultArray)
-      .select('id', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
+      .andWhereNot('id', loggedUser.id)
+      .select('id', 'email', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
       .then(function(item){
         callback(item)
       })
