@@ -4,10 +4,15 @@ angular.module('roomie.main', [])
   /*$scope.data = { firstname: 'kyle', lastname: 'kyle', age: 23, gender: 'M', url: 'https://journalism.missouri.edu/wp-content/uploads/2011/10/greeley-kyle-200x300.jpg', aboutme: 'I like food'};*/
 
   $scope.data;
-
+  $scope.currentuser = Auth.currentuser;
   $scope.dataArray = [];
+  $scope.user;
 
-  console.log('inside main controller scope token ' + $scope.token);
+
+  $scope.profile = function() {
+    $state.go('profile');
+  }
+
 
   $scope.seenAllTruth = function() {
     var result = false;
@@ -16,6 +21,13 @@ angular.module('roomie.main', [])
     }
     return result;
   };
+
+
+  $scope.getUser = function() {
+    State.getUser().then(function(data) {
+      $scope.user = data[0];
+    });
+  }
 
   $scope.getData = function() {
     State.getData().then(function(data) {
@@ -65,5 +77,6 @@ angular.module('roomie.main', [])
   };
 
   $scope.getData();
+  $scope.getUser();
 
 });

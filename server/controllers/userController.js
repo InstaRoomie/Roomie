@@ -40,6 +40,7 @@ module.exports = {
 
     var email = req.body.email;
     var password = req.body.password;
+    var username = req.body.username;
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
     var dob = req.body.dob;

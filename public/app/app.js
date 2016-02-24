@@ -19,6 +19,18 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/signup',
         controller: 'AuthController'
       })
+      .state('profile', {
+        templateUrl: 'app/profile/profile.html',
+        url: '/profile',
+        controller: 'myProfileController',
+        authenticate: true
+      })
+      .state('profileEdit', {
+        templateUrl: 'app/profile/editprofile.html',
+        url: '/edit',
+        controller: 'editProfileController',
+        authenticate: true
+      })
       .state('contact', {
         templateUrl: 'app/contact/contact.html',
         url: '/contact',
@@ -158,7 +170,7 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
     $rootScope.$on('$stateChangeStart', function(evt, toState, toParams, fromState, fromParams, error) {
       if (toState && toState.authenticate && !Auth.isAuth()) {
         evt.preventDefault();
-        $state.go('signup');
+        $state.go('login');
       }
     });
   })

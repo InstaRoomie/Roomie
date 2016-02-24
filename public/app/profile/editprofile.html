@@ -15,9 +15,6 @@
             <span class="error" ng-show="signupform.$error.email">Not a valid email address</span>
           </div>
           <div class="formInput">
-            <input class="inputFieldSU" type="text" name="username" ng-model="user.username" placeholder="Username" required autofocus>
-          </div>
-          <div class="formInput">
             <input class="inputFieldSU" type="password" name="password" ng-minlength="6" ng-model="user.password" placeholder="Password" required autofocus>
             <span class="error" ng-show="signupform.$error.minlength">Password have to be 6 characters!</span>
           </div>
@@ -70,9 +67,6 @@
               <span class="error" ng-show="signupform2.$error.email">Not a valid email address</span>
             </div>
             <div class="formInput">
-              <input class="inputFieldSU" type="text" name="username" ng-model="user.username" placeholder="Username" required autofocus>
-            </div>
-            <div class="formInput">
               <input class="inputFieldSU-lg" type="password" name="password" ng-model="user.password" ng-minlength="6" placeholder="Password" required autofocus>
               <span class="error" ng-show="signupform2.$error.minlength">Password have to be 6 characters!</span>
             </div>
@@ -116,17 +110,3 @@
         </div>
       </div>
   </div>
-
-
-  <!-- <form name="signupform" ng-submit='signup()'>
-    <table>
-      <tr><td>Email:</td><td><input type="text" placeholder="Email" ng-model='user.email'></td></tr>
-      <tr><td>Password:</td><td><input type="password" ng-model='user.password'></td></tr>
-      <tr><td>First Name:</td><td><input type="text" placeholder="First Name" = ng-model="user.firstname"></td></tr>
-      <tr><td>Last Name:</td><td><input type="text" placeholder="Last Name" ng-model="user.lastname"></td></tr>
-      <tr><td>Date of Birth:</td><td><input type="text" placeholder="(mm/dd/yyyy)" ng-model="user.dob"></td></tr>
-      <tr><td>Gender:</td><td><input type="text" placeholder="(M or F)" ng-model="user.gender"></td></tr>
-      <tr><td>About Me:</td><td><textarea type="text" placeholder="200 character max" maxlength= "200" ng-model="user.aboutme"></textarea></td></tr>
-    </table>
-    <button class="authbutton">Sign Up!</button>
-  </form> -->
