@@ -3,6 +3,7 @@ angular.module('roomie.services', [])
 
     var ref = new Firebase(FirebaseUrl);
     var auth = $firebaseAuth(ref);
+    var currentuser;
 
     var signup = function(user) {
       return $http({
@@ -34,13 +35,19 @@ angular.module('roomie.services', [])
       $window.localStorage.removeItem('com.roomie');
       $state.go('signin');
     };
+    //
+    // var saveUser = function(user){
+    //   currentuser = user;
+    // };
+
 
     return {
       signup: signup,
       signin: signin,
       isAuth: isAuth,
       signout: signout,
-      auth: auth
+      auth: auth,
+      currentuser: currentuser
     };
 
   })
