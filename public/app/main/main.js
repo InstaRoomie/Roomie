@@ -1,6 +1,6 @@
 angular.module('roomie.main', [])
 
-.controller('MainController', function($scope, $mdMedia, State, $window) {
+.controller('MainController', function($scope, $mdMedia, State, $window, $state, Auth) {
   /*$scope.data = { firstname: 'kyle', lastname: 'kyle', age: 23, gender: 'M', url: 'https://journalism.missouri.edu/wp-content/uploads/2011/10/greeley-kyle-200x300.jpg', aboutme: 'I like food'};*/
 
   $scope.data;
@@ -27,6 +27,19 @@ angular.module('roomie.main', [])
       }
     });
   }
+
+  $scope.signout = function() {
+    Auth.signout();
+  }
+
+  $scope.new = function() {
+    $state.go('main')
+  }
+
+  $scope.contacts = function() {
+    $state.go('contact')
+  }
+
 
   $scope.approve = function() {
     State.approve($scope.data).then(function() {
