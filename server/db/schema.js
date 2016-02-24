@@ -22,7 +22,7 @@ knex.schema.hasTable('Users').then(function(exists) {
       table.string('username', 100).unique();
       table.string('password', 100);
       table.string('dob', 10);
-      table.string('image_url', 500).defaultTo('https://about.udemy.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png');
+      table.string('image_url', 2000).defaultTo('https://about.udemy.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png');
       table.string('gender', 10);
       table.string('about_me', 250);
       table.string('location', 100);
