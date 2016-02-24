@@ -1,0 +1,34 @@
+<md-toolbar class="md-medium">
+  <div class="md-toolbar-tools">
+    <img width="75" src="assets/roomie-white-sm.png">
+    <span flex></flex>
+    <md-menu md-position-mode="target-right target" >
+      <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+        <md-icon md-svg-icon="assets/menu-white.svg"></md-icon>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="contactController.new()">
+            <div>Find Roomies</div>
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="contactController.contacts()">
+            <div>Contacts</div>
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="contactController.signout()">
+            <div>Log Out</div>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</md-toolbar>
+
+    <div class="messages">
+      <ui-view></ui-view>
+    </div>
+
+</div>
