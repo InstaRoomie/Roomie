@@ -1,5 +1,5 @@
 angular.module('roomie.contact', [])
-  .controller('ContactController', function($scope, State, Auth) {
+  .controller('ContactController', function($scope, State, Auth, $state) {
 
 
     $scope.getContact = function() {
@@ -13,10 +13,10 @@ angular.module('roomie.contact', [])
       Auth.signout();
     };
     $scope.new = function() {
-      state.go('main')
+      $state.go('main')
     }
     $scope.contacts = function() {
-      state.go('contact')
+      $state.go('contact')
     }
 
     // $scope.data = [{

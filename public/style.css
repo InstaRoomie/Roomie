@@ -263,3 +263,9 @@ textarea {
   position: absolute;
   color: #858585;
 }
+
+.name {
+  font-family: serif;
+  font-weight: bold;
+  font-size: 1.3em;
+}
