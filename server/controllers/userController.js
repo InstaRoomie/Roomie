@@ -61,25 +61,34 @@ module.exports = {
         } else {
           console.log('user controller - user doesn\'t exist', user);
 
-          // make a new user if not one
-          var newUser = new User({
-              email: email,
-              firstname: firstname,
-              lastname: lastname,
-              password: password,
-              dob: dob,
-              image_url: image_url,
-              gender: gender,
-              location: location,
-              about_me: aboutme
-            });
-          newUser.save()
-            .then(function(newUser) {
-                Users.add(newUser);
-                var token = jwt.encode(newUser, 'secret');
-                console.log('this is the token! ', token);
-                res.json({token: token});
-              });
+          new User({username: username})
+            .fetch()
+            .then(function(userName){
+              if(userName){
+                next(new Error('Username already taken, please choose a different one'))
+              } else {
+                // make a new user if not one
+                var newUser = new User({
+                  email: email,
+                  firstname: firstname,
+                  username: username,
+                  lastname: lastname,
+                  password: password,
+                  dob: dob,
+                  image_url: image_url,
+                  gender: gender,
+                  location: location,
+                  about_me: aboutme
+                });
+                newUser.save()
+                .then(function(newUser) {
+                  Users.add(newUser);
+                  var token = jwt.encode(newUser, 'secret');
+                  console.log('this is the token! ', token);
+                  res.json({token: token});
+                });
+              }
+            })
         }
       })
       .catch(function(err) {
