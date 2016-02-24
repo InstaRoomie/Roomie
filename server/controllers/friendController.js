@@ -26,6 +26,9 @@ module.exports = {
         });
         helpers.getUsersFromDb(req, contactList, function(user){
           user.forEach(function(friend){
+            friend.forEach(function(item){
+              item.age = helpers.calculateAge(item.dob);
+            })
             usersToSend.push(friend);
           })
           res.status(200).send(usersToSend);
