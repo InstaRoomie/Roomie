@@ -15,6 +15,9 @@
             <span class="error" ng-show="signupform.$error.email">Not a valid email address</span>
           </div>
           <div class="formInput">
+            <input class="inputFieldSU" type="text" name="username" ng-model="user.username" placeholder="Username" required autofocus>
+          </div>
+          <div class="formInput">
             <input class="inputFieldSU" type="password" name="password" ng-minlength="6" ng-model="user.password" placeholder="Password" required autofocus>
             <span class="error" ng-show="signupform.$error.minlength">Password have to be 6 characters!</span>
           </div>
@@ -65,6 +68,9 @@
             <div class="formInput">
               <input class="inputFieldSU-lg" type="email" name="email" ng-model="user.email" placeholder="Email" required autofocus>
               <span class="error" ng-show="signupform2.$error.email">Not a valid email address</span>
+            </div>
+            <div class="formInput">
+              <input class="inputFieldSU" type="text" name="username" ng-model="user.username" placeholder="Username" required autofocus>
             </div>
             <div class="formInput">
               <input class="inputFieldSU-lg" type="password" name="password" ng-model="user.password" ng-minlength="6" placeholder="Password" required autofocus>
