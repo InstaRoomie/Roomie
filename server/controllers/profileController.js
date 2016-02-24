@@ -139,6 +139,26 @@ var helpers = {
         age--;
     }
     return age;
+  },
+  sendLoggedUser: function(req, res, next){
+    var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
+
+    knex('Users')
+      .where('id', loggedUser.id)
+      .select('id', 'email', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
+      .then(function(user){
+        res.status(200).send(user);
+      })
+  },
+  resetRejections: function(req, res, next){
+    var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
+
+    knex('No')
+      .where('user_id', loggedUser.id)
+      .del()
+      .then(function(item){
+        console.log("Reset Answers");
+      })
   }
 };
 

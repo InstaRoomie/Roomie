@@ -9,4 +9,6 @@ module.exports = function(app) {
   app.post('/signin', userController.signin); // userController.signin
   app.post('/signup', userController.signup); // userController.signup
   app.get('/main', userController.checkAuth, profileController.getUser); // userController.checkAuth
+  app.get('/user', userController.checkAuth, profileController.sendLoggedUser); // userController.checkAuth
+  app.get('/reset', userController.checkAuth, profileController.resetRejections); // userController.checkAuth
 };
