@@ -1,4 +1,43 @@
 angular.module('roomie.ProfileController', [])
+  .controller('editProfileController', function($scope, $mdMedia, State, $window, $state, Auth) {
+
+    $scope.user;
+    $scope.newinfo = {};
+
+    $scope.editProfile = function() {
+      State.updateProfile($scope.newinfo);
+    }
+
+    $scope.getUser = function() {
+      State.getUser().then(function(data) {
+        $scope.user = data[0];
+      });
+    }
+
+    $scope.profile = function() {
+      $state.go('profile');
+    }
+
+    $scope.signout = function() {
+      // firebase sign out
+      Auth.auth.$unauth();
+      // db sign out
+      Auth.signout();
+    }
+
+    $scope.new = function() {
+      $state.go('main')
+    }
+
+    $scope.contacts = function() {
+      $state.go('contact')
+    }
+
+    $scope.getUser();
+
+  })
+
+
   .controller('myProfileController', function($scope, $mdMedia, State, $window, $state, Auth) {
     /*$scope.data = { firstname: 'kyle', lastname: 'kyle', age: 23, gender: 'M', url: 'https://journalism.missouri.edu/wp-content/uploads/2011/10/greeley-kyle-200x300.jpg', aboutme: 'I like food'};*/
 
@@ -7,6 +46,9 @@ angular.module('roomie.ProfileController', [])
     $scope.dataArray = [];
     $scope.user;
 
+    $scope.resetnos = function() {
+      State.resetNos();
+    }
 
     $scope.updateprofile = function() {
       $state.go('profileEdit');

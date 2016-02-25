@@ -38,7 +38,7 @@
   <img class="contactLogo" style="height: 55px; width: 172px; margin-top:17px; margin-right: 13px;" src="assets/roomie-sm.png">
   <h1>My Profile</h1>
 </div>
-  <md-content ng-show="dataArray.length !== 0" class="md-padding" layout="column" layout-align="center center" flex>
+  <md-content class="md-padding" layout="column" layout-align="center center" flex>
     <md-card>
       <md-card-title layout="column" layout-align="space-around center">
         <!-- <md-card-title-media> -->
@@ -55,6 +55,8 @@
       </md-card-title>
       <md-card-actions layout="row" layout-align="space-around end">
           <md-button style="color: blue;" ng-click="updateprofile()">Edit Profile</md-button>
+          <md-button style="color: blue;" ng-click="resetnos()">Reset rejections</md-button>
+
       </md-card-actions>
     </md-card>
   </md-content>
