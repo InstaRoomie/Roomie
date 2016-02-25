@@ -1,24 +1,61 @@
-<div class="header">
-	<h1>{{ messagesCtrl.channelName }}</h1>
+<div class="chat-wrap-sm" hide-gt-sm layout="column" flex>
+  <div class="chat-title" style="padding-left: 15px;" flex>
+    <h2>Messaging with: {{ messagesCtrl.channelName }}</h2>
+  </div>
+  <div class="chat-list" flex>
+    <div class="chat-message" ng-repeat="message in messagesCtrl.messages">
+      <div class="message-info" layout="row">
+				<div class="chat-pic">
+					<img width="30" class="user-pic" ng-src="{{ contactController.getProfileImage(message.uid) }}" />
+				</div>
+        <span class="user-name">
+          {{ contactController.getDisplayName(message.uid) }}:
+        </span>
+        <span class="message">
+          {{ message.body }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input-sm" style="padding:5px;" flex>
+    <form class="message-form" ng-submit="messagesCtrl.sendMessage()">
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="messagesCtrl.message" placeholder="Type a message...">
+        <span class="input-group-btn">
+          <button class="btn btn-default">Send</button>
+        </span>
+      </div>
+    </form>
+  </div>
 </div>
 
-<div class="message-wrap" ng-repeat="message in messagesCtrl.messages">
-	<img class="user-pic" src="{{ contactController.getProfileImage(message.uid) }}" />
-	<div class="message-info">
-		<div class="user-name">
-			{{ contactController.getDisplayName(message.uid) }}
-		</div>
-		<div class="message">
-			{{ message.body }}
-		</div>
-	</div>
+<div class="chat-wrap" hide-xs hide-sm layout="column" flex>
+  <div class="chat-title" style="padding-left: 15px;" flex>
+    <h2>Messaging with: {{ messagesCtrl.channelName }}</h2>
+  </div>
+  <div class="chat-list" flex>
+    <div class="chat-message" ng-repeat="message in messagesCtrl.messages">
+      <div class="message-info" layout="row">
+				<div class="chat-pic">
+					<img width="30" class="user-pic" ng-src="{{ contactController.getProfileImage(message.uid) }}" />
+				</div>
+        <span class="user-name">
+          {{ contactController.getDisplayName(message.uid) }}:
+        </span>
+        <span class="message">
+          {{ message.body }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="chat-input" style="padding:5px;" flex>
+    <form class="message-form" ng-submit="messagesCtrl.sendMessage()">
+      <div class="input-group">
+        <input type="text" class="form-control" ng-model="messagesCtrl.message" placeholder="Type a message...">
+        <span class="input-group-btn">
+          <button class="btn btn-default">Send</button>
+        </span>
+      </div>
+    </form>
+  </div>
 </div>
-
-<form class="message-form" ng-submit="messagesCtrl.sendMessage()">
-	<div class="input-group">
-		<input type="text" class="form-control" ng-model="messagesCtrl.message" placeholder="Type a message...">
-		<span class="input-group-btn">
-			<button class="btn btn-default">Send</button>
-		</span>
-	</div>
-</form>
