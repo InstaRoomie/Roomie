@@ -68,8 +68,7 @@
 }
 
 .formBody {
-  padding-right: 26px;
-  padding-left: 26px;
+
 }
 
 .formBody h2 {
@@ -79,9 +78,10 @@
 }
 
 .formInput {
-  margin-bottom: 20px;
   font-family: 'Montserrat', sans-serif;
+  margin: 10% 0% 0% 10%;
 }
+
 p {
   font-family: 'Montserrat', sans-serif;
 }
@@ -405,4 +405,9 @@ textarea {
 
 md-card h1 {
   text-align: center;
+}
+
+.login {
+  width: 85%;
+  color: white;
 }

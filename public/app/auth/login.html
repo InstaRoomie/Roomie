@@ -7,10 +7,10 @@
   </div>
   <div class="row" flex>
     <div class="formPanel">
-      <div class="formBody">
-        <h2>Log in</h2>
+      <div class="formBody" layout-align="center center">
+        <h2>Login</h2>
         <form method="post" ng-submit="signin()" name="loginForm" class="loginForm">
-        <div class="formInput">
+        <div class="formInput" >
           <div id="emailIcon">
             <img width="30" class="inputImg" src="assets/email.png">
           </div>
@@ -23,9 +23,27 @@
           </div>
           <input class="inputField" type="password" name="password" ng-model="user.password" placeholder="Password" required autofocus>
         </div>
-        <button type="submit" class="inputButton">Log in</buttom>
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+          <md-button type="submit" class="md-raised md-primary login">
+            <font class="login">Login</font>
+          </md-button>
+        </section>
         </form>
       </div>
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+        <md-button class="md-raised md-primary login">
+          <i class="ion-social-github"></i> <font class="login">Login with Github</font>
+        </md-button>
+        <md-button class="md-raised md-primary login">
+          <i class="ion-social-facebook"></i> <font class="login">Login with Facebook</font>
+        </md-button>
+        <md-button class="md-raised md-primary login">
+          <i class="ion-social-twitter"></i> <font class="login">Login with Twitter</font>
+        </md-button>
+        <md-button class="md-raised md-primary login">
+          <i class="ion-social-google"></i> <font class="login">Login with Google</font>
+        </md-button>
+      </section>
       <div id="signupMsg">
         <p><small>Don't have an account yet?  <a ui-sref="signup">Sign up</a></small></p>
       <div ng-show="error">
