@@ -1,4 +1,38 @@
-<div class="container" ng-controller="AuthController" layout="column" layout-align="space-around center">
+<md-toolbar class="md-medium">
+  <div class="md-toolbar-tools">
+    <img width="75" src="assets/roomie-white-sm.png">
+    <span flex></flex>
+    <md-menu md-position-mode="target-right target" >
+      <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+        <md-icon md-svg-icon="assets/menu-white.svg"></md-icon>
+      </md-button>
+      <md-menu-content width="4">
+        <md-menu-item>
+          <md-button ng-click="profile()">
+          <div>Profile: {{user.firstname}} {{user.lastname}}</div>
+        </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="new()">
+            <div>Find Roomies</div>
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="contacts()">
+            <div>Contacts</div>
+          </md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="signout()">
+            <div>Log Out</div>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</md-toolbar>
+
+<div class="container" layout="column" layout-align="space-around center">
   <div class="loginLogoSU" hide-xs hide-sm flex>
     <img width="275" src="assets/roomie.png">
   </div>
@@ -8,105 +42,56 @@
   <div class="row" flex>
     <div class="formPanel" hide-gt-sm>
       <div class="formBody">
-        <h2>Signup</h2>
-        <form method="post" name="signupform" ng-submit='signup()'>
+        <h2>Edit Profile</h2>
+        <form method="post" name="EditProfile" ng-submit="editProfile()">
           <div class="formInput">
-            <input class="inputFieldSU" type="email" name="email" ng-model="user.email" placeholder="Email" required autofocus>
-            <span class="error" ng-show="signupform.$error.email">Not a valid email address</span>
+            Firstname:
+            <input class="inputFieldSU" type="text" name="first.name" ng-model="newinfo.firstname" placeholder="{{user.firstname}}" required autofocus>
           </div>
           <div class="formInput">
-            <input class="inputFieldSU" type="password" name="password" ng-minlength="6" ng-model="user.password" placeholder="Password" required autofocus>
-            <span class="error" ng-show="signupform.$error.minlength">Password have to be 6 characters!</span>
+            Lastname:
+            <input class="inputFieldSU" type="text" name="last.name" ng-model="newinfo.lastname" placeholder="{{user.lastname}}" required autofocus>
           </div>
           <div class="formInput">
-            <input class="inputFieldSU" type="text" name="first.name" ng-model="user.firstname" placeholder="First Name" required autofocus>
-          </div>
-          <div class="formInput">
-            <input class="inputFieldSU" type="text" name="last.name" ng-model="user.lastname" placeholder="First Name" required autofocus>
-          </div>
-          <div class="formInput">
-            <div class="dob">
-              <span>DOB:</span>
-            </div>
-            <input class="inputFieldSU-dob" type="date" name="dob" ng-model="user.dob" placeholder="Date of Birth" required autofocus>
-          </div>
-          <div class="formInput">
-            <select name="userGender" ng-model="user.gender" class="inputFieldSU" placeholder="Gender" style="width: 100%;">
-              <option value="" disabled selected>Gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
-          </div>
-          <div class="formInput">
-            <select name="location" ng-model="user.location" class="inputFieldSU dropdown" placeholder="Location"required autofocus>
-              <option value="" disabled selected>Location</option>
-              <option value="Santa Monica">Santa Monica</option>
-            </select>
-          </div>
-          <div class="formInput">
-            <input class="inputFieldSU" type="url" name="imageUrl" ng-model="user.image_url" placeholder="Picture URL" required autofocus>
+            Image URL:
+            <input class="inputFieldSU" type="url" name="imageUrl" ng-model="newinfo.image_url" placeholder="{{user.image_url}}" required autofocus>
             <span class="error" ng-show="signupform.$error.url">Not a valid URL!</span>
           </div>
           <div class="formInput">
-            <textarea name="aboutMe" ng-model="user.aboutme" type="text" placeholder="200 character max" maxlength="200" class="inputFieldSU aboutMe"></textarea>
+            About Me:
+            <textarea name="aboutMe" ng-model="newinfo.about_me" type="text" placeholder="{{user.about_me}}" maxlength="200" class="inputFieldSU aboutMe"></textarea>
           </div>
-          <button class="inputButton" type="submit">Sign Up!</button>
+          <button class="inputButton" type="submit">Update Profile</button>
         </form>
-        <div id="signupMsg">
-          <p><small>Already have an account?  <a ui-sref="signin">Log in</a></small></p>
-        </div>
       </div>
     </div>
+  </div>
+
     <div class="row" flex>
       <div class="formPanel-lg" hide-xs hide-sm>
         <div class="formBody">
-          <h2>Signup</h2>
-          <form method="post" name="signupform2" ng-submit='signup()'>
+          <h2>Edit Profile</h2>
+          <form method="post" name="EditProfile" ng-submit="editProfile()">
             <div class="formInput">
-              <input class="inputFieldSU-lg" type="email" name="email" ng-model="user.email" placeholder="Email" required autofocus>
-              <span class="error" ng-show="signupform2.$error.email">Not a valid email address</span>
+              Firstname:
+              <input class="inputFieldSU" type="text" name="first.name" ng-model="newinfo.firstname" placeholder="{{user.firstname}}" required autofocus>
             </div>
             <div class="formInput">
-              <input class="inputFieldSU-lg" type="password" name="password" ng-model="user.password" ng-minlength="6" placeholder="Password" required autofocus>
-              <span class="error" ng-show="signupform2.$error.minlength">Password have to be 6 characters!</span>
+              Lastname:
+              <input class="inputFieldSU" type="text" name="last.name" ng-model="newinfo.lastname" placeholder="{{user.lastname}}" required autofocus>
             </div>
             <div class="formInput">
-              <input class="inputFieldSU-lg" type="text" name="first.name" ng-model="user.firstname" placeholder="First Name" required autofocus>
+              Image URL:
+              <input class="inputFieldSU" type="url" name="imageUrl" ng-model="newinfo.image_url" placeholder="{{user.image_url}}" required autofocus>
+              <span class="error" ng-show="signupform.$error.url">Not a valid URL!</span>
             </div>
             <div class="formInput">
-              <input class="inputFieldSU-lg" type="text" name="last.name" ng-model="user.lastname" placeholder="First Name" required autofocus>
+              About Me:
+              <textarea name="aboutMe" ng-model="newinfo.about_me" type="text" placeholder="{{user.about_me}}" maxlength="200" class="inputFieldSU aboutMe"></textarea>
             </div>
-            <div class="formInput">
-              <div class="dob">
-                <span>DOB:</span>
-              </div>
-              <input class="inputFieldSU-lg-dob" type="date" name="dob" ng-model="user.dob" placeholder="Date of Birth" required autofocus>
-            </div>
-            <div class="formInput">
-              <select name="userGender" ng-model="user.gender" class="inputFieldSU dropdown" placeholder="Gender" required autofocus>
-                <option value="" disabled selected>Gender</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-              </select>
-            </div>
-            <div class="formInput">
-              <select name="location" ng-model="user.location" class="inputFieldSU dropdown" placeholder="Location"required autofocus>
-                <option value="" disabled selected>Location</option>
-                <option value="Santa Monica">Santa Monica</option>
-              </select>
-            </div>
-            <div class="formInput">
-              <input class="inputFieldSU-lg" type="url" name="imageUrl" ng-model="user.image_url" placeholder="Picture URL" required autofocus>
-              <span class="error" ng-show="signupform2.$error.url">Not a valid URL!</span>
-            </div>
-            <div class="formInput">
-              <textarea name="aboutMe" ng-model="user.aboutme" type="text" placeholder="Tell us about yourself (200 character max)" maxlength="200" class="inputFieldSU-lg aboutMe" required autofocus></textarea>
-            </div>
-            <button class="inputButton" type="submit">Sign Up!</button>
+            <button class="inputButton" type="submit">Update Profile</button>
           </form>
-          <div id="signupMsg">
-            <p><small>Already have an account?  <a ui-sref="signin">Log in</a></small></p>
-          </div>
         </div>
       </div>
   </div>
+</div>

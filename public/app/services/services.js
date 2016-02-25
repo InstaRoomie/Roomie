@@ -60,10 +60,19 @@ angular.module('roomie.services', [])
       return seenAll;
     }
 
+    var resetNos = function() {
+      return $http({
+        method: 'GET',
+        url: 'api/users/reset'
+      }).then(function(res) {
+        console.log(res);
+      });
+    };
+
     var getUser = function() {
       return $http({
         method: 'GET',
-        url: 'api/users/user',
+        url: 'api/users/user'
       }).then(function(res) {
         console.log('this is the signedin profile', res.data);
         return res.data;
@@ -73,7 +82,7 @@ angular.module('roomie.services', [])
     var getData = function() {
       return $http({
         method: 'GET',
-        url: 'api/users/main',
+        url: 'api/users/main'
       }).then(function(res) {
         console.log('inside getData',res.data);
         if (res.data.length === 0) {
@@ -113,13 +122,25 @@ angular.module('roomie.services', [])
       });
     };
 
+    var updateProfile = function(data) {
+      return $http({
+        method: 'POST',
+        url: 'api/users/update',
+        data: data
+      }).then(function(res) {
+        console.log(res);
+      });
+    };
+
     return {
       getData: getData,
       approve: approve,
       decline: decline,
       getContact: getContact,
       seenAllTruth: seenAllTruth,
-      getUser: getUser
+      getUser: getUser,
+      resetNos: resetNos,
+      updateProfile: updateProfile
     };
 
   });

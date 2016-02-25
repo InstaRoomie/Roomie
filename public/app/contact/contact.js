@@ -49,19 +49,24 @@ angular.module('roomie.contact', [])
       return contactController.friendPhoto[uid];
     };
 
-    contactController.signout = function() {
+    $scope.signout = function() {
       //firebase signout
       Auth.auth.$unauth();
       //db signout
       Auth.signout();
     };
 
+    $scope.new = function() {
+      $state.go('main');
+    }
+
+
     contactController.new = function() {
-      $state.go('main')
+      $state.go('main');
     };
 
     contactController.contacts = function() {
-      $state.go('contact')
+      $state.go('contact');
     };
 
     $scope.getUser();
