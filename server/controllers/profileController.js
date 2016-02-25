@@ -175,6 +175,7 @@ var helpers = {
         lastname: lastName,
         about_me: aboutMe,
         image_url: imageUrl
+
       })
   },
   updateProfile: function(req, res, next){

@@ -63,7 +63,7 @@ angular.module('roomie.services', [])
     var resetNos = function() {
       return $http({
         method: 'GET',
-        url: 'api/users/reset',
+        url: 'api/users/reset'
       }).then(function(res) {
         console.log(res);
       });
@@ -72,7 +72,7 @@ angular.module('roomie.services', [])
     var getUser = function() {
       return $http({
         method: 'GET',
-        url: 'api/users/user',
+        url: 'api/users/user'
       }).then(function(res) {
         console.log('this is the signedin profile', res.data);
         return res.data;
@@ -82,7 +82,7 @@ angular.module('roomie.services', [])
     var getData = function() {
       return $http({
         method: 'GET',
-        url: 'api/users/main',
+        url: 'api/users/main'
       }).then(function(res) {
         console.log('inside getData',res.data);
         if (res.data.length === 0) {

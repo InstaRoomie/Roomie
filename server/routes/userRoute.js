@@ -11,5 +11,5 @@ module.exports = function(app) {
   app.get('/main', userController.checkAuth, profileController.getUser); // userController.checkAuth
   app.get('/user', userController.checkAuth, profileController.sendLoggedUser); // userController.checkAuth
   app.get('/reset', userController.checkAuth, profileController.resetRejections); // userController.checkAuth
-  app.get('/update', userController.checkAuth, profileController.updateProfile); // userController.checkAuth
+  app.post('/update', userController.checkAuth, profileController.updateProfile); // userController.checkAuth
 };

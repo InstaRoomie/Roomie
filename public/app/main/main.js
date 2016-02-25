@@ -48,11 +48,11 @@ angular.module('roomie.main', [])
   }
 
   $scope.new = function() {
-    $state.go('main')
+    $state.go('main');
   }
 
   $scope.contacts = function() {
-    $state.go('contact')
+    $state.go('contact');
   }
 
 
