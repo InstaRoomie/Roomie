@@ -157,7 +157,24 @@ var helpers = {
       .where('user_id', loggedUser.id)
       .del()
       .then(function(item){
-        console.log("Reset Answers");
+        res.status(200).send("The rejctions have been reset")
+      })
+  },
+  updateProfile: function(req, res, next){
+    var loggedUser = jwt.decode(req.headers['x-access-token'], 'secret');
+
+    var firstName = req.body.firstname;
+    var lastName = req.body.lastname;
+    var aboutMe = req.body.about_me;
+    var imageUrl = req.body.image_url;
+
+    knex('Users')
+      .where('id', loggedUser.id)
+      .update({
+        firstname: firstName,
+        lastname: lastName,
+        about_me: aboutMe,
+        image_url: imageUrl
       })
   },
   updateProfile: function(req, res, next){
