@@ -1,9 +1,7 @@
 angular.module('roomie.contact', [])
   .controller('ContactController', function($scope, $state, State, profile, auth, Users, Auth, md5) {
 
-
     var contactController = this;
-    $scope.user;
 
     contactController.friendPhoto = {};
 
@@ -27,13 +25,14 @@ angular.module('roomie.contact', [])
         });
     };
 
-    $scope.profile = function() {
+    contactController.profilepage = function() {
       $state.go('profile');
     }
 
-    $scope.getUser = function() {
+    contactController.getUser = function() {
       State.getUser().then(function(data) {
-        $scope.user = data[0];
+        contactController.user = data[0];
+        _.extend(contactController.friendPhoto, { [contactController.profile.$id]: contactController.user.image_url});
       });
     }
 
@@ -49,14 +48,14 @@ angular.module('roomie.contact', [])
       return contactController.friendPhoto[uid];
     };
 
-    $scope.signout = function() {
+    contactController.signout = function() {
       //firebase signout
       Auth.auth.$unauth();
       //db signout
       Auth.signout();
     };
 
-    $scope.new = function() {
+    contactController.new = function() {
       $state.go('main');
     }
 
@@ -69,7 +68,7 @@ angular.module('roomie.contact', [])
       $state.go('contact');
     };
 
-    $scope.getUser();
+    contactController.getUser();
 
     contactController.getContact();
 
