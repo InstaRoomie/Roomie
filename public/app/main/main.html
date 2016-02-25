@@ -55,6 +55,31 @@
       </md-card-actions>
     </md-card>
   </md-content>
+=======
+<div class="container" layout-align="center center">
+  <div class="mainView">
+    <md-content ng-show="dataArray.length !== 0" class="md-padding" layout="column" flex>
+      <md-card>
+        <md-card-title layout="column" layout-align="space-around center">
+          <!-- <md-card-title-media> -->
+          <div class="md-media-lg card-media">
+            <img style="max-width: 700px;" src="{{data.image_url}}">
+          </div>
+          <!-- </md-card-title-media> -->
+          <md-card-title-text>
+            <span class="name">{{data.firstname}} {{data.lastname}}</span>
+            <span class="age">{{data.age}}</span>
+            <span class="gender">{{data.gender}}</span>
+            <span class="aboutme">{{data.about_me}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="space-around end">
+          <md-button class="Nobutton" ng-click="decline()">No</md-button>
+          <md-button class="Yesbutton" ng-click="approve()">Yes</md-button>
+        </md-card-actions>
+      </md-card>
+    </md-content>
+  </div>
 
   <div ng-show="dataArray.length === 0">
     <div class="seenAll">
@@ -71,3 +96,4 @@
       </div>
     </div>
   </div>
+</div>

@@ -38,6 +38,11 @@
   margin-left: auto;
 }
 
+.mainView {
+  width: 500px;
+  margin: auto;"
+}
+
 /*login page CSS*/
 
 #loginLogo-lg {
@@ -343,4 +348,8 @@ textarea {
 .user-name {
   margin-left: 5px;
   margin-right: 5px;
+}
+
+md-card h1 {
+  text-align: center;
 }

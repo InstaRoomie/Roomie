@@ -1,4 +1,4 @@
-<md-toolbar class="md-medium">
+<md-toolbar class="md-medium ">
   <div class="md-toolbar-tools">
     <img width="75" src="assets/roomie-white-sm.png">
     <span flex></flex>
@@ -34,29 +34,30 @@
 <!-- <div hide-sm hide-xs hide-md flex="15"></div> -->
 <!-- <div hide show-gt-sm flex="35"></div> -->
 <!-- <div class="container" layout="row" layout-align="center center" flex> -->
-<div class="contactTitle" layout="row">
-  <img class="contactLogo" style="height: 55px; width: 172px; margin-top:17px; margin-right: 13px;" src="assets/roomie-sm.png">
-  <h1>My Profile</h1>
-</div>
-  <md-content class="md-padding" layout="column" layout-align="center center" flex>
-    <md-card>
-      <md-card-title layout="column" layout-align="space-around center">
-        <!-- <md-card-title-media> -->
-        <div class="md-media-lg card-media">
-          <img style="max-width: 700px;" src="{{user.image_url}}">
-        </div>
-        <!-- </md-card-title-media> -->
-        <md-card-title-text>
-          <span class="name">{{user.firstname}} {{user.lastname}}</span>
-          <span class="age">{{user.age}}</span>
-          <span class="gender">{{user.gender}}</span>
-          <span class="aboutme">{{user.about_me}}</span>
-        </md-card-title-text>
-      </md-card-title>
-      <md-card-actions layout="row" layout-align="space-around end">
-          <md-button style="color: blue;" ng-click="updateprofile()">Edit Profile</md-button>
-          <md-button style="color: blue;" ng-click="resetnos()">Reset rejections</md-button>
+<div class="container" layout="row" layout-align="space-around center">
+  <div class="profileView" style="width:500px;margin-auto">
+    <md-content class="md-padding" layout="column" layout-align="center center" flex>
+      <md-card>
+        <h1>My Profile</h1>
+        <md-card-title layout="column" layout-align="space-around center">
+          <!-- <md-card-title-media> -->
+          <div class="md-media-lg card-media">
+            <img style="max-width: 700px;" src="{{user.image_url}}">
+          </div>
+          <!-- </md-card-title-media> -->
+          <md-card-title-text>
+            <span class="name">{{user.firstname}} {{user.lastname}}</span>
+            <span class="age">{{user.age}}</span>
+            <span class="gender">{{user.gender}}</span>
+            <span class="aboutme">{{user.about_me}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="space-around end">
+            <md-button style="color: blue;" ng-click="updateprofile()">Edit Profile</md-button>
+            <md-button style="color: blue;" ng-click="resetnos()">Reset rejections</md-button>
 
-      </md-card-actions>
-    </md-card>
-  </md-content>
+        </md-card-actions>
+      </md-card>
+    </md-content>
+  </div>
+</div>
