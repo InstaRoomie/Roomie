@@ -147,6 +147,9 @@ var helpers = {
       .where('id', loggedUser.id)
       .select('id', 'email', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
       .then(function(user){
+        user.forEach(function(item){
+          item.age = helpers.calculateAge(item.dob);
+        })
         res.status(200).send(user);
       })
   },
