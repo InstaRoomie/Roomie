@@ -5,16 +5,11 @@ angular.module('roomie.contact', [])
     var contactController = this;
     $scope.user;
 
-    contactController.filterArray = [];
+    contactController.friendPhoto = {};
 
     contactController.getContact = function() {
       State.getContact().then(function(data) {
           contactController.data = data;
-          _.each(data, function(friend) {
-              contactController.filterArray.push(md5.createHash(friend.email));
-            });
-          console.log("this is the email array! ", contactController.filterArray);
-          console.log('contactController ', contactController);
           // goes over each friend to check with the firebase users to see
           // if the hashedEmails match and if they do match
           // it extends the friend with the firebase user that matches
@@ -23,9 +18,12 @@ angular.module('roomie.contact', [])
               _.each(contactController.users, function(user) {
                   if (md5.createHash(friend.email) === user.emailHash) {
                     _.extend(friend, user);
+                    _.extend(contactController.friendPhoto, { [user.$id]: friend.image_url });
                   }
                 });
             });
+
+          console.log("This is the contact controller stuff ", contactController)
         });
     };
 
@@ -44,8 +42,12 @@ angular.module('roomie.contact', [])
     Users.setOnline(profile.$id);
 
     contactController.getDisplayName = Users.getDisplayNames;
-    contactController.getGravatar = Users.getGravatar;
+    contactController.getGravatar = Users.gravatar;
     contactController.users = Users.all;
+
+    contactController.getProfileImage = function(uid) {
+      return contactController.friendPhoto[uid];
+    };
 
     contactController.signout = function() {
       //firebase signout
@@ -65,39 +67,5 @@ angular.module('roomie.contact', [])
     $scope.getUser();
 
     contactController.getContact();
-
-    // $scope.data = [{
-    //   firstname: 'Daniel',
-    //   lastname: 'kim',
-    //   age: 23,
-    //   gender: 'M',
-    //   aboutme: 'Hi, my name is Daniel',
-    //   email: 'danielkim@gmail.com',
-    //   url: 'https://www.guthriegreen.com/sites/default/files/Kung-Fu-Panda-6%5B1%5D.jpg'
-    // }, {
-    //   firstname: 'Danny',
-    //   lastname: 'Rizko',
-    //   age: 26,
-    //   gender: 'M',
-    //   aboutme: 'Hi, my name is Danny',
-    //   email: 'dannyrizko@gmail.com',
-    //   url: 'http://vignette2.wikia.nocookie.net/kungfupanda/images/2/2e/Oogway-white.png/revision/latest?cb=20120901174344'
-    // }, {
-    //   firstname: 'Ethan',
-    //   lastname: 'Rubio',
-    //   age: 25,
-    //   gender: 'M',
-    //   aboutme: 'Hi, my name is Ethan',
-    //   email: 'ethanrubio@gmail.com',
-    //   url: 'http://images-cdn.moviepilot.com/image/upload/c_fill,h_1198,w_1777/t_mp_quality/monkeykfp2-kung-fu-panda-3-jpeg-77119.jpg'
-    // }, {
-    //   firstname: 'Bobby',
-    //   lastname: 'Chong',
-    //   age: 33,
-    //   gender: 'M',
-    //   aboutme: 'Hi, my name is Bobby',
-    //   email: 'bobbychong@gmail.com',
-    //   url: 'http://vignette1.wikia.nocookie.net/dreamworks/images/e/e9/ShifuGreen.jpg'
-    // }];
 
   });
