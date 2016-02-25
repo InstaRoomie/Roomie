@@ -138,6 +138,37 @@ md-card {
   border: 1px solid transparent;
 }
 
+md-card-actions > a {
+  text-decoration: none;
+  color: gray;
+}
+
+.md-button span {
+  text-decoration: none;
+  color: gray;
+}
+
+.yes-btn {
+  background-color: green;
+
+}
+
+.no-btn {
+  background-color: red;
+}
+
+.yes-btn span, .no-btn span {
+  color: #fff;
+}
+
+.no-btn:hover span {
+  color: red !important;
+}
+
+.yes-btn:hover span {
+  color: green !important;
+}
+
 .md-headline {
   font-size: 30px;
   margin-bottom: 5px;

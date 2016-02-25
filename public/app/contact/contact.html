@@ -63,7 +63,7 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button>Email</md-button>
+          <a href="mailto:{{contact.email}}"><md-button>Email</md-button></a>
           <a ng-if="contact.$id !== contactController.profile.$id && contact.displayName" ui-sref="chat.direct({uid: contact.$id})" ui-sref-active="selected">
              <md-button>Chat</md-button>
           </a>
