@@ -3,7 +3,7 @@
 </div>
 
 <div class="message-wrap" ng-repeat="message in messagesCtrl.messages">
-	<img class="user-pic" ng-src="{{ contactController.getGravatar(message.uid) }}" />
+	<img class="user-pic" src="{{ contactController.getProfileImage(message.uid) }}" />
 	<div class="message-info">
 		<div class="user-name">
 			{{ contactController.getDisplayName(message.uid) }}
