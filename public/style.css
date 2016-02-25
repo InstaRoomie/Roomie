@@ -80,6 +80,25 @@
 
 .formInput {
   margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+textarea {
+  font-family: 'Montserrat', sans-serif;
+}
+
+span {
+  font-family: 'Montserrat', sans-serif !important;
+}
+button {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.pro-btn {
+  margin-bottom: 35px;
 }
 
 #emailIcon {
@@ -136,6 +155,9 @@ md-card md-card-title md-card-title-media {
 md-card {
   box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
   border: 1px solid transparent;
+}
+.mainView md-content md-card {
+  padding-bottom: 30px;
 }
 
 md-card-actions > a {
