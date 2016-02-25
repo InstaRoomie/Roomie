@@ -1,4 +1,4 @@
-var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.angularfireProfileController', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
+var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.ProfileController', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -127,27 +127,6 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/main',
         controller: 'MainController',
         authenticate: true
-      })
-      .state('profilepage', {
-        templateUrl: 'app/profile/profilepage.html',
-        url: '/profilepage',
-        controller: 'ProfileCtrl as profileCtrl',
-        resolve: {
-          auth: function($state, Users, Auth){
-            console.log('PROFILE: checking if the user is authenticated...');
-            return Auth.auth.$requireAuth().catch(function(){
-              console.log('user is NOT authenticated so we are going HOME');
-              $state.go('signin');
-            });
-          },
-          profile: function (Users, Auth) {
-            console.log('getting the users profile...');
-            return Auth.auth.$requireAuth().then(function(auth){
-              console.log('getting the users profile...', auth);
-              return Users.getProfile(auth.uid).$loaded();
-            });
-          }
-        }
       });
 
     $httpProvider.interceptors.push('AttachTokens');

@@ -32,18 +32,6 @@
     </div>
   </md-toolbar>
 
-
-  <div class="friendsList" ng-repeat="user in contactController.users | inArray:contactController.filterArray:'emailHash'">
-    <a ng-if="user.$id !== contactController.profile.$id" ui-sref="contact.direct({uid: user.$id})" ui-sref-active="selected">
-      <span class="presence" ng-class="{online: user.online}"></span>
-      {{ user.displayName }}
-    </a>
-  </div>
-
-  <div class="message-pane">
-    <ui-view></ui-view>
-  </div>
-
   <div class="container" layout="row" layout-align="space-around center">
 
     <div hide-sm hide-xs flex="15"></div>
