@@ -1,5 +1,5 @@
 angular.module('roomie.angularfireChatController', [])
-  .controller('MessagesCtrl', function (profile, channelName, messages) {
+  .controller('MessagesCtrl', function ($scope, profile, channelName, messages) {
       var messagesCtrl = this;
 
       messagesCtrl.messages = messages;
@@ -18,6 +18,25 @@ angular.module('roomie.angularfireChatController', [])
                 messagesCtrl.message = '';
               });
         }
-      }
+      };
+
+      $scope.signout = function() {
+        // firebase sign out
+        Auth.auth.$unauth();
+        // db sign out
+        Auth.signout();
+      };
+
+      $scope.new = function() {
+        $state.go('main');
+      };
+
+      $scope.contacts = function() {
+        $state.go('contact');
+      };
+
+      $scope.profile = function() {
+        $state.go('profile');
+      };
 
   })
