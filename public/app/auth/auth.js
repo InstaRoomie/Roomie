@@ -68,5 +68,31 @@ angular.module('roomie.auth', [])
     });
   };
 
+  $scope.login = function(authMethod) {
+    Auth.auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
+      $state.go('main');
+    }).catch(function(error) {
+      if (error.code === 'TRANSPORT_UNAVAILABLE') {
+        Auth.auth.$authWithOAuthPopup(authMethod).then(function(authData) {
+        });
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+  // for later
+  // This uses AngularFire’s $onAuth method to set
+  // some scope data once we’re successfully authenticated.
+  /*Auth.auth.$onAuth(function(authData) {
+    if (authData === null) {
+      console.log('Not logged in yet');
+    } else {
+      console.log('Logged in as', authData.uid);
+    }
+    // This will display the user's name in our view
+    $scope.authData = authData;
+  });*/
+
 
 });

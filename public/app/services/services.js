@@ -40,7 +40,6 @@ angular.module('roomie.services', [])
     //   currentuser = user;
     // };
 
-
     return {
       signup: signup,
       signin: signin,
