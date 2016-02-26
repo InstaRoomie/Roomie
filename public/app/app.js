@@ -28,7 +28,7 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
       .state('profileEdit', {
         templateUrl: 'app/profile/editprofile.html',
         url: '/edit',
-        controller: 'editProfileController',
+        controller: 'EditProfileController as editProfileController',
         authenticate: true
       })
       .state('contact', {

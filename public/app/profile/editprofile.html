@@ -8,22 +8,22 @@
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
-          <md-button ng-click="profile()">
+          <md-button ng-click="editProfileController.profile()">
           <div>Profile: {{user.firstname}} {{user.lastname}}</div>
         </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ng-click="new()">
+          <md-button ng-click="editProfileController.new()">
             <div>Find Roomies</div>
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ng-click="contacts()">
+          <md-button ng-click="editProfileController.contacts()">
             <div>Contacts</div>
           </md-button>
         </md-menu-item>
         <md-menu-item>
-          <md-button ng-click="signout()">
+          <md-button ng-click="editProfileController.signout()">
             <div>Log Out</div>
           </md-button>
         </md-menu-item>
@@ -32,7 +32,46 @@
   </div>
 </md-toolbar>
 
-<div class="container" layout="column" layout-align="space-around center">
+<section class="md-whiteframe-z1" layout="column" layout-align="center center">
+  <h2>Edit Profile</h2>
+  <md-content layout-padding>
+    <div>
+      <form form method="post" name="EditProfile" ng-submit='editProfileController.editProfile()'>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input name="first.name" ng-model="editProfileController.user.firstname" ng-change="editProfileController.newinfo.firstname = editProfileController.user.firstname" autofocus required>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input name="last.name" ng-model="editProfileController.user.lastname" ng-change="editProfileController.newinfo.lastname = editProfileController.user.lastname" autofocus required>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Picture URL</label>
+            <input name="imageUrl" ng-model="editProfileController.user.image_url" ng-change="editProfileController.newinfo.image_url = editProfileController.user.image_url" type="url" autofocus required>
+            <span class="error" ng-show="EditProfile.$error.url">Not a valid url.</span>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container name="aboutMe" class="md-block" flex-gt-sm>
+            <label>Tell your future roomies about yourself...</label>
+            <textarea ng-model="editProfileController.user.about_me" ng-change="editProfileController.newinfo.about_me = editProfileController.user.about_me" md-maxlength="200" rows="5" md-select-on-focus autofocus required></textarea>
+          </md-input-container>
+        </div>
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+          <md-button type="submit" class="md-raised md-primary login">
+            <font class="login">Update Profile</font>
+          </md-button>
+        </section>
+      </form>
+    </div>
+  </md-content>
+</section>
+<br />
+<br />
+<!-- <div class="container" layout="column" layout-align="space-around center">
   <div class="row" flex>
     <div class="formPanel" hide-gt-sm>
       <div class="formBody">
@@ -59,9 +98,9 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 
-    <div class="row" flex>
+    <!-- <div class="row" flex>
       <div class="formPanel-lg" hide-xs hide-sm>
         <div class="formBody">
           <h2>Edit Profile</h2>
@@ -87,5 +126,5 @@
           </form>
         </div>
       </div>
-  </div>
+  </div> -->
 </div>
