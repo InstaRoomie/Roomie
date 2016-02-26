@@ -47,14 +47,14 @@
 
 #loginLogo-lg {
   text-align: center;
-  margin-top: 125px;
-  margin-bottom: 75px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 #loginLogo-sm {
   text-align: center;
-  margin-top: 95px;
-  margin-bottom: 60px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .formPanel {
@@ -68,8 +68,7 @@
 }
 
 .formBody {
-  padding-right: 26px;
-  padding-left: 26px;
+
 }
 
 .formBody h2 {
@@ -79,9 +78,9 @@
 }
 
 .formInput {
-  margin-bottom: 20px;
   font-family: 'Montserrat', sans-serif;
 }
+
 p {
   font-family: 'Montserrat', sans-serif;
 }
@@ -171,12 +170,29 @@ md-card-actions > a {
 }
 
 .yes-btn {
-  background-color: green;
+  /*line-height: 5.6rem;
+  min-width: 0;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;*/
+  background-color: #259b24;
+}
 
+.yes-btn:active {
+  background-color: #259b24;
 }
 
 .no-btn {
-  background-color: red;
+  /*line-height: 5.6rem;
+  min-width: 0;
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;*/
+  background-color: rgb(221, 44, 0);
+}
+
+.no-btn:active {
+  background-color: rgb(221, 44, 0);
 }
 
 .yes-btn span, .no-btn span {
@@ -255,15 +271,15 @@ input, option {
 }
 
 .inputFieldSU {
-  width: 95%;
-  padding-left: 10.5px;
+  width: 90%;
+  padding: 10 0 0 10
   border-radius: 1px;
   height: 46px;
   font-size: 16px;
   line-height: 1.33;
   color: #858585;
 }
-
+/*
 .inputFieldSU-lg {
   width: 97%;
   padding-left: 10.5px;
@@ -291,7 +307,7 @@ input, option {
   font-size: 16px;
   line-height: 1.33;
   color: #858585;
-}
+}*/
 
 .aboutMe {
   height: 150px;
@@ -405,4 +421,28 @@ textarea {
 
 md-card h1 {
   text-align: center;
+}
+
+.login {
+  width: 85%;
+  color: white;
+}
+
+.validation-messages {
+  font-size: 12px;
+  color: rgb(221, 44, 0);
+  margin: 10px 0 0 25px;
+}
+
+.error {
+  color: rgb(221, 44, 0);
+  font-size: 12px;
+}
+
+.ion-thumbsup {
+  font-size: 3em;
+}
+
+.ion-thumbsdown {
+  font-size: 3em;
 }

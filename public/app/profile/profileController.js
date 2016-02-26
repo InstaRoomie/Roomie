@@ -1,39 +1,58 @@
 angular.module('roomie.ProfileController', [])
-  .controller('editProfileController', function($scope, $mdMedia, State, $window, $state, Auth) {
+  .controller('EditProfileController', function($scope, $mdMedia, State, $window, $state, Auth) {
 
-    $scope.user;
-    $scope.newinfo = {};
+    var editProfileController = this;
 
-    $scope.editProfile = function() {
-      State.updateProfile($scope.newinfo);
-    }
+    editProfileController.user;
+    editProfileController.newinfo = {};
 
-    $scope.getUser = function() {
+    editProfileController.editProfile = function() {
+      console.log('edit profile is being sent! ', editProfileController.newinfo)
+      State.updateProfile(editProfileController.newinfo);
+    };
+
+    editProfileController.getUser = function() {
       State.getUser().then(function(data) {
-        $scope.user = data[0];
+        editProfileController.user = data[0];
       });
-    }
+    };
 
-    $scope.profile = function() {
+    $scope.$watch('editProfileController.user.firstname', function(v){
+      editProfileController.newinfo.firstname = v;
+    });
+
+    $scope.$watch('editProfileController.user.lastname', function(v){
+      editProfileController.newinfo.lastname = v;
+    });
+
+    $scope.$watch('editProfileController.user.image_url', function(v){
+      editProfileController.newinfo.image_url = v;
+    });
+
+    $scope.$watch('editProfileController.user.about_me', function(v){
+      editProfileController.newinfo.about_me = v;
+    });
+
+    editProfileController.profile = function() {
       $state.go('profile');
-    }
+    };
 
-    $scope.signout = function() {
+    editProfileController.signout = function() {
       // firebase sign out
       Auth.auth.$unauth();
       // db sign out
       Auth.signout();
-    }
+    };
 
-    $scope.new = function() {
+    editProfileController.new = function() {
       $state.go('main')
-    }
+    };
 
-    $scope.contacts = function() {
+    editProfileController.contacts = function() {
       $state.go('contact')
-    }
+    };
 
-    $scope.getUser();
+    editProfileController.getUser();
 
   })
 

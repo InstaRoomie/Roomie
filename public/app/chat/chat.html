@@ -8,22 +8,22 @@
         </md-button>
         <md-menu-content width="4">
           <md-menu-item>
-            <md-button ng-click="profile()">
-              <div>Profile: {{user.firstname}} {{user.lastname}}</div>
+            <md-button ng-click="contactController.profilepage()">
+              <div>Profile: {{contactController.user.firstname}} {{contactController.user.lastname}}</div>
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="new()">
+            <md-button ng-click="contactController.new()">
               <div>Find Roomies</div>
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="contacts()">
+            <md-button ng-click="contactController.contacts()">
               <div>Contacts</div>
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="signout()">
+            <md-button ng-click="contactController.signout()">
               <div>Log Out</div>
             </md-button>
           </md-menu-item>

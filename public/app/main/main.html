@@ -45,16 +45,20 @@
             <img style="max-width: 700px;" src="{{data.image_url}}">
           </div>
           <!-- </md-card-title-media> -->
-          <md-card-title-text>
-            <span class="name">{{data.firstname}} {{data.lastname}}</span>
-            <span class="age">{{data.age}}</span>
-            <span class="gender">{{data.gender}}</span>
-            <span class="aboutme">{{data.about_me}}</span>
+          <md-card-title-text class="userinfo">
+            <span class="name">{{data.firstname}} / <span class="age">{{data.age}} /</span> <span class="gender"> {{data.gender}}</span></span>
           </md-card-title-text>
         </md-card-title>
+        <md-card-content layout="row" layout-align="space-around center">
+          <p class="aboutme">{{data.about_me}}</p>
+        </md-card-content>
         <md-card-actions layout="row" layout-align="space-around end">
-          <md-button class="no-btn" ng-click="decline()">No</md-button>
-          <md-button class="yes-btn" ng-click="approve()">Yes</md-button>
+          <md-button class="md-warn md-raised md-hue-2" ng-click="decline()" aria-label="Decline">
+            <i style="color:white" class="ion-thumbsdown"></i>
+          </md-button>
+          <md-button class="md-accent md-raised" style="background-color: #259b24" ng-click="approve()" aria-label="Approve">
+            <i style="color:white" class="ion-thumbsup"></i>
+          </md-button>
         </md-card-actions>
       </md-card>
     </md-content>

@@ -5,33 +5,52 @@
   <div id="loginLogo-sm" hide-gt-sm flex>
     <img width="200" src="assets/roomie.png">
   </div>
-  <div class="row" flex>
-    <div class="formPanel">
-      <div class="formBody">
-        <h2>Log in</h2>
+  <section class="md-whiteframe-z1 login-form" layout="column" layout-align="center center">
+    <h2>Log In</h2>
+    <md-content layout-padding>
         <form method="post" ng-submit="signin()" name="loginForm" class="loginForm">
-        <div class="formInput">
-          <div id="emailIcon">
-            <img width="30" class="inputImg" src="assets/email.png">
+          <div layout-gt-sm="column">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label><i class="ion-email"></i>  Email</label>
+              <input name="email" ng-model="user.email" type="email" autofocus required>
+              <span class="error" ng-show="signupform.$error.email">Not a valid email.</span>
+            </md-input-container>
+          <div layout-gt-sm="column">
+            <md-input-container class="md-block" flex-gt-sm >
+              <label><i class="ion-key"></i>  Password</label>
+              <input name="password" type="password" ng-model="user.password" autofocus required>
+              <span class="error" ng-show="signupform.$error.minlength">Password have to be 6 characters!</span>
+            </md-input-container>
           </div>
-          <input class="inputField" type="email" name="email" ng-model="user.email" placeholder="Email" required autofocus>
-          <span class="error" ng-show="signupform.$error.email">Not a valid email address</span>
-        </div>
-        <div class="formInput" style="margin-bottom: 20px;">
-          <div id="passwordIcon">
-            <img width="40" class="inputImg" src="assets/password-gr.png">
-          </div>
-          <input class="inputField" type="password" name="password" ng-model="user.password" placeholder="Password" required autofocus>
-        </div>
-        <button type="submit" class="inputButton">Log in</buttom>
+          <section layout="column" layout-wrap>
+            <md-button type="submit" class="md-raised md-primary">
+              <font class="login">Log In</font>
+            </md-button>
+          </section>
         </form>
+        <section layout="column" layout-wrap>
+          <md-button class="md-raised md-primary" ng-click="login('github')">
+            <i class="ion-social-github"></i> <font class="login">Log In with Github</font>
+          </md-button>
+          <md-button class="md-raised md-primary" ng-click="login('facebook')">
+            <i class="ion-social-facebook"></i> <font class="login">Log In with Facebook</font>
+          </md-button>
+          <md-button class="md-raised md-primary" ng-click="login('twitter')">
+            <i class="ion-social-twitter"></i> <font class="login">Log In with Twitter</font>
+          </md-button>
+          <md-button class="md-raised md-primary" ng-click="login('google')">
+            <i class="ion-social-google"></i> <font class="login">Log In with Google</font>
+          </md-button>
+        </section>
+        <div id="signupMsg">
+          <p><small>Don't have an account yet?  <a ui-sref="signup">Sign up</a></small></p>
+          <div ng-show="error">
+            <span>{{ error.message }}</span>
+          </div>
+        </div>
       </div>
-      <div id="signupMsg">
-        <p><small>Don't have an account yet?  <a ui-sref="signup">Sign up</a></small></p>
-      <div ng-show="error">
-        <span>{{ error.message }}</span>
-      </div>
-      </div>
-    </div>
-  </div>
+    </md-content>
+  </section>
+  <br />
+  <br />
 </div>

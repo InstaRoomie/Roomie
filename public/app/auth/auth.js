@@ -21,9 +21,12 @@ angular.module('roomie.auth', [])
             $scope.profile.displayName = $scope.user.username;
             $scope.profile.emailHash = md5.createHash($scope.firebaseUser.email);
             console.log('this is the profile after it gets the displayname and email hash ', $scope.profile);
-            $scope.profile.$save().then(function () {
-              Auth.auth.$authWithPassword($scope.firebaseUser);
-              console.log('profile successfully saved');
+            Auth.auth.$authWithPassword($scope.firebaseUser).then(function(auth) {
+              console.log(auth, ' is logged in!');
+              $scope.profile.$save().then(function () {
+                /*Auth.auth.$authWithPassword($scope.firebaseUser);*/
+                console.log('profile successfully saved');
+                });
               });
           });
 
@@ -67,6 +70,32 @@ angular.module('roomie.auth', [])
       console.error(error);
     });
   };
+
+  $scope.login = function(authMethod) {
+    Auth.auth.$authWithOAuthRedirect(authMethod).then(function(authData) {
+      $state.go('main');
+    }).catch(function(error) {
+      if (error.code === 'TRANSPORT_UNAVAILABLE') {
+        Auth.auth.$authWithOAuthPopup(authMethod).then(function(authData) {
+        });
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+  // for later
+  // This uses AngularFire’s $onAuth method to set
+  // some scope data once we’re successfully authenticated.
+  /*Auth.auth.$onAuth(function(authData) {
+    if (authData === null) {
+      console.log('Not logged in yet');
+    } else {
+      console.log('Logged in as', authData.uid);
+    }
+    // This will display the user's name in our view
+    $scope.authData = authData;
+  });*/
 
 
 });

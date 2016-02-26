@@ -146,11 +146,11 @@ var helpers = {
     knex('Users')
       .where('id', loggedUser.id)
       .select('id', 'email', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
-      .then(function(user){
-        user.forEach(function(item){
-          item.age = helpers.calculateAge(item.dob);
+      .then(function(item){
+        item.forEach(function(age){
+          age.age = helpers.calculateAge(age.dob)
         })
-        res.status(200).send(user);
+        res.status(200).send(item);
       })
   },
   resetRejections: function(req, res, next){
