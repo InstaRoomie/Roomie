@@ -8,7 +8,7 @@
   <section class="md-whiteframe-z1 login-form" layout="column" layout-align="center center">
     <h2>Log In</h2>
     <md-content layout-padding>
-        <form method="post" ng-submit="signin()" name="loginForm" class="loginForm">
+        <form method="post" name="loginForm" class="loginForm">
           <div layout-gt-sm="column">
             <md-input-container class="md-block" flex-gt-sm>
               <label><i class="ion-email"></i>  Email</label>
@@ -23,7 +23,7 @@
             </md-input-container>
           </div>
           <section layout="column" layout-wrap>
-            <md-button type="submit" class="md-raised md-primary">
+            <md-button type="submit" ng-click="signin()" class="md-raised md-primary">
               <font class="login">Log In</font>
             </md-button>
           </section>

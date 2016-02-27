@@ -419,6 +419,14 @@ textarea {
   margin-right: 5px;
 }
 
+.message-info.right {
+  float: right;
+}
+
+.message-info.left {
+  float: left;
+}
+
 md-card h1 {
   text-align: center;
 }
@@ -446,3 +454,5 @@ md-card h1 {
 .ion-thumbsdown {
   font-size: 3em;
 }
+
+/*chat */
