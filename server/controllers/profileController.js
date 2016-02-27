@@ -97,6 +97,9 @@ var helpers = {
       .andWhereNot('id', loggedUser.id)
       .select('id', 'email', 'firstname', 'lastname', 'username', 'dob', 'image_url', 'gender', 'about_me')
       .then(function(item){
+        item.forEach(function(age){
+          age.age = helpers.calculateAge(age.dob)
+        })
         callback(item)
       })
   },
