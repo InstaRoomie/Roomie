@@ -128,11 +128,6 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         controller: 'MainController',
         authenticate: true
       })
-      .state('test', {
-        templateUrl: 'app/login/test.html',
-        url: '/test',
-        controller: 'TestController'
-      })
       .state('sociallogin', {
         templateUrl: 'app/profile/createSocialProfile.html',
         url: '/createprofile',
