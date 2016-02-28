@@ -1,0 +1,116 @@
+<md-toolbar class="md-medium">
+  <div class="md-toolbar-tools">
+    <img width="75" src="assets/roomie-white-sm.png">
+    <span flex></flex>
+    <md-menu md-position-mode="target-right target" >
+      <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+        <md-icon md-svg-icon="assets/menu-white.svg"></md-icon>
+      </md-button>
+      <md-menu-content width="1">
+        <md-menu-item>
+          <md-button ng-click="socialProfileController.signout()">
+            <div>Log Out</div>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </div>
+</md-toolbar>
+
+<section class="md-whiteframe-z1" layout="column" layout-align="center center">
+  <h2>Edit Profile</h2>
+  <md-content layout-padding>
+    <div>
+      <form form method="post" name="EditProfile">
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input name="first.name" ng-model="socialProfileController.authData.displayName" ng-change="socialProfileController.newinfo.firstname = socialProfileController.authData.firstname" autofocus required>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input name="last.name" ng-model="socialProfileController.newinfo.lastname" autofocus required>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input name="email" ng-model="socialProfileController.authData.email" ng-change="socialProfileController.newinfo.email = socialProfileController.authData.email" autofocus required>
+            <span class="error" ng-show="signupform.$error.email">Not a valid email.</span>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Username</label>
+            <input name="username" ng-model="socialProfileController.authData.username" ng-change="socialProfileController.newinfo.username = socialProfileController.authData.username" autofocus required>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm >
+            <label>Password</label>
+            <input name="password" type="password" ng-model="socialProfileController.newinfo.password" autofocus required>
+            <span class="error" ng-show="signupform.$error.minlength">Password have to be 6 characters!</span>
+          </md-input-container>
+          <md-datepicker name="dob" class="md-block" ng-model="socialProfileController.newinfo.dob" md-placeholder="Birthday" flex-gt-sm autofocus required>
+          </md-datepicker>
+          <div class="validation-messages" ng-messages="signupform.dob.$error">
+            <div ng-message="valid">The entered value is not a date!</div>
+            <div ng-message="required">Your birthday is required!</div>
+          </div>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Gender</label>
+            <md-select name="gender" ng-model="socialProfileController.newinfo.gender" autofocus required>
+              <md-option value="M">
+                Male
+              </md-option>
+              <md-option value="F">
+                Female
+              </md-option>
+            </md-select>
+            <span ng-messages="signupform.gender.$error">
+              <span ng-message="required">Required.</span>
+            </span>
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Location</label>
+            <md-select name="location" ng-model="socialProfileController.newinfo.location" autofocus required>
+              <md-option value="Santa Monica">
+                Santa Monica
+              </md-option>
+            </md-select>
+            <span ng-messages="signupform.location.$error">
+              <span ng-message="required">Required.</span>
+            </span>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Picture URL</label>
+            <input name="imageUrl" ng-model="socialProfileController.authData.profileImageURL" ng-change="socialProfileController.newinfo.image_url = socialProfileController.authData.profileImageURL" type="url" autofocus required>
+            <span class="error" ng-show="EditProfile.$error.url">Not a valid url.</span>
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container name="aboutMe" class="md-block" flex-gt-sm>
+            <label>Tell your future roomies about yourself...</label>
+            <textarea ng-model="socialProfileController.newinfo.aboutme" md-maxlength="200" rows="5" md-select-on-focus autofocus required></textarea>
+          </md-input-container>
+        </div>
+        <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+          <md-button type="submit" ng-click="socialProfileController.createUser()" class="md-raised md-primary login">
+            <font class="login">Update Profile</font>
+          </md-button>
+        </section>
+      </form>
+    </div>
+  </md-content>
+</section>
+
+<!-- // todos
+// 1. set up a check on login to see if a user exists with that uid because you can sometimes not have an email
+//   if a user doesn't exist take them to social login profile creation screen
+//   pull that data from the auth data and prepopulate the fields
+//   after that create a user from that information after it's submitted
+//   redirect to main screen
+
+//  2. if a user does exist redirect to main page -->
