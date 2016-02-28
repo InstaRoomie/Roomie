@@ -158,19 +158,20 @@ angular.module('roomie.ProfileController', [])
       } else {
         socialProfileController.newinfo.uid = authData.uid
         console.log('Logged in as', authData.uid);
+        console.log('this is the provider ', authData.provider)
       }
       // This will display the user's name in our view
       if (authData.provider === 'twitter') {
           socialProfileController.authData = authData.twitter;
         };
-      if (authData.provider ===  'github') {
+      if (authData.provider === 'github') {
           socialProfileController.authData = authData.github;
         };
-      if (authData.provider ===  'google') {
+      if (authData.provider === 'google') {
           socialProfileController.authData = authData.google;
 
         };
-      if (authData.provider ===  'facebook') {
+      if (authData.provider === 'facebook') {
           socialProfileController.authData = authData.facebook;
         };
     });
@@ -252,7 +253,6 @@ angular.module('roomie.ProfileController', [])
     socialProfileController.signout = function() {
       // firebase sign out
       Auth.auth.$unauth();
-      // db sign out
       Auth.signout();
     };
 

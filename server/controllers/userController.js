@@ -13,13 +13,17 @@ var userHelpers = {
     var password = req.body.password || null;
     var uid = req.body.uid || null;
 
-    if (uid) {
+    if (uid !== null) {
       new User({auth_uid: uid})
         .fetch()
         .then(function(user) {
-          var token = jwt.encode(user, 'secret');
-          console.log('this is the token! ', token);
-          res.json({token: token});
+          if (!user) {
+            res.send(null);
+          } else {
+            var token = jwt.encode(user, 'secret');
+            console.log('this is the token! ', token);
+            res.json({token: token});
+          }
         });
     } else {
       console.log('I\'m in userController this is the email ', email);
