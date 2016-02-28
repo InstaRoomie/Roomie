@@ -73,7 +73,16 @@ angular.module('roomie.auth', [])
 
   $scope.login = function(authMethod) {
     Auth.auth.$authWithOAuthPopup(authMethod).then(function(authData) {
-      $state.go('test');
+      Auth.signin(authData)
+      .then(function(token) {
+          if (token) {
+            $window.localStorage.setItem('com.roomie', token);
+            $state.go('main')
+          } else {
+            console.log('social user does not exist')
+            $state.go('sociallogin');
+          }
+        });
     }).catch(function(error) {
       if (error.code === 'TRANSPORT_UNAVAILABLE') {
         Auth.auth.$authWithOAuthPopup(authMethod).then(function(authData) {

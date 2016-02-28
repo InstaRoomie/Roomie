@@ -132,6 +132,20 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         templateUrl: 'app/login/test.html',
         url: '/test',
         controller: 'TestController'
+      })
+      .state('sociallogin', {
+        templateUrl: 'app/profile/createSocialProfile.html',
+        url: '/createprofile',
+        controller: 'SocialProfileController as socialProfileController',
+        resolve: {
+          auth: function($state, Users, Auth){
+            console.log('PROFILE: checking if the user is authenticated...');
+            return Auth.auth.$requireAuth().catch(function(){
+              console.log('user is NOT authenticated so we are going HOME');
+              $state.go('signup');
+            });
+          }
+        }
       });
 
     $httpProvider.interceptors.push('AttachTokens');

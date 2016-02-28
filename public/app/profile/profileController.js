@@ -143,4 +143,117 @@ angular.module('roomie.ProfileController', [])
     $scope.getData();
     $scope.getUser();
 
+  })
+
+  .controller('SocialProfileController', function($scope, $mdMedia, State, $window, $state, Auth, auth, Users, md5) {
+    var socialProfileController = this;
+
+    socialProfileController.newinfo = {};
+
+    console.log('auth in social profile controller', auth);
+
+    Auth.auth.$onAuth(function(authData) {
+      if (authData === null) {
+        console.log('Not logged in yet');
+      } else {
+        socialProfileController.newinfo.uid = authData.uid
+        console.log('Logged in as', authData.uid);
+      }
+      // This will display the user's name in our view
+      if (authData.provider === 'twitter') {
+          socialProfileController.authData = authData.twitter;
+        };
+      if (authData.provider ===  'github') {
+          socialProfileController.authData = authData.github;
+        };
+      if (authData.provider ===  'google') {
+          socialProfileController.authData = authData.google;
+
+        };
+      if (authData.provider ===  'facebook') {
+          socialProfileController.authData = authData.facebook;
+        };
+    });
+
+    socialProfileController.createUser = function() {
+
+      socialProfileController.firebaseUser = {
+        email: socialProfileController.newinfo.email,
+        password: socialProfileController.newinfo.password
+      };
+
+      Users.getProfile(auth.uid).$loaded()
+        .then(function(profile) {
+            socialProfileController.profile = profile;
+            socialProfileController.profile.displayName = socialProfileController.newinfo.username;
+            socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
+            console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
+            socialProfileController.profile.$save().then(function () {
+              /*Auth.auth.$authWithPassword($scope.firebaseUser);*/
+              console.log('profile successfully saved');
+              });
+            /*Auth.auth.$authWithPassword(socialProfileController.firebaseUser).then(function(auth) {
+              console.log(auth, ' is logged in!');
+              socialProfileController.profile.$save().then(function () {
+                Auth.auth.$authWithPassword($scope.firebaseUser);
+                console.log('profile successfully saved');
+                });
+              });*/
+          });
+
+      /*Auth.auth.$createUser(socialProfileController.firebaseUser)
+      .then(function(user) {
+
+        Users.getProfile(auth.uid).$loaded()
+          .then(function(profile) {
+              socialProfileController.profile = profile;
+              socialProfileController.profile.displayName = socialProfileController.newinfo.username;
+              socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
+              console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
+              Auth.auth.$authWithPassword(socialProfileController.firebaseUser).then(function(auth) {
+                console.log(auth, ' is logged in!');
+                socialProfileController.profile.$save().then(function () {
+                  Auth.auth.$authWithPassword($scope.firebaseUser);
+                  console.log('profile successfully saved');
+                  });
+                });
+            });
+
+        }, function (error) {
+            socialProfileController.error = error;
+          });*/
+
+      Auth.signup(socialProfileController.newinfo)
+      .then(function(token) {
+        $window.localStorage.setItem('com.roomie', token);
+        $state.go('main');
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+    };
+
+    $scope.$watch('socialProfileController.authData.displayName', function(v){
+      socialProfileController.newinfo.firstname = v;
+    });
+
+    $scope.$watch('socialProfileController.authData.profileImageURL', function(v){
+      socialProfileController.newinfo.image_url = v;
+    });
+
+    $scope.$watch('socialProfileController.authData.email', function(v){
+      socialProfileController.newinfo.email = v;
+    });
+
+    $scope.$watch('socialProfileController.authData.username', function(v){
+      socialProfileController.newinfo.username = v;
+    });
+
+    socialProfileController.signout = function() {
+      // firebase sign out
+      Auth.auth.$unauth();
+      // db sign out
+      Auth.signout();
+    };
+
   });
