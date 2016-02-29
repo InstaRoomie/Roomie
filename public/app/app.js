@@ -1,17 +1,22 @@
-var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.ProfileController', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'roomie.test', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
+var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.main', 'roomie.contact', 'roomie.angularfireChatController', 'roomie.ProfileController', 'roomie.angularfireChatFactory', 'roomie.angularfireUsersFactory', 'ui.router', 'ngMaterial', 'ngAria', 'ngAnimate', 'ngMessages', 'angular-md5', 'firebase'])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
       .state('home', {
-        templateUrl: 'app/auth/login.html',
+        templateUrl: 'app/home/homepage.html',
         url: '/',
         controller: 'AuthController'
       })
       .state('signin', {
         templateUrl: 'app/auth/login.html',
         url: '/login',
+        controller: 'AuthController'
+      })
+      .state('socialsignup', {
+        templateUrl: 'app/auth/socialsignup.html',
+        url: '/socialsignup',
         controller: 'AuthController'
       })
       .state('signup', {
