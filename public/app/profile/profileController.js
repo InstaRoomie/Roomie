@@ -190,39 +190,9 @@ angular.module('roomie.ProfileController', [])
             socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
             console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
             socialProfileController.profile.$save().then(function () {
-              /*Auth.auth.$authWithPassword($scope.firebaseUser);*/
               console.log('profile successfully saved');
               });
-            /*Auth.auth.$authWithPassword(socialProfileController.firebaseUser).then(function(auth) {
-              console.log(auth, ' is logged in!');
-              socialProfileController.profile.$save().then(function () {
-                Auth.auth.$authWithPassword($scope.firebaseUser);
-                console.log('profile successfully saved');
-                });
-              });*/
           });
-
-      /*Auth.auth.$createUser(socialProfileController.firebaseUser)
-      .then(function(user) {
-
-        Users.getProfile(auth.uid).$loaded()
-          .then(function(profile) {
-              socialProfileController.profile = profile;
-              socialProfileController.profile.displayName = socialProfileController.newinfo.username;
-              socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
-              console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
-              Auth.auth.$authWithPassword(socialProfileController.firebaseUser).then(function(auth) {
-                console.log(auth, ' is logged in!');
-                socialProfileController.profile.$save().then(function () {
-                  Auth.auth.$authWithPassword($scope.firebaseUser);
-                  console.log('profile successfully saved');
-                  });
-                });
-            });
-
-        }, function (error) {
-            socialProfileController.error = error;
-          });*/
 
       Auth.signup(socialProfileController.newinfo)
       .then(function(token) {

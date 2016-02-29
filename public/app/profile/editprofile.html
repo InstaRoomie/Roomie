@@ -36,7 +36,7 @@
   <h2>Edit Profile</h2>
   <md-content layout-padding>
     <div>
-      <form form method="post" name="EditProfile" ng-submit='editProfileController.editProfile()'>
+      <form form method="post" name="EditProfile">
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>First Name</label>
@@ -61,7 +61,7 @@
           </md-input-container>
         </div>
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-          <md-button type="submit" class="md-raised md-primary login">
+          <md-button type="submit" ng-click="editProfileController.editProfile()" class="md-raised md-primary login">
             <font class="login">Update Profile</font>
           </md-button>
         </section>
