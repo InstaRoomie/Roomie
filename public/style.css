@@ -43,6 +43,11 @@
   margin: auto;"
 }
 
+.stats-header {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 /*login page CSS*/
 
 #loginLogo-lg {
@@ -279,35 +284,6 @@ input, option {
   line-height: 1.33;
   color: #858585;
 }
-/*
-.inputFieldSU-lg {
-  width: 97%;
-  padding-left: 10.5px;
-  border-radius: 1px;
-  height: 46px;
-  font-size: 16px;
-  line-height: 1.33;
-  color: #858585;
-}
-
-.inputFieldSU-lg-dob {
-  width: 85%;
-  padding-left: 64.5px;
-  border-radius: 1px;
-  height: 46px;
-  font-size: 16px;
-  line-height: 1.33;
-  color: #858585;
-}
-.inputFieldSU-dob {
-  width: 76%;
-  padding-left: 64.5px;
-  border-radius: 1px;
-  height: 46px;
-  font-size: 16px;
-  line-height: 1.33;
-  color: #858585;
-}*/
 
 .aboutMe {
   height: 150px;
@@ -360,6 +336,7 @@ textarea {
 
 /*Chat Room CSS*/
 .chat-wrap {
+  margin-top: 10px;
   width: 500px;
   background-color: #fff;
   margin: auto;
@@ -370,6 +347,7 @@ textarea {
 }
 
 .chat-wrap-sm {
+  margin-top: 10px;
   width: 330px;
   background-color: #fff;
   margin: auto;
@@ -377,6 +355,14 @@ textarea {
   border-radius: 2px;
   box-shadow: 0 8px 17px rgba(0, 0, 0, .2);
   border: 1px solid transparent;
+}
+
+.chat-title {
+  padding-left: 15px;
+}
+
+.chat-pic img {
+  width: 30px;
 }
 
 .chat-list {
@@ -388,6 +374,15 @@ textarea {
 
 .chat-message {
   margin: 10px;
+}
+
+.input-group {
+  overflow: hidden;
+}
+
+.input-group input {
+  margin-top: .45em;
+  padding-top: .70em;
 }
 
 .chat-input, .chat-input-sm {
