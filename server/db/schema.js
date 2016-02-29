@@ -26,6 +26,7 @@ knex.schema.hasTable('Users').then(function(exists) {
       table.string('gender', 10);
       table.string('about_me', 250);
       table.string('location', 100);
+      table.string('auth_uid', 250);
       table.timestamps();
     }).then(function(table) {
       console.log('Created Table', table);
