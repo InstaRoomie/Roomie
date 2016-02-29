@@ -1,13 +1,15 @@
+
 <div layout="row" class="nav" layout-padding class="bg-dark-blue nav-dark" layout-align="space-between center">
-<img width="100" src="assets/roomie-sm.png">
+  <img width="100" src="assets/roomie-sm.png">
   <div class="nav-buttons">
     <md-button ng-click="goLogin()">Log In</md-button>
     <md-button ng-click="goSignUp($event)">Sign Up</md-button>
   </div>
 </div>
 
-<div class="container">
-  <div class="hero" layout="column" layout-align="center center">
+<div class="container" layout-align="space-between center">
+
+  <div class="hero" layout="column">
     <div class="text-center">
       <img src="assets/roomie.png" alt="Roomie" style="center" width="225">
       <h1>Your search starts here.</h1>
@@ -15,7 +17,7 @@
         Finding roommates has never been easier.
       </div>
     </div>
-    <div class="cta-btns">
+    <div class="cta-btns text-center">
       <span class="login">
         <md-button type="submit" ng-click="goLogin()" class="md-raised md-primary">
           <font class="login">Log In</font>
@@ -29,66 +31,76 @@
     </div>
   </div>
 
-  <div class="example-roomies" layout="column" layout-align="center center" >
-    <div class="stats-header">
+  <div class="example-roomies" layout="column" >
+    <div class="stats-header text-center" style="margin-left: 10px; margin-right: 10px;">
       <h2>Matches everyday...get a roomie now</h2>
     </div>
     <div class="roomie">
-      <div flex-xs flex-gt-xs="100" layout="row">
-       <md-card>
-         <img ng-src="assets/roomieman1.png" class="md-card-image" alt="Washed Out">
-         <md-card-title>
-           <md-card-title-text>
-             <span class="md-headline">Jay</span>
-           </md-card-title-text>
-         </md-card-title>
-         <md-card-content>
-           <p>
-             I just moved to Santa Monica, and I'm looking for chill people to live with. I like going to the beach, running, and boxing. I like being clean, but I'm not a freak about it. Hit me up!
-           </p>
-         </md-card-content>
-       </md-card>
-       <md-card>
-         <img ng-src="assets/roomiegirl1.jpg" class="md-card-image" alt="Washed Out">
-         <md-card-title>
-           <md-card-title-text>
-             <span class="md-headline">Sandy</span>
-           </md-card-title-text>
-         </md-card-title>
-         <md-card-content>
-           <p>
-             Having recently moved from San Francisco to Santa Monica, I'm looking for the right group of people to live with. I love taking artsy photos, and if you couldn't tell, I love the beach.
-           </p>
-         </md-card-content>
-       </md-card>
-    </div>
-    <div flex-xs flex-gt-xs="100" layout="row">
-     <md-card>
-       <img ng-src="assets/roomiegirl2.jpg" class="md-card-image" alt="Washed Out">
-       <md-card-title>
-         <md-card-title-text>
-           <span class="md-headline">Laura</span>
-         </md-card-title-text>
-       </md-card-title>
-       <md-card-content>
-         <p>
-           I love hats. All sorts of hats. Big hats, wide hats, yellow hats - you name it I love it. If you love hats, you'll love me, and we'll love each other. We'll be great roommates together.
-         </p>
-       </md-card-content>
-     </md-card>
-     <md-card>
-       <img ng-src="assets/roomieman2.jpg"  class="md-card-image" alt="Washed Out">
-       <md-card-title>
-         <md-card-title-text>
-           <span class="md-headline">Ivan</span>
-         </md-card-title-text>
-       </md-card-title>
-       <md-card-content>
-         <p>
-           Smoking is my thing. If you don't like me smoking pipes all the time, then we will not be good roommates. You should avoid me if you hate the smell of smoke. Seriously, I look cool.
-         </p>
-       </md-card-content>
-     </md-card>
+      <div layout-gt-xs="row" layout-xs="column">
+
+        <md-card>
+          <div class="md-media-lg card-media">
+            <img ng-src="assets/roomieman1.png" class="md-card-image" alt="Washed Out">
+          </div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Jay</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <p>
+              I just moved to Santa Monica, and I'm looking for chill people to live with. I like going to the beach, running, and boxing. I like being clean, but I'm not a freak about it. Hit me up!
+            </p>
+          </md-card-content>
+        </md-card>
+        <md-card>
+          <div class="md-media-lg card-media">
+            <img ng-src="assets/roomiegirl1.jpg" class="md-card-image" alt="Washed Out">
+          </div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Sandy</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <p>
+              Having recently moved from San Francisco to Santa Monica, I'm looking for the right group of people to live with. I love taking artsy photos, and if you couldn't tell, I love the beach.
+            </p>
+          </md-card-content>
+        </md-card>
+      </div>
+      <div layout-gt-xs="row" layout-xs="column">
+        <md-card>
+          <div class="md-media-lg card-media">
+            <img ng-src="assets/roomiegirl2.jpg" class="md-card-image" alt="Washed Out">
+          </div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Laura</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <p>
+              I love hats. All sorts of hats. Big hats, wide hats, yellow hats - you name it I love it. If you love hats, you'll love me, and we'll love each other. We'll be great roommates together.
+            </p>
+          </md-card-content>
+        </md-card>
+        <md-card>
+          <div class="md-media-lg card-media">
+            <img ng-src="assets/roomieman2.jpg"  class="md-card-image" alt="Washed Out">
+          </div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Ivan</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-content>
+            <p>
+              Smoking is my thing. If you don't like me smoking pipes all the time, then we will not be good roommates. You should avoid me if you hate the smell of smoke. Seriously, I look cool.
+            </p>
+          </md-card-content>
+        </md-card>
+      </div>
     </div>
   </div>
 </div>
