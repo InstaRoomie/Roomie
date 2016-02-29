@@ -33,13 +33,16 @@ var userHelpers = {
         if (!user) {
           next(new Error('User does not exist'));
           } else {
+            console.log("this is the user", user);
             user.comparePassword(password, function(match) {
-              if (match) {
+              console.log('this is the password ', password);
+              console.log('this is the match ', match);
+              if (match === true) {
                 var token = jwt.encode(user, 'secret');
                 console.log('this is the token! ', token);
                 res.json({token: token});
                 } else {
-                  return next(new Error('No user'));
+                  return next(new Error('Incorrect password'));
                 }
                 });
               }
