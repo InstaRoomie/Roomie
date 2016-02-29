@@ -33,26 +33,31 @@ var userHelpers = {
         if (!user) {
           next(new Error('User does not exist'));
           } else {
-            console.log("this is the user", user);
-            user.comparePassword(password, function(match) {
-              console.log('this is the password ', password);
-              console.log('this is the match ', match);
-              if (match === true) {
-                var token = jwt.encode(user, 'secret');
-                console.log('this is the token! ', token);
-                res.json({token: token});
-                } else {
-                  return next(new Error('Incorrect password'));
+            if (user.attributes.auth_uid !== null) {
+              console.log("This is to check if auth_uid is not null", user.attributes);
+              next(new Error('Use your social account to login!'));
+            } else {
+              console.log("this is the user", user);
+              user.comparePassword(password, function(match) {
+                console.log('this is the password ', password);
+                console.log('this is the match ', match);
+                if (match === true) {
+                  var token = jwt.encode(user, 'secret');
+                  console.log('this is the token! ', token);
+                  res.json({token: token});
+                  } else {
+                    return next(new Error('Incorrect password!'));
+                  }
+                  });
                 }
-                });
               }
-              })
-              .catch(function(error) {
-                console.log(error);
-                });
-    }
+                })
+                .catch(function(error) {
+                  console.log(error);
+                  });
+            }
+    },
 
-  },
 
   signup: function(req, res, next) {
     console.log('I\'m in userController this is the req ', req.body);
@@ -60,7 +65,7 @@ var userHelpers = {
     var userObj = {};
 
     userObj.email = req.body.email;
-    userObj.password = req.body.password;
+    userObj.password = req.body.password || null;
     userObj.username = req.body.username;
     userObj.firstname = req.body.firstname;
     userObj.lastname = req.body.lastname;
@@ -79,6 +84,7 @@ var userHelpers = {
       .then(function(user) {
         console.log('this is when i create a new user in usercontroller ', user);
         if (user) {
+          res.status(500).send({error: { message: 'Email already exists!' } });
           next(new Error('User already exist!'));
           console.log('user controller - user exists', user);
         } else {
@@ -93,35 +99,6 @@ var userHelpers = {
             userHelpers.createUser(userObj, res);
           }
 
-          /*new User({username: username})
-            .fetch()
-            .then(function(userName){
-              if(userName){
-                next(new Error('Username already taken, please choose a different one'))
-              } else {
-                // make a new user if not one
-                var newUser = new User({
-                  email: email,
-                  firstname: firstname,
-                  username: username,
-                  lastname: lastname,
-                  password: password,
-                  dob: dob,
-                  image_url: image_url,
-                  gender: gender,
-                  location: location,
-                  about_me: aboutme
-                  auth_uid: uid,
-                });
-                newUser.save()
-                .then(function(newUser) {
-                  Users.add(newUser);
-                  var token = jwt.encode(newUser, 'secret');
-                  console.log('this is the token! ', token);
-                  res.json({token: token});
-                });
-              }
-            })*/
         }
       })
       .catch(function(err) {

@@ -35,8 +35,13 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Email</label>
-            <input name="email" ng-model="socialProfileController.authData.email" ng-change="socialProfileController.newinfo.email = socialProfileController.authData.email" autofocus required>
-            <span class="error" ng-show="signupform.$error.email">Not a valid email.</span>
+            <input type="email" name="email" ng-model="socialProfileController.authData.email" ng-change="socialProfileController.newinfo.email = socialProfileController.authData.email" autofocus required>
+            <!-- <span class="error" ng-show="signupform.$error.email">Not a valid email.</span> -->
+            <div ng-messages="EditProfile.email.$error" ng-show="EditProfile.email.$dirty">
+              <div ng-message="required">This is required!</div>
+              <div ng-message="email">Invalid email!</div>
+              <div ng-message="emailexists">That email exists! Did you already sign up?</div>
+            </div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-sm>
             <label>Username</label>
@@ -44,12 +49,7 @@
           </md-input-container>
         </div>
         <div layout-gt-sm="row">
-          <md-input-container class="md-block" flex-gt-sm >
-            <label>Password</label>
-            <input name="password" type="password" ng-model="socialProfileController.newinfo.password" autofocus required>
-            <span class="error" ng-show="signupform.$error.minlength">Password have to be 6 characters!</span>
-          </md-input-container>
-          <md-datepicker name="dob" class="md-block" ng-model="socialProfileController.newinfo.dob" md-placeholder="Birthday" flex-gt-sm autofocus required>
+          <md-datepicker style="text-align: center" name="dob" class="md-block" ng-model="socialProfileController.newinfo.dob" md-placeholder="Birthday" flex-gt-sm autofocus required>
           </md-datepicker>
           <div class="validation-messages" ng-messages="signupform.dob.$error">
             <div ng-message="valid">The entered value is not a date!</div>
@@ -102,6 +102,9 @@
           </md-button>
         </section>
       </form>
+      <div class="error" style="text-align: center" ng-show="socialProfileController.error">
+        <span>{{ socialProfileController.error.message }}</span>
+      </div>
     </div>
   </md-content>
 </section>
