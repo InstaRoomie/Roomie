@@ -31,6 +31,7 @@ angular.module('roomie.auth', [])
           });
 
       }, function (error) {
+          console.log("This is the error from Firebase ", error);
           $scope.error = error;
         });
 
@@ -57,7 +58,7 @@ angular.module('roomie.auth', [])
     .then(function (auth) {
         console.log(auth, ' is logged in!');
       }, function (error) {
-          $scope.error = error;
+         console.log("This is the error from Firebase ", error);
         });
 
 
@@ -67,7 +68,8 @@ angular.module('roomie.auth', [])
       $state.go('main');
     })
     .catch(function(error) {
-      console.error(error);
+      console.log("this is the error from the server" , error.data.error);
+      $scope.error = error.data.error;
     });
   };
 

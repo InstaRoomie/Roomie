@@ -183,54 +183,26 @@ angular.module('roomie.ProfileController', [])
         password: socialProfileController.newinfo.password
       };
 
-      Users.getProfile(auth.uid).$loaded()
-        .then(function(profile) {
-            socialProfileController.profile = profile;
-            socialProfileController.profile.displayName = socialProfileController.newinfo.username;
-            socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
-            console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
-            socialProfileController.profile.$save().then(function () {
-              /*Auth.auth.$authWithPassword($scope.firebaseUser);*/
-              console.log('profile successfully saved');
-              });
-            /*Auth.auth.$authWithPassword(socialProfileController.firebaseUser).then(function(auth) {
-              console.log(auth, ' is logged in!');
-              socialProfileController.profile.$save().then(function () {
-                Auth.auth.$authWithPassword($scope.firebaseUser);
-                console.log('profile successfully saved');
-                });
-              });*/
-          });
-
-      /*Auth.auth.$createUser(socialProfileController.firebaseUser)
-      .then(function(user) {
-
+      Auth.signup(socialProfileController.newinfo)
+      .then(function(token) {
         Users.getProfile(auth.uid).$loaded()
           .then(function(profile) {
               socialProfileController.profile = profile;
               socialProfileController.profile.displayName = socialProfileController.newinfo.username;
               socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
               console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
-              Auth.auth.$authWithPassword(socialProfileController.firebaseUser).then(function(auth) {
-                console.log(auth, ' is logged in!');
-                socialProfileController.profile.$save().then(function () {
-                  Auth.auth.$authWithPassword($scope.firebaseUser);
-                  console.log('profile successfully saved');
-                  });
+              socialProfileController.profile.$save().then(function () {
+                console.log('profile successfully saved');
+                $window.localStorage.setItem('com.roomie', token);
+                $state.go('main');
                 });
             });
-
-        }, function (error) {
-            socialProfileController.error = error;
-          });*/
-
-      Auth.signup(socialProfileController.newinfo)
-      .then(function(token) {
-        $window.localStorage.setItem('com.roomie', token);
-        $state.go('main');
       })
       .catch(function(error) {
-        console.error(error);
+        console.log(error.data);
+        socialProfileController.error = error.data;
+        socialProfileController.error.message = 'That email exists already - did you create one already?';
+        console.log('This is the socialProfileController.error ', socialProfileController.error);
       });
     };
 
