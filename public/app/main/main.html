@@ -41,7 +41,7 @@
       <md-card>
         <md-card-title layout="column" layout-align="space-around center">
           <!-- <md-card-title-media> -->
-          <div class="md-media-lg card-media">
+          <div class="md-media-lg card-media thumbnail">
             <img style="max-width: 700px;" src="{{data.image_url}}">
           </div>
           <!-- </md-card-title-media> -->
@@ -50,7 +50,9 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-content layout="row" layout-align="space-around center">
-          <p class="aboutme">{{data.about_me}}</p>
+          <div class="about-me">
+            <p>{{data.about_me}}</p>
+          </div>
         </md-card-content>
         <md-card-actions layout="row" layout-align="space-around end">
           <md-button class="md-warn md-raised md-hue-2" ng-click="decline()" aria-label="Decline">

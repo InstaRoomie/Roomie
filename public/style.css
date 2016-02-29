@@ -285,10 +285,6 @@ input, option {
   color: #858585;
 }
 
-.aboutMe {
-  height: 150px;
-}
-
 textarea {
   border-color: #858585;
 }
@@ -490,4 +486,26 @@ footer {
 
 a {
   text-decoration: none;
+}
+
+.thumbnail {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+}
+.thumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+.about-me {
+  height: 75px;
+  width: 420px;
 }
