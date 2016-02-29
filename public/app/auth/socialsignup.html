@@ -1,0 +1,30 @@
+<div class="container" ng-controller="AuthController" layout="column" layout-align="space-around center">
+  <div class="loginLogoSU" hide-xs hide-sm flex>
+    <img width="275" src="assets/roomie.png">
+  </div>
+  <div class="loginLogoSU" hide-gt-sm flex>
+    <img width="200" src="assets/roomie.png">
+  </div>
+  <section class="md-whiteframe-z1" layout="column" layout-align="center center">
+    <h2>Sign Up</h2>
+    <h3>It's free and always be.</h3>
+    <md-content layout-padding>
+      <section layout="column" layout-wrap>
+        <md-button class="md-raised md-primary" ng-click="login('github')">
+          <i class="ion-social-github"></i> <font class="login">Sign Up with Github</font>
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="login('facebook')">
+          <i class="ion-social-facebook"></i> <font class="login">Sign Up with Facebook</font>
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="login('twitter')">
+          <i class="ion-social-twitter"></i> <font class="login">Sign Up with Twitter</font>
+        </md-button>
+        <md-button class="md-raised md-primary" ng-click="login('google')">
+          <i class="ion-social-google"></i> <font class="login">Sign Up with Google</font>
+        </md-button>
+      </section>
+    </md-content>
+  </section>
+  <br />
+  <br />
+</div>

@@ -1,6 +1,6 @@
 angular.module('roomie.auth', [])
 
-.controller('AuthController', function($scope, $window, $state, Auth, Users, md5) {
+.controller('AuthController', function($scope, $window, $state, Auth, Users, md5, $mdDialog, $mdMedia) {
   $scope.user = {};
 
   $scope.signup = function() {
@@ -93,5 +93,24 @@ angular.module('roomie.auth', [])
     })
 
   };
+
+  $scope.goLogin = function() {
+    $state.go('signin');
+  }
+
+  $scope.goSignUp = function(ev) {
+    var confirm = $mdDialog.confirm()
+          .title('Do you have a Twitter, Facebook, GitHub, or Google account?')
+          .textContent('')
+          .ariaLabel('Social Sign Up')
+          .targetEvent(ev)
+          .ok('Yep')
+          .cancel('No');
+    $mdDialog.show(confirm).then(function() {
+      $state.go('socialsignup')
+    }, function() {
+      $state.go('signup')
+    });
+  }
 
 });

@@ -455,4 +455,44 @@ md-card h1 {
   font-size: 3em;
 }
 
-/*chat */
+.text-center {
+  text-align: center;
+}
+
+.cta-btns {
+  margin: 20px 10px 0px 10px;
+}
+
+.md-card-image {
+  height: auto;
+}
+
+footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.ion-social-github:hover {
+  color: #858585;
+}
+
+.ion-social-linkedin:hover {
+  color: #858585;
+}
+
+.copyright {
+  margin: 0px 10px;
+}
+
+.names {
+  padding: 0px 20px;
+  font-size: .85em;
+}
+
+.individual {
+  margin: 0px 10px;
+}
+
+a {
+  text-decoration: none;
+}
