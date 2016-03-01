@@ -17,21 +17,21 @@ module.exports = {
 
       helpers.checkYes(req, function(item) {
         item.forEach(function(friend) {
-          if(friend.user_id === userThatSwiped.id){
+          if (friend.user_id === userThatSwiped.id) {
             contactList.push(friend.friend);
           }
-          if(friend.friend === userThatSwiped.id){
+          if (friend.friend === userThatSwiped.id) {
             contactList.push(friend.user_id);
           }
         });
-        helpers.getUsersFromDb(req, contactList, function(user){
-          user.forEach(function(friend){
+        helpers.getUsersFromDb(req, contactList, function(user) {
+          user.forEach(function(friend) {
             friend.age = helpers.calculateAge(friend.dob);
             usersToSend.push(friend);
-          })
+          });
           res.status(200).send(usersToSend);
-        })
-      })
-    })
+        });
+      });
+    });
   }
 };

@@ -7,7 +7,7 @@ angular.module('roomie.ProfileController', [])
     editProfileController.newinfo = {};
 
     editProfileController.editProfile = function() {
-      console.log('edit profile is being sent! ', editProfileController.newinfo)
+      console.log('edit profile is being sent! ', editProfileController.newinfo);
       State.updateProfile(editProfileController.newinfo);
     };
 
@@ -17,19 +17,19 @@ angular.module('roomie.ProfileController', [])
       });
     };
 
-    $scope.$watch('editProfileController.user.firstname', function(v){
+    $scope.$watch('editProfileController.user.firstname', function(v) {
       editProfileController.newinfo.firstname = v;
     });
 
-    $scope.$watch('editProfileController.user.lastname', function(v){
+    $scope.$watch('editProfileController.user.lastname', function(v) {
       editProfileController.newinfo.lastname = v;
     });
 
-    $scope.$watch('editProfileController.user.image_url', function(v){
+    $scope.$watch('editProfileController.user.image_url', function(v) {
       editProfileController.newinfo.image_url = v;
     });
 
-    $scope.$watch('editProfileController.user.about_me', function(v){
+    $scope.$watch('editProfileController.user.about_me', function(v) {
       editProfileController.newinfo.about_me = v;
     });
 
@@ -45,17 +45,16 @@ angular.module('roomie.ProfileController', [])
     };
 
     editProfileController.new = function() {
-      $state.go('main')
+      $state.go('main');
     };
 
     editProfileController.contacts = function() {
-      $state.go('contact')
+      $state.go('contact');
     };
 
     editProfileController.getUser();
 
   })
-
 
   .controller('myProfileController', function($scope, $mdMedia, State, $window, $state, Auth) {
     /*$scope.data = { firstname: 'kyle', lastname: 'kyle', age: 23, gender: 'M', url: 'https://journalism.missouri.edu/wp-content/uploads/2011/10/greeley-kyle-200x300.jpg', aboutme: 'I like food'};*/
@@ -67,15 +66,15 @@ angular.module('roomie.ProfileController', [])
 
     $scope.resetnos = function() {
       State.resetNos();
-    }
+    };
 
     $scope.updateprofile = function() {
       $state.go('profileEdit');
-    }
+    };
 
     $scope.profile = function() {
       $state.go('profile');
-    }
+    };
 
 
     $scope.seenAllTruth = function() {
@@ -86,12 +85,11 @@ angular.module('roomie.ProfileController', [])
       return result;
     };
 
-
     $scope.getUser = function() {
       State.getUser().then(function(data) {
         $scope.user = data[0];
       });
-    }
+    };
 
     $scope.getData = function() {
       State.getData().then(function(data) {
@@ -102,23 +100,22 @@ angular.module('roomie.ProfileController', [])
           $scope.data = $scope.dataArray[0];
         }
       });
-    }
+    };
 
     $scope.signout = function() {
       // firebase sign out
       Auth.auth.$unauth();
       // db sign out
       Auth.signout();
-    }
+    };
 
     $scope.new = function() {
-      $state.go('main')
-    }
+      $state.go('main');
+    };
 
     $scope.contacts = function() {
-      $state.go('contact')
-    }
-
+      $state.go('contact');
+    };
 
     $scope.approve = function() {
       State.approve($scope.data).then(function() {
@@ -156,24 +153,23 @@ angular.module('roomie.ProfileController', [])
       if (authData === null) {
         console.log('Not logged in yet');
       } else {
-        socialProfileController.newinfo.uid = authData.uid
+        socialProfileController.newinfo.uid = authData.uid;
         console.log('Logged in as', authData.uid);
-        console.log('this is the provider ', authData.provider)
+        console.log('this is the provider ', authData.provider);
       }
       // This will display the user's name in our view
       if (authData.provider === 'twitter') {
-          socialProfileController.authData = authData.twitter;
-        };
+        socialProfileController.authData = authData.twitter;
+      };
       if (authData.provider === 'github') {
-          socialProfileController.authData = authData.github;
-        };
+        socialProfileController.authData = authData.github;
+      };
       if (authData.provider === 'google') {
-          socialProfileController.authData = authData.google;
-
-        };
+        socialProfileController.authData = authData.google;
+      };
       if (authData.provider === 'facebook') {
-          socialProfileController.authData = authData.facebook;
-        };
+        socialProfileController.authData = authData.facebook;
+      };
     });
 
     socialProfileController.createUser = function() {
@@ -186,17 +182,17 @@ angular.module('roomie.ProfileController', [])
       Auth.signup(socialProfileController.newinfo)
       .then(function(token) {
         Users.getProfile(auth.uid).$loaded()
-          .then(function(profile) {
-              socialProfileController.profile = profile;
-              socialProfileController.profile.displayName = socialProfileController.newinfo.username;
-              socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
-              console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
-              socialProfileController.profile.$save().then(function () {
-                console.log('profile successfully saved');
-                $window.localStorage.setItem('com.roomie', token);
-                $state.go('main');
-                });
-            });
+        .then(function(profile) {
+          socialProfileController.profile = profile;
+          socialProfileController.profile.displayName = socialProfileController.newinfo.username;
+          socialProfileController.profile.emailHash = md5.createHash(socialProfileController.newinfo.email);
+          console.log('this is the profile after it gets the displayname and email hash ', socialProfileController.profile);
+          socialProfileController.profile.$save().then(function() {
+            console.log('profile successfully saved');
+            $window.localStorage.setItem('com.roomie', token);
+            $state.go('main');
+          });
+        });
       })
       .catch(function(error) {
         console.log(error.data);
@@ -206,19 +202,19 @@ angular.module('roomie.ProfileController', [])
       });
     };
 
-    $scope.$watch('socialProfileController.authData.displayName', function(v){
+    $scope.$watch('socialProfileController.authData.displayName', function(v) {
       socialProfileController.newinfo.firstname = v;
     });
 
-    $scope.$watch('socialProfileController.authData.profileImageURL', function(v){
+    $scope.$watch('socialProfileController.authData.profileImageURL', function(v) {
       socialProfileController.newinfo.image_url = v;
     });
 
-    $scope.$watch('socialProfileController.authData.email', function(v){
+    $scope.$watch('socialProfileController.authData.email', function(v) {
       socialProfileController.newinfo.email = v;
     });
 
-    $scope.$watch('socialProfileController.authData.username', function(v){
+    $scope.$watch('socialProfileController.authData.username', function(v) {
       socialProfileController.newinfo.username = v;
     });
 

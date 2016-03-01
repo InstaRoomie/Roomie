@@ -14,5 +14,5 @@ angular.module('roomie.angularfireChatFactory', [])
 
         return $firebaseArray(userMessagesRef.child(path));
       }
-    }
-  })
+    };
+  });

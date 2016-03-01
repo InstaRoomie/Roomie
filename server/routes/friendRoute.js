@@ -6,4 +6,4 @@ module.exports = function(app) {
   console.log(app);
 
   app.get('/friend', userController.checkAuth, friendController.getFriend);
-}
+};

@@ -8,11 +8,9 @@ angular.module('roomie.main', [])
   $scope.dataArray = [];
   $scope.user;
 
-
   $scope.profile = function() {
     $state.go('profile');
-  }
-
+  };
 
   $scope.seenAllTruth = function() {
     var result = false;
@@ -22,12 +20,11 @@ angular.module('roomie.main', [])
     return result;
   };
 
-
   $scope.getUser = function() {
     State.getUser().then(function(data) {
       $scope.user = data[0];
     });
-  }
+  };
 
   $scope.getData = function() {
     State.getData().then(function(data) {
@@ -38,23 +35,22 @@ angular.module('roomie.main', [])
         $scope.data = $scope.dataArray[0];
       }
     });
-  }
+  };
 
   $scope.signout = function() {
     // firebase sign out
     Auth.auth.$unauth();
     // db sign out
     Auth.signout();
-  }
+  };
 
   $scope.new = function() {
     $state.go('main');
-  }
+  };
 
   $scope.contacts = function() {
     $state.go('contact');
-  }
-
+  };
 
   $scope.approve = function() {
     State.approve($scope.data).then(function() {

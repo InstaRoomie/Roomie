@@ -57,7 +57,7 @@ angular.module('roomie.services', [])
 
     var seenAllTruth = function() {
       return seenAll;
-    }
+    };
 
     var resetNos = function() {
       return $http({

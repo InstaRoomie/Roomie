@@ -23,15 +23,14 @@ angular.module('roomie.auth', [])
             console.log('this is the profile after it gets the displayname and email hash ', $scope.profile);
             Auth.auth.$authWithPassword($scope.firebaseUser).then(function(auth) {
               console.log(auth, ' is logged in!');
-              $scope.profile.$save().then(function () {
+              $scope.profile.$save().then(function() {
                 /*Auth.auth.$authWithPassword($scope.firebaseUser);*/
                 console.log('profile successfully saved');
-                });
               });
+            });
           });
-
-      }, function (error) {
-          console.log("This is the error from Firebase ", error);
+    }, function(error) {
+          console.log('This is the error from Firebase ', error);
           $scope.error = error;
         });
 
@@ -53,14 +52,12 @@ angular.module('roomie.auth', [])
       password: $scope.user.password
     };
 
-
     Auth.auth.$authWithPassword($scope.firebaseUser)
-    .then(function (auth) {
+    .then(function(auth) {
         console.log(auth, ' is logged in!');
-      }, function (error) {
-         console.log("This is the error from Firebase ", error);
-        });
-
+      }, function(error) {
+        console.log('This is the error from Firebase ', error);
+      });
 
     Auth.signin($scope.user)
     .then(function(token) {
@@ -68,7 +65,7 @@ angular.module('roomie.auth', [])
       $state.go('main');
     })
     .catch(function(error) {
-      console.log("this is the error from the server" , error.data.error);
+      console.log('this is the error from the server: ' , error.data.error);
       $scope.error = error.data.error;
     });
   };
@@ -79,9 +76,9 @@ angular.module('roomie.auth', [])
       .then(function(token) {
           if (token) {
             $window.localStorage.setItem('com.roomie', token);
-            $state.go('main')
+            $state.go('main');
           } else {
-            console.log('social user does not exist')
+            console.log('social user does not exist');
             $state.go('sociallogin');
           }
         });
@@ -92,13 +89,12 @@ angular.module('roomie.auth', [])
       } else {
         console.log(error);
       }
-    })
-
+    });
   };
 
   $scope.goLogin = function() {
     $state.go('signin');
-  }
+  };
 
   $scope.goSignUp = function(ev) {
     var confirm = $mdDialog.confirm()
@@ -109,10 +105,9 @@ angular.module('roomie.auth', [])
           .ok('Yep')
           .cancel('No');
     $mdDialog.show(confirm).then(function() {
-      $state.go('socialsignup')
+      $state.go('socialsignup');
     }, function() {
-      $state.go('signup')
+      $state.go('signup');
     });
-  }
-
+  };
 });
