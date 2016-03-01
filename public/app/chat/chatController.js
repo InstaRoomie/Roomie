@@ -1,5 +1,5 @@
 angular.module('roomie.angularfireChatController', [])
-  .controller('MessagesCtrl', function($scope, profile, channelName, messages) {
+  .controller('MessagesCtrl', ['$scope', 'profile', 'channelName', 'messages', function($scope, profile, channelName, messages) {
     var messagesCtrl = this;
 
     messagesCtrl.messages = messages;
@@ -39,4 +39,4 @@ angular.module('roomie.angularfireChatController', [])
       $state.go('profile');
     };
 
-  });
+  }]);

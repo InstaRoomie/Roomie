@@ -1,5 +1,5 @@
 angular.module('roomie.services', [])
-  .factory('Auth', function($http, $state, $window, $firebaseAuth, FirebaseUrl) {
+  .factory('Auth', ['$http', '$state', '$window', '$firebaseAuth', 'FirebaseUrl', function($http, $state, $window, $firebaseAuth, FirebaseUrl) {
 
     var ref = new Firebase(FirebaseUrl);
     var auth = $firebaseAuth(ref);
@@ -49,8 +49,8 @@ angular.module('roomie.services', [])
       currentuser: currentuser
     };
 
-  })
-  .factory('State', function($http, $location, $window, Auth) {
+  }])
+  .factory('State', ['$http', '$location', '$window', 'Auth', function($http, $location, $window, Auth) {
     var getPromise;
 
     var seenAll = false;
@@ -142,4 +142,4 @@ angular.module('roomie.services', [])
       updateProfile: updateProfile
     };
 
-  });
+  }]);

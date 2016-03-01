@@ -1,5 +1,5 @@
 angular.module('roomie.ProfileController', [])
-  .controller('EditProfileController', function($scope, $mdMedia, State, $window, $state, Auth) {
+  .controller('EditProfileController', ['$scope', '$mdMedia', 'State', '$window', '$state', 'Auth', function($scope, $mdMedia, State, $window, $state, Auth) {
 
     var editProfileController = this;
 
@@ -54,10 +54,9 @@ angular.module('roomie.ProfileController', [])
 
     editProfileController.getUser();
 
-  })
+  }])
 
-  .controller('myProfileController', function($scope, $mdMedia, State, $window, $state, Auth) {
-    /*$scope.data = { firstname: 'kyle', lastname: 'kyle', age: 23, gender: 'M', url: 'https://journalism.missouri.edu/wp-content/uploads/2011/10/greeley-kyle-200x300.jpg', aboutme: 'I like food'};*/
+  .controller('myProfileController', ['$scope', '$mdMedia', 'State', '$window', '$state', 'Auth', function($scope, $mdMedia, State, $window, $state, Auth) {
 
     $scope.data;
     $scope.currentuser = Auth.currentuser;
@@ -140,9 +139,9 @@ angular.module('roomie.ProfileController', [])
     $scope.getData();
     $scope.getUser();
 
-  })
+  }])
 
-  .controller('SocialProfileController', function($scope, $mdMedia, State, $window, $state, Auth, auth, Users, md5) {
+  .controller('SocialProfileController', ['$scope', '$mdMedia', 'State', '$window', '$state', 'Auth', 'auth', 'Users', 'md5', function($scope, $mdMedia, State, $window, $state, Auth, auth, Users, md5) {
     var socialProfileController = this;
 
     socialProfileController.newinfo = {};
@@ -224,4 +223,4 @@ angular.module('roomie.ProfileController', [])
       Auth.signout();
     };
 
-  });
+  }]);
