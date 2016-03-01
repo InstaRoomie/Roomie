@@ -62,6 +62,7 @@ Structure
 
 ```
 .
+├── dist                  # Concatenated code
 ├── public                # Client-facing source code
 |   ├── app               # Application source code
 │   |    ├── auth         # Components that dictate authentication structure
@@ -73,6 +74,7 @@ Structure
 │   |    ├── services     # Factories that communicate server-side
 │   |    └── app.js       # Application bootstrap and rendering
 │   ├── assets            # Images for application
+│   ├── dist              # Minified code for deployment
 │   ├── index.html        # Parent view
 |   └── style.css         # Styling
 ├── server                # Server-side source code
@@ -99,6 +101,6 @@ Contributing
 
 If you would like to submit a pull request, please make an effort to follow the guide in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Thanks for checking our app!
+Thanks for checking our app out!
 
 – InstaRoomie Dev Team (Bobby, Daniel, Danny, & Ethaniel)
