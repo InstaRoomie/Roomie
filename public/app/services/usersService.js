@@ -1,5 +1,5 @@
 angular.module('roomie.angularfireUsersFactory', [])
-  .factory('Users', function($firebaseArray, $firebaseObject, FirebaseUrl) {
+  .factory('Users', ['$firebaseArray', '$firebaseObject', 'FirebaseUrl', function($firebaseArray, $firebaseObject, FirebaseUrl) {
 
     var usersRef = new Firebase(FirebaseUrl + 'users');
 
@@ -39,4 +39,4 @@ angular.module('roomie.angularfireUsersFactory', [])
 
     return Users;
 
-  });
+  }]);

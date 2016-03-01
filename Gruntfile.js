@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       dist: {
-        src: [''],
+        src: ['public/app/**/**.js'],
         dest: 'dist/built.js',
       }
     },
@@ -16,11 +16,11 @@ module.exports = function(grunt) {
       verbose: true,
       fix: true,
       requireCurlyBraces: ['if']
-    }
+    },
     uglify: {
       my_target: {
         files: {
-          'client/dist/app.min.js': ['dist/built.js']
+          'public/dist/app.min.js': ['dist/built.js']
         }
       }
     }
@@ -32,6 +32,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-jscs');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat', 'jscs', 'uglify']);
+  grunt.registerTask('default', ['concat', 'uglify']);
 
 };

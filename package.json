@@ -8,7 +8,7 @@
     "start": "npm run dev",
     "dev": "node index.js",
     "postinstall": "npm install bower -g && bower cache clean && bower install",
-    "lint": "eslint **/**.js"
+    "lint": "jscs **/**.js"
   },
   "repository": {
     "type": "git",

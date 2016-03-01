@@ -1,6 +1,6 @@
 angular.module('roomie.auth', [])
 
-.controller('AuthController', function($scope, $window, $state, Auth, Users, md5, $mdDialog, $mdMedia) {
+.controller('AuthController', ['$scope', '$window', '$state', 'Auth', 'Users', 'md5', '$mdDialog', '$mdMedia', function($scope, $window, $state, Auth, Users, md5, $mdDialog, $mdMedia) {
   $scope.user = {};
 
   $scope.signup = function() {
@@ -110,4 +110,4 @@ angular.module('roomie.auth', [])
       $state.go('signup');
     });
   };
-});
+}]);

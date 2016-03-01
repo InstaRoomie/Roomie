@@ -1,5 +1,5 @@
 angular.module('roomie.angularfireChatFactory', [])
-  .factory('Messages', function($firebaseArray, FirebaseUrl) {
+  .factory('Messages', ['$firebaseArray', 'FirebaseUrl', function($firebaseArray, FirebaseUrl) {
     var channelMessagesRef = new Firebase(FirebaseUrl + 'channelMessages');
 
     var userMessagesRef = new Firebase(FirebaseUrl + 'userMessages');
@@ -15,4 +15,4 @@ angular.module('roomie.angularfireChatFactory', [])
         return $firebaseArray(userMessagesRef.child(path));
       }
     };
-  });
+  }]);

@@ -1,5 +1,5 @@
 angular.module('roomie.contact', [])
-  .controller('ContactController', function($scope, $state, State, profile, auth, Users, Auth, md5) {
+  .controller('ContactController', ['$scope', '$state', 'State', 'profile', 'auth', 'Users', 'Auth', 'md5', function($scope, $state, State, profile, auth, Users, Auth, md5) {
 
     var contactController = this;
 
@@ -15,6 +15,7 @@ angular.module('roomie.contact', [])
         _.each(data, function(friend) {
           _.each(contactController.users, function(user) {
             if (md5.createHash(friend.email) === user.emailHash) {
+              /*console.log('this is the friend photo id ', id);*/
               _.extend(friend, user);
               _.extend(contactController.friendPhoto, {[user.$id]: friend.image_url});
             }
@@ -70,4 +71,4 @@ angular.module('roomie.contact', [])
 
     contactController.getContact();
 
-  });
+  }]);

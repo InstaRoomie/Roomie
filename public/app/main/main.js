@@ -1,7 +1,6 @@
 angular.module('roomie.main', [])
 
-.controller('MainController', function($scope, $mdMedia, State, $window, $state, Auth) {
-  /*$scope.data = { firstname: 'kyle', lastname: 'kyle', age: 23, gender: 'M', url: 'https://journalism.missouri.edu/wp-content/uploads/2011/10/greeley-kyle-200x300.jpg', aboutme: 'I like food'};*/
+.controller('MainController', ['$scope', '$mdMedia', 'State', '$window', '$state', 'Auth', function($scope, $mdMedia, State, $window, $state, Auth) {
 
   $scope.data;
   $scope.currentuser = Auth.currentuser;
@@ -75,4 +74,4 @@ angular.module('roomie.main', [])
   $scope.getData();
   $scope.getUser();
 
-});
+}]);
