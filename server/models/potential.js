@@ -5,7 +5,7 @@ var Potential = db.Model.extend({
   tableName: 'Maybe',
   hasTimestamps: true,
   initialize: function() {
-    console.log('Potential is created!')
+    console.log('Potential is created!');
   },
   user: function() {
     return this.belongsTo(User, 'id');

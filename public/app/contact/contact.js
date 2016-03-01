@@ -7,34 +7,33 @@ angular.module('roomie.contact', [])
 
     contactController.getContact = function() {
       State.getContact().then(function(data) {
-          contactController.data = data;
-          // goes over each friend to check with the firebase users to see
-          // if the hashedEmails match and if they do match
-          // it extends the friend with the firebase user that matches
-          // this is to get the ng-repeat together
-          _.each(data, function(friend) {
-              _.each(contactController.users, function(user) {
-                  if (md5.createHash(friend.email) === user.emailHash) {
-                    _.extend(friend, user);
-                    _.extend(contactController.friendPhoto, { [user.$id]: friend.image_url });
-                  }
-                });
-            });
-
-          console.log("This is the contact controller stuff ", contactController)
+        contactController.data = data;
+        // goes over each friend to check with the firebase users to see
+        // if the hashedEmails match and if they do match
+        // it extends the friend with the firebase user that matches
+        // this is to get the ng-repeat together
+        _.each(data, function(friend) {
+          _.each(contactController.users, function(user) {
+            if (md5.createHash(friend.email) === user.emailHash) {
+              _.extend(friend, user);
+              _.extend(contactController.friendPhoto, {[user.$id]: friend.image_url});
+            }
+          });
         });
+        console.log('This is the contact controller stuff ', contactController);
+      });
     };
 
     contactController.profilepage = function() {
       $state.go('profile');
-    }
+    };
 
     contactController.getUser = function() {
       State.getUser().then(function(data) {
         contactController.user = data[0];
-        _.extend(contactController.friendPhoto, { [contactController.profile.$id]: contactController.user.image_url});
+        _.extend(contactController.friendPhoto, {[contactController.profile.$id]: contactController.user.image_url});
       });
-    }
+    };
 
     contactController.profile = profile;
 
@@ -57,8 +56,7 @@ angular.module('roomie.contact', [])
 
     contactController.new = function() {
       $state.go('main');
-    }
-
+    };
 
     contactController.new = function() {
       $state.go('main');

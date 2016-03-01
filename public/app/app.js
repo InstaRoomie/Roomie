@@ -41,33 +41,32 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/contact',
         controller: 'ContactController as contactController',
         resolve: {
-          auth: function($state, Users, Auth){
+          auth: function($state, Users, Auth) {
             console.log('PROFILE: checking if the user is authenticated...');
-            return Auth.auth.$requireAuth().catch(function(){
+            return Auth.auth.$requireAuth().catch(function() {
               console.log('user is NOT authenticated so we are going HOME');
               $state.go('signin');
             });
           },
-          profile: function($state, Auth, Users){
-            return Auth.auth.$requireAuth().then(function(auth){
+          profile: function($state, Auth, Users) {
+            return Auth.auth.$requireAuth().then(function(auth) {
               console.log('attempting to resolve contact auth promise...', auth);
 
-              return Users.getProfile(auth.uid).$loaded().then(function(profile){
+              return Users.getProfile(auth.uid).$loaded().then(function(profile) {
                 console.log('contact auth promise was able to resolve the getProfile...');
                 console.log('profile: ', profile);
-                if (profile.displayName){
-                  console.log('returning the profile!', profile)
+                if (profile.displayName) {
+                  console.log('returning the profile!', profile);
                   return profile;
                 } else {
                   console.log('user has no displayName so heading to PROFILE');
                   $state.go('profilepage');
                 }
               });
-            }, function(error){
+            }, function(error) {
               //if one cannot is not authenticated... change state to 'signin'
               console.log('User is not Authenticated so we cannot get her profile. Heading to HOME');
               $state.go('signin');
-
             });
           }
         },
@@ -78,29 +77,29 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/chat',
         controller: 'ContactController as contactController',
         resolve: {
-          auth: function($state, Users, Auth){
+          auth: function($state, Users, Auth) {
             console.log('PROFILE: checking if the user is authenticated...');
-            return Auth.auth.$requireAuth().catch(function(){
+            return Auth.auth.$requireAuth().catch(function() {
               console.log('user is NOT authenticated so we are going HOME');
               $state.go('signin');
             });
           },
-          profile: function($state, Auth, Users){
-            return Auth.auth.$requireAuth().then(function(auth){
+          profile: function($state, Auth, Users) {
+            return Auth.auth.$requireAuth().then(function(auth) {
               console.log('attempting to resolve contact auth promise...', auth);
 
-              return Users.getProfile(auth.uid).$loaded().then(function(profile){
+              return Users.getProfile(auth.uid).$loaded().then(function(profile) {
                 console.log('contact auth promise was able to resolve the getProfile...');
                 console.log('profile: ', profile);
-                if (profile.displayName){
-                  console.log('returning the profile!', profile)
+                if (profile.displayName) {
+                  console.log('returning the profile!', profile);
                   return profile;
                 } else {
                   console.log('user has no displayName so heading to PROFILE');
                   $state.go('profilepage');
                 }
               });
-            }, function(error){
+            }, function(error) {
               //if one cannot is not authenticated... change state to 'signin'
               console.log('User is not Authenticated so we cannot get her profile. Heading to HOME');
               $state.go('signin');
@@ -115,13 +114,13 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/{uid}/messages/direct',
         controller: 'MessagesCtrl as messagesCtrl',
         resolve: {
-          messages: function ($stateParams, Messages, profile) {
+          messages: function($stateParams, Messages, profile) {
             console.log('looking for the messages in direct! ', Messages);
             return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
           },
           channelName: function($stateParams, Users) {
             return Users.all.$loaded().then(function() {
-                return '@' + Users.getDisplayNames($stateParams.uid);
+              return '@' + Users.getDisplayNames($stateParams.uid);
             });
           }
         },
@@ -138,9 +137,9 @@ var myApp = angular.module('roomie', ['roomie.auth', 'roomie.services', 'roomie.
         url: '/createprofile',
         controller: 'SocialProfileController as socialProfileController',
         resolve: {
-          auth: function($state, Users, Auth){
+          auth: function($state, Users, Auth) {
             console.log('PROFILE: checking if the user is authenticated...');
-            return Auth.auth.$requireAuth().catch(function(){
+            return Auth.auth.$requireAuth().catch(function() {
               console.log('user is NOT authenticated so we are going HOME');
               $state.go('signup');
             });
