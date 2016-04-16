@@ -34,7 +34,7 @@ Some technologies we used:
 Demo
 ----
 
-Check out [Roomie](https://instaroomiedev.herokuapp.com).
+Check out [Roomie](https://instaroomie.co).
 
 
 Getting Started
@@ -54,8 +54,8 @@ Usage
 -----
 
 #### `npm start` (alias for `npm run dev`)
-Runs the server (by default found at `localhost:3468`).
-
+Runs the server (by default found at `localhost:8070`).
+**Note** comment out httpserver if you don't have ssl certificates
 
 Structure
 ---------

@@ -19,11 +19,7 @@ module.exports = function(grunt) {
     },
     uglify: {
       options: {
-        mangle: false,
-        compress: {
-          properties: false,
-          mangleProperties: true
-        },
+        mangle: false
       },
       /*main: {
     		src: ['dist/built.js'],

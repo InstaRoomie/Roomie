@@ -7,6 +7,7 @@ angular.module('roomie.contact', [])
 
     contactController.getContact = function() {
       State.getContact().then(function(data) {
+        console.log('this is the data ', data);
         contactController.data = data;
         // goes over each friend to check with the firebase users to see
         // if the hashedEmails match and if they do match
@@ -15,9 +16,10 @@ angular.module('roomie.contact', [])
         _.each(data, function(friend) {
           _.each(contactController.users, function(user) {
             if (md5.createHash(friend.email) === user.emailHash) {
-              /*console.log('this is the friend photo id ', id);*/
               _.extend(friend, user);
-              _.extend(contactController.friendPhoto, {[user.$id]: friend.image_url});
+              var friendObj = {};
+              friendObj[user.$id] = friend.image_url;
+              _.extend(contactController.friendPhoto, friendObj);
             }
           });
         });
@@ -32,7 +34,9 @@ angular.module('roomie.contact', [])
     contactController.getUser = function() {
       State.getUser().then(function(data) {
         contactController.user = data[0];
-        _.extend(contactController.friendPhoto, {[contactController.profile.$id]: contactController.user.image_url});
+        var contactObj = {};
+        contactObj[contactController.profile.$id] = contactController.user.image_url;
+        _.extend(contactController.friendPhoto, contactObj);
       });
     };
 
