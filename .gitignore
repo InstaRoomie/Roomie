@@ -7,3 +7,5 @@ ssl.key
 cert.pem
 dist/built.js
 public/dist/
+instaroomie_co.crt
+ssl-bundle.crt
