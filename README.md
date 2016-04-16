@@ -29,6 +29,8 @@ Some technologies we used:
   * [bcrypt](https://www.npmjs.com/package/bcrypt-nodejs) and [jwt-simple](https://www.npmjs.com/package/jwt-simple) for user authentication
   * [Node](https://nodejs.org/en/)/[Express](http://expressjs.com/en/index.html) server
   * [Firebase](https://www.firebase.com/) authentication for Github/Facebook/Twitter/Google login
+  * [Grunt](http://gruntjs.com/) for concating and minifying deployment code
+  * [NGINX](https://www.nginx.com/resources/wiki/) for high performance proxy routing
 
 
 Demo
@@ -104,4 +106,4 @@ If you would like to submit a pull request, please make an effort to follow the 
 
 Thanks for checking our app out!
 
-– InstaRoomie Dev Team (Bobby, Daniel, Danny, & Ethaniel)
+– InstaRoomie Dev Team ([Bobby](https://github.com/bobbychong), [Daniel](https://github.com/DeeHKim), [Danny](https://github.com/drizko), & [Ethaniel](https://github.com/ethanrubio))
