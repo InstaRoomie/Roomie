@@ -18,7 +18,7 @@ Table of Contents
 About
 --------
 
-Roomie is a simple, Tinder-inspired app to find roommates that you'll get along with. You only get the ability to chat with someone else if there is mutual interest.
+Roomie is a simple, Tinder-inspiredg app to find roommates that you'll get along with. You only get the ability to chat with someone else if there is mutual interest.
 
 Some technologies we used:
   * [Angular](https://facebook.github.io/react/) for data binding and performant UI
