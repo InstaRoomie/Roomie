@@ -18,7 +18,7 @@ Table of Contents
 About
 --------
 
-Roomie is a simple, Tinder-esque app to find roommates that you'll get along with. You only get the ability to chat with someone else if there is mutual interest.
+Roomie is a simple, Tinder-inspiredg app to find roommates that you'll get along with. You only get the ability to chat with someone else if there is mutual interest.
 
 Some technologies we used:
   * [Angular](https://facebook.github.io/react/) for data binding and performant UI
@@ -29,12 +29,14 @@ Some technologies we used:
   * [bcrypt](https://www.npmjs.com/package/bcrypt-nodejs) and [jwt-simple](https://www.npmjs.com/package/jwt-simple) for user authentication
   * [Node](https://nodejs.org/en/)/[Express](http://expressjs.com/en/index.html) server
   * [Firebase](https://www.firebase.com/) authentication for Github/Facebook/Twitter/Google login
+  * [Grunt](http://gruntjs.com/) for concating and minifying deployment code
+  * [NGINX](https://www.nginx.com/resources/wiki/) for high performance proxy routing
 
 
 Demo
 ----
 
-Check out [Roomie](https://instaroomiedev.herokuapp.com).
+Check out [Roomie](https://instaroomie.co).
 
 
 Getting Started
@@ -47,6 +49,7 @@ $ git clone https://github.com/InstaRoomie/Roomie.git
 $ cd roomie
 $ npm install       # Install Node modules listed in ./package.json
 $ bower install     # Install Bower Components listed in ./bower.json
+$ grunt build       # Minifies code for app use
 ```
 
 
@@ -54,8 +57,8 @@ Usage
 -----
 
 #### `npm start` (alias for `npm run dev`)
-Runs the server (by default found at `localhost:3468`).
-
+Runs the server (by default found at `localhost:8070`).
+**Note** comment out httpserver if you don't have ssl certificates
 
 Structure
 ---------
@@ -103,4 +106,4 @@ If you would like to submit a pull request, please make an effort to follow the 
 
 Thanks for checking our app out!
 
-– InstaRoomie Dev Team (Bobby, Daniel, Danny, & Ethaniel)
+– InstaRoomie Dev Team ([Bobby](https://github.com/bobbychong), [Daniel](https://github.com/DeeHKim), [Danny](https://github.com/drizko), & [Ethaniel](https://github.com/ethanrubio))

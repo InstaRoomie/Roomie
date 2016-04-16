@@ -18,6 +18,13 @@ module.exports = function(grunt) {
       requireCurlyBraces: ['if']
     },
     uglify: {
+      options: {
+        mangle: false
+      },
+      /*main: {
+    		src: ['dist/built.js'],
+    		dest: 'public/dist/app.min.js'
+    	},*/
       my_target: {
         files: {
           'public/dist/app.min.js': ['dist/built.js']
