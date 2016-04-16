@@ -47,6 +47,7 @@ $ git clone https://github.com/InstaRoomie/Roomie.git
 $ cd roomie
 $ npm install       # Install Node modules listed in ./package.json
 $ bower install     # Install Bower Components listed in ./bower.json
+$ grunt build       # Minifies code for app use
 ```
 
 
